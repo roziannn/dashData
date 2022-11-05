@@ -5,7 +5,8 @@
     <title>dashData | @yield('title')</title>
 
     @include('layouts.head')
-
+    <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    @stack('css')
 </head>
 
 <body id="page-top">
@@ -79,7 +80,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
+    @stack('scripts')
 
+    <!-- Page level plugins -->
+    <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $data = User::all();
+
+        return view('user.index', compact('data'));
     }
 
     /**
@@ -23,7 +26,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+
+        $autoname = 'dash.';
+        return view('user.create', compact('autoname'));
     }
 
     /**
@@ -34,7 +39,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedDate = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        User::create($validatedDate); 
+        $request->accepts('session');
+        session()->flash('success', 'Laporan berhasil dibuat!');
+
+        return redirect('/user/index')->with('succes', 'New Post has been Added');
     }
 
     /**

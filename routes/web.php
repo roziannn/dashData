@@ -25,3 +25,4 @@ Route::get('/login', [LoginController::class, 'index']);
 //user
 Route::get('/user/index', [UserController::class, 'index']);
 Route::get('/user/create', [UserController::class, 'create']);
+Route::post('/user/store', [UserController::class, 'store']);

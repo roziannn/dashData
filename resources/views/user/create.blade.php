@@ -16,41 +16,37 @@
                         User Details
                     </h6>
                 </div>
-               
             </div>
             
         </div>
         <div class="card-body">
-            <form>
+            <form action="/user/store" method="post">
+                @csrf
                 <!-- Form Row-->
                 <div class="row gx-3 mb-3">
-                    <!-- Form Group (first name)-->
                     <div class="col-md-6">
-                        <label class="small mb-1" for="inputFirstName">First name</label>
-                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name"
-                            value="">
+                        <label class="small mb-1" for="first_name">First name</label>
+                        <input class="form-control" id="first_name" name="first_name" type="text" placeholder="Enter your first name"
+                            value="" autocomplete="none">
                     </div>
-                    <!-- Form Group (last name)-->
                     <div class="col-md-6">
-                        <label class="small mb-1" for="inputLastName">Last name</label>
-                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name"
+                        <label class="small mb-1" for="last_name">Last name</label>
+                        <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Enter your last name"
                             value="">
                     </div>
                 </div>
-                <!-- Form Group (email address)-->
                 <div class="mb-3">
-                    <label class="small mb-1" for="inputEmailAddress">Username</label>
-                    <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your username"
+                    <label class="small mb-1" for="username">Username</label>
+                    <input class="form-control" id="username" name="username" type="text" placeholder="Enter your username" value="<?php echo $autoname; ?>">
+                </div>
+                <div class="mb-3">
+                    <label class="small mb-1" for="email">Email address</label>
+                    <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email address"
                         value="">
                 </div>
                 <div class="mb-3">
-                    <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                    <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address"
-                        value="">
-                </div>
-                <div class="mb-3">
-                    <label class="small mb-1" for="inputEmailAddress">Password</label>
-                    <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your password"
+                    <label class="small mb-1" for="password">Password</label>
+                    <input class="form-control" id="password" name="password" type="password" placeholder="Enter your password"
                         value="">
                 </div>
                 <!-- Form Group (Group Selection Checkboxes)-->
@@ -91,7 +87,7 @@
                 <!-- Submit button-->
                 <div class="text-right">
                     <button class="btn btn-light btn-m text-primary" type="cancel">Cancel</button>
-                    <button class="btn btn-primary btn-m" type="button">Add new user</button>
+                    <button class="btn btn-primary btn-m" type="submit">Add new user</button>
                 </div>
             </form>
         </div>
