@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,7 @@ Route::get('/', function () {
 
 //login
 Route::get('/login', [LoginController::class, 'index']);
+
+//user
+Route::get('/user/index', [UserController::class, 'index']);
+Route::get('/user/create', [UserController::class, 'create']);
