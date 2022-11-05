@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +11,7 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-    
+
         @include('layouts.left-sidebar')
 
         <!-- Content Wrapper -->
@@ -27,7 +26,9 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <section class="content">
+                        @yield('content')
+                    </section>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -69,14 +70,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('template/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('template/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('template/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
 
 </body>
 
