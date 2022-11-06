@@ -88,3 +88,11 @@
 </body>
 
 </html>
+<style>
+    .table thead tr th {
+        font-size: 14px;
+    }
+    .table tbody tr td {
+        font-size: 14px;
+    }
+</style>

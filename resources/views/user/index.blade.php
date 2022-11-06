@@ -23,8 +23,8 @@
             <div class="table-responsive">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="col-sm-12">
-                        <table id="myTable" class="table table-bordered table-contextual">
-                            <thead class="bg-gray disabled color-palette">
+                        <table id="myTable" class="table table-bordered">
+                            <thead>
                                 <tr>
                                     <th width="5%">No</th>
                                     <th>Name</th>
@@ -40,7 +40,7 @@
                                 @foreach ($data as $item)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td>{{ $item->last_name }}</td>
+                                        <td> {{ $item->first_name }} {{ $item->last_name }}</td>
                                         <td>{{ $item->username }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->created_at }}</td>

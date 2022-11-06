@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.master');
-});
+    return view('/login.index');
+})->name('login');
 
 //login
 Route::get('/login', [LoginController::class, 'index']);
 
 //user
-Route::get('/user/index', [UserController::class, 'index']);
+Route::get('/user/index', [UserController::class, 'index'])->middleware('auth');
 Route::get('/user/create', [UserController::class, 'create']);
 Route::post('/user/store', [UserController::class, 'store']);

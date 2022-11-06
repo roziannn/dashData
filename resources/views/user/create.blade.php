@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-<div class="col-auto mt-2 mb-3">
-    <a href="/user/index" class="btn btn-sm btn-light text-primary">kembali</a>
-</div> 
+    <div class="col-auto mt-2 mb-3">
+        <a href="/user/index" class="btn btn-sm btn-light text-primary">kembali</a>
+    </div>
     <div class="card">
         <div class="card-header py-3">
             <div class="row">
@@ -17,37 +17,45 @@
                     </h6>
                 </div>
             </div>
-            
+
         </div>
+
         <div class="card-body">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div>
+            @endif
             <form action="/user/store" method="post">
                 @csrf
                 <!-- Form Row-->
                 <div class="row gx-3 mb-3">
                     <div class="col-md-6">
                         <label class="small mb-1" for="first_name">First name</label>
-                        <input class="form-control" id="first_name" name="first_name" type="text" placeholder="Enter your first name"
-                            value="" autocomplete="none">
+                        <input class="form-control" id="first_name" name="first_name" type="text"
+                            placeholder="Enter your first name" value="" autocomplete="none">
                     </div>
                     <div class="col-md-6">
                         <label class="small mb-1" for="last_name">Last name</label>
-                        <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Enter your last name"
-                            value="">
+                        <input class="form-control" id="last_name" name="last_name" type="text"
+                            placeholder="Enter your last name" value="">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="small mb-1" for="username">Username</label>
-                    <input class="form-control" id="username" name="username" type="text" placeholder="Enter your username" value="<?php echo $autoname; ?>">
+                    <input class="form-control" id="username" name="username" type="text"
+                        placeholder="Enter your username" value="<?php echo $autoname; ?>">
                 </div>
                 <div class="mb-3">
                     <label class="small mb-1" for="email">Email address</label>
-                    <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email address"
-                        value="">
+                    <input class="form-control" id="email" name="email" type="email"
+                        placeholder="Enter your email address" value="">
                 </div>
                 <div class="mb-3">
                     <label class="small mb-1" for="password">Password</label>
-                    <input class="form-control" id="password" name="password" type="password" placeholder="Enter your password"
-                        value="">
+                    <input class="form-control" id="password" name="password" type="password"
+                        placeholder="Enter your password" value="">
                 </div>
                 <!-- Form Group (Group Selection Checkboxes)-->
                 {{-- <div class="mb-3">

@@ -49,9 +49,10 @@ class UserController extends Controller
 
         User::create($validatedDate); 
         $request->accepts('session');
-        session()->flash('success', 'Laporan berhasil dibuat!');
 
-        return redirect('/user/index')->with('succes', 'New Post has been Added');
+        session()->flash('success', 'User create has been success!');
+
+        return back();
     }
 
     /**
