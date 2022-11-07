@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -16,6 +17,19 @@ class LoginController extends Controller
         return view('login.index');
     }
 
+    public function authenticate(Request $request){
+        $credentials = $request->validate([
+            'username' => 'required|max:20',
+            'password' => 'required|min:6'
+        ]);
+
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            return redirect()->intended('/user/index');
+        }
+
+        return back()->with('loginError', 'login Failed!');
+    }
     /**
      * Show the form for creating a new resource.
      *

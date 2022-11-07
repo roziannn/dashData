@@ -30,6 +30,7 @@
                                     <th>Name</th>
                                     <th>Username</th>
                                     <th>Email</th>
+                                    <th>Role</th>
                                     <th>Created_at</th>
                                     <th>Action</th>
                                 </tr>
@@ -43,6 +44,7 @@
                                         <td> {{ $item->first_name }} {{ $item->last_name }}</td>
                                         <td>{{ $item->username }}</td>
                                         <td>{{ $item->email }}</td>
+                                        <td>{{ $item->roles }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>hapus</td>
                                     </tr>

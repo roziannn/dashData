@@ -44,9 +44,10 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="/user/index" class="btn btn-primary btn-user btn-block" type="submit">
+                                        <button type="submit" class="btn btn-danger btn-block btn-flat">Sign In</button>
+                                        {{-- <a href="/user/index" class="btn btn-primary btn-user btn-block" type="submit">
                                             Login
-                                        </a>
+                                        </a> --}}
                                     </form>
                                     <hr>
                                     <div class="text-center">

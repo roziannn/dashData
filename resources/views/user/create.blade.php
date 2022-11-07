@@ -82,16 +82,16 @@
                     </div>
                 </div> --}}
                 <!-- Form Group (Roles)-->
-                {{-- <div class="mb-3">
+                <div class="mb-3">
                 <label class="small mb-1">Role</label>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="roles" id="roles">
                     <option selected="" disabled="">Select a role:</option>
-                    <option value="administrator">Administrator</option>
-                    <option value="registered">Registered</option>
-                    <option value="edtior">Editor</option>
-                    <option value="guest">Guest</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="REGISTERED">Registered</option>
+                    <option value="EDITOR">Editor</option>
+                    <option value="GUEST">Guest</option>
                 </select>
-            </div> --}}
+            </div>
                 <!-- Submit button-->
                 <div class="text-right">
                     <button class="btn btn-light btn-m text-primary" type="cancel">Cancel</button>
