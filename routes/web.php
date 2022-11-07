@@ -22,8 +22,9 @@ Route::get('/', function () {
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 //user
 Route::get('/user/index', [UserController::class, 'index'])->middleware('auth');
-Route::get('/user/create', [UserController::class, 'create'])->middleware('admin');
+Route::get('/user/create', [UserController::class, 'create'])->middleware('auth', 'admin');
 Route::post('/user/store', [UserController::class, 'store']);
