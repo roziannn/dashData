@@ -20,9 +20,11 @@
             </h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+
+            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="col-sm-12">
+
+                    <div class="dataTable-container">
                         <table id="myTable" class="table table-bordered">
                             <thead>
                                 <tr>
@@ -35,7 +37,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-        
+
                             <tbody>
                                 @php $i=1 @endphp
                                 @foreach ($data as $item)
@@ -46,16 +48,47 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->roles }}</td>
                                         <td>{{ $item->created_at }}</td>
-                                        <td>hapus</td>
+                                        <td>
+                                            <a href="#" class="btn btn-warning btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-danger btn-sm ml-1" data-toggle="modal"
+                                                data-target="#modal-danger{{ $item->id }}">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-             
             </div>
         </div>
+        {{-- danger modal --}}
+        @foreach ($data as $item)
+            <div class="modal fade" id="modal-danger{{ $item->id }}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Konfirmasi</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url('/user-delete' . $item->id) }}" method="GET">
+                                {{ csrf_field() }}
+                                <p>Yakin ingin menghapus data?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light btn-sm pull-left" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Hapus</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        @endforeach
     </div>
 @endsection
 @push('scripts')

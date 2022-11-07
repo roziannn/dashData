@@ -48,6 +48,8 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
+        $validatedDate['password'] = bcrypt($validatedDate['password']);
+
         User::create($validatedDate); 
         $request->accepts('session');
 
@@ -99,5 +101,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete($id){
+        $data = User::find($id);
+        $data->delete();
+
+        return redirect('/user/index')->with('successDelete', 'User has been deleted!');
     }
 }

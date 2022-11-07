@@ -44,7 +44,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-danger btn-block btn-flat">Sign In</button>
+                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                                         {{-- <a href="/user/index" class="btn btn-primary btn-user btn-block" type="submit">
                                             Login
                                         </a> --}}
