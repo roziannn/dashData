@@ -9,9 +9,11 @@
 
 
 @section('content')
-    <div class="col-auto mt-2 mb-3">
-        <a href="/user/create" class="btn btn-sm btn-light text-primary">+ Add New User</a>
-    </div>
+    @if (auth()->user()->roles == 'ADMIN')
+        <div class="col-auto mt-2 mb-3">
+            <a href="/user/create" class="btn btn-sm btn-light text-primary">+ Add New User</a>
+        </div>
+    @endif
     <div class="card">
 
         <div class="card-header py-3">
@@ -81,13 +83,14 @@
                                 <p>Yakin ingin menghapus data?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light btn-sm pull-left" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-light btn-sm pull-left"
+                                data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary btn-sm">Hapus</button>
                         </div>
                         </form>
                     </div>
                 </div>
-            </div> 
+            </div>
         @endforeach
     </div>
 @endsection
