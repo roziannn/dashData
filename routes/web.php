@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,13 @@ Route::match(['get', 'post'], '/user/edit/user-{id}', [UserController::class,'ed
 Route::post('/user/edit/user-{id}', [UserController::class,'update']);
 Route::post('/user/store', [UserController::class, 'store']);
 Route::get('/user-delete{id}', [UserController::class, 'delete']);
+
+//profile
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('profile', [ProfileController::class,'index'])->name('profile.index');
+    Route::patch('profile', [ProfileController::class,'update'])
+        ->name('profile.update');
+});
+
+// Route::get('profile', [ProfileController::class,'index'])->middleware('auth')->name('profile.index');
+// Route::get('profile', [ProfileController::class,'update'])->middleware('auth')->name('profile.update');
