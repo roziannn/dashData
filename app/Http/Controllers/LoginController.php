@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,19 +19,30 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function authenticate(Request $request){
+    public function authenticate(Request $request)
+    {
         $credentials = $request->validate([
             'username' => 'required|max:20',
             'password' => 'required|min:6'
         ]);
 
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/user/index');
         }
 
         return back()->with('loginError', 'login Failed!');
     }
+
+    //save data last login user
+    protected function authenticated(Request $request, $user)
+    {
+        $user->forceFill([
+            'last_login_at' => Carbon::now()->toDateTimeString(),
+            'last_login_ip' => $request->getClientIp()
+        ])->save();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -97,7 +109,8 @@ class LoginController extends Controller
         //
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();
