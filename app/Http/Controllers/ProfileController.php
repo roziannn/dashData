@@ -21,6 +21,9 @@ class ProfileController extends Controller
             $request->all()
         );
 
+        $request->accepts('session');
+        session()->flash('success', 'Data has been edited!');
+        
         return redirect()->route('profile.index');
     }
 }

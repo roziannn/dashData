@@ -36,6 +36,13 @@
                     @method('patch')
                     @csrf
                     <div class="card-body">
+                        @if (session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="close" data-dismiss="alert"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                        @endif
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (first name)-->
@@ -55,15 +62,26 @@
                         <div class="mb-3">
                             <label class="small mb-1" for="username">Username (how your name will appear to other users on
                                 the site)</label>
-                            <input class="form-control" id="username" name="username" type="text"
-                                placeholder="Enter your username" value="{{ old('username', $user->username) }}">
+                            <input class="form-control @error('username') is-invalid @enderror" id="username"
+                                name="username" type="text" placeholder="Enter your username"
+                                value="{{ old('username', $user->username) }}">
+                            @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>username has already taken!</strong>
+                                </span>
+                            @enderror
                         </div>
                         <!-- Form Group (email address)-->
                         <div class="mb-3">
                             <label class="small mb-1" for="email">Email address</label>
+                            <input class="form-control" id="email" name="email" type="email"
+                                placeholder="Enter your email address" value="{{ old('email', $user->email) }}">
+                        </div>
+                        {{-- <div class="mb-3">
+                            <label class="small mb-1" for="email">Email address</label>
                             <input class="form-control" id="email" type="email" placeholder="Enter your email address"
                                 value="{{ old('email', $user->email) }}">
-                        </div>
+                        </div> --}}
                         <button class="btn btn-primary" type="submit">Save changes</button>
                     </div>
                 </form>

@@ -1,8 +1,5 @@
 @extends('layouts.master')
 
-
-
-
 @section('title')
     Pengaturan User
 @endsection
