@@ -50,7 +50,7 @@ class UserController extends Controller
 
         $validatedDate['password'] = bcrypt($validatedDate['password']);
 
-        User::create($validatedDate); 
+        User::create($validatedDate);
         $request->accepts('session');
 
         session()->flash('success', 'User create has been success!');
@@ -77,7 +77,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = User::find($id);
+        return view('user.edit', compact('data'));
     }
 
     /**
@@ -89,7 +90,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::where('id', $id)->update([
+            'first_name'=> $request->first_name,
+            'last_name'=> $request->last_name,
+            'username'=> $request->username,
+            'roles'=> $request->roles,
+            'email'=> $request->email,
+        ]);
+
+        $request->accepts('session');
+        session()->flash('success', 'Berhasil mengubah data pegawai!');
+
+        return redirect()->back();
     }
 
     /**
@@ -103,7 +115,8 @@ class UserController extends Controller
         //
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $data = User::find($id);
         $data->delete();
 

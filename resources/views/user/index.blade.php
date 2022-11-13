@@ -36,7 +36,9 @@
                                     <th>Email</th>
                                     <th>Role</th>
                                     <th>Created_at</th>
+                                    @if (auth()->user()->roles == 'ADMIN')
                                     <th>Action</th>
+                                    @endif
                                 </tr>
                             </thead>
 
@@ -50,8 +52,9 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->roles }}</td>
                                         <td>{{ $item->created_at }}</td>
+                                        @if (auth()->user()->roles == 'ADMIN')
                                         <td>
-                                            <a href="#" class="btn btn-warning btn-sm">
+                                            <a href="{{ url('user/edit/user-' . $item->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <a href="#" class="btn btn-danger btn-sm ml-1" data-toggle="modal"
@@ -59,6 +62,7 @@
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

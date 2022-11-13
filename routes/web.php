@@ -27,5 +27,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 //user
 Route::get('/user/index', [UserController::class, 'index'])->middleware('auth');
 Route::get('/user/create', [UserController::class, 'create'])->middleware('admin');
+Route::match(['get', 'post'], '/user/edit/user-{id}', [UserController::class,'edit']);
+Route::post('/user/edit/user-{id}', [UserController::class,'update']);
 Route::post('/user/store', [UserController::class, 'store']);
 Route::get('/user-delete{id}', [UserController::class, 'delete']);
