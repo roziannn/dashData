@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -48,7 +49,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $validatedDate['password'] = bcrypt($validatedDate['password']);
+        $validatedDate['password'] = Hash::make($validatedDate['password']);
 
         User::create($validatedDate);
         $request->accepts('session');

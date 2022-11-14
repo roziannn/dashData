@@ -1,17 +1,11 @@
 @extends('layouts.master')
 
-
-
-
 @section('title')
     My Profile
 @endsection
 
-
 @section('content')
     <div class="row">
-
-
         <div class="col-xl-4">
             <!-- Profile picture card-->
             <div class="card mb-4 mb-xl-0">

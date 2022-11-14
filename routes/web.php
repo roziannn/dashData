@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -40,5 +41,9 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('profile.update');
 });
 
-// Route::get('profile', [ProfileController::class,'index'])->middleware('auth')->name('profile.index');
-// Route::get('profile', [ProfileController::class,'update'])->middleware('auth')->name('profile.update');
+//changePassword
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('password/change', [PasswordController::class,'index'])->name('password.index');
+    Route::patch('password/change', [PasswordController::class,'update'])
+        ->name('password.update');
+});
