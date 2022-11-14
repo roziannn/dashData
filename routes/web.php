@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -47,3 +48,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('password/change', [PasswordController::class,'update'])
         ->name('password.update');
 });
+
+//dashboard
+Route::get('/dashboard/index', [DashboardController::class,'index']);

@@ -26,16 +26,25 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
+                                    @if (session()->has('loginError'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{ session('loginError') }}
+                                            <button type="button" class="close" data-dismiss="alert"
+                                                aria-hidden="true">&times;</button>
+                                        </div>
+                                    @endif
+
                                     <form action="/login" method="post">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="username" name="username"
-                                                placeholder="Enter Username..." autofocus>
+                                            <input type="text"
+                                                class="form-control form-control-user @error('username') is-invalid @enderror"
+                                                id="username" name="username" placeholder="Enter Username..."
+                                                autofocus>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="password" name="password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="password"
+                                                name="password" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -44,7 +53,8 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign
+                                            In</button>
                                         {{-- <a href="/user/index" class="btn btn-primary btn-user btn-block" type="submit">
                                             Login
                                         </a> --}}

@@ -18,6 +18,9 @@ class PasswordController extends Controller
         $request->user()->update([
             'password' => Hash::make($request->get('password'))
         ]);
+
+        $request->accepts('session');
+        session()->flash('success', 'Password has been update!');
     
         return view('changePassword.index');
     }
