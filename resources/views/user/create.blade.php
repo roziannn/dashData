@@ -17,7 +17,6 @@
                     </h6>
                 </div>
             </div>
-
         </div>
 
         <div class="card-body">
@@ -34,28 +33,28 @@
                     <div class="col-md-6">
                         <label class="small mb-1" for="first_name">First name</label>
                         <input class="form-control" id="first_name" name="first_name" type="text"
-                            placeholder="Enter your first name" value="" autocomplete="none">
+                            placeholder="Enter your first name" required autocomplete="none">
                     </div>
                     <div class="col-md-6">
                         <label class="small mb-1" for="last_name">Last name</label>
                         <input class="form-control" id="last_name" name="last_name" type="text"
-                            placeholder="Enter your last name" value="">
+                            placeholder="Enter your last name" required>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="small mb-1" for="username">Username</label>
                     <input class="form-control" id="username" name="username" type="text"
-                        placeholder="Enter your username" value="<?php echo $autoname; ?>">
+                        placeholder="Enter your username" value="<?php echo $autoname; ?>" required>
                 </div>
                 <div class="mb-3">
                     <label class="small mb-1" for="email">Email address</label>
                     <input class="form-control" id="email" name="email" type="email"
-                        placeholder="Enter your email address" value="">
+                        placeholder="Enter your email address" required>
                 </div>
                 <div class="mb-3">
                     <label class="small mb-1" for="password">Password</label>
                     <input class="form-control" id="password" name="password" type="password"
-                        placeholder="Enter your password" value="">
+                        placeholder="Enter your password" required>
                 </div>
                 <!-- Form Group (Group Selection Checkboxes)-->
                 {{-- <div class="mb-3">
@@ -84,7 +83,7 @@
                 <!-- Form Group (Roles)-->
                 <div class="mb-3">
                 <label class="small mb-1">Role</label>
-                <select class="form-select" name="roles" id="roles">
+                <select class="form-select" name="roles" id="roles" required>
                     <option selected="" disabled="">Select a role:</option>
                     <option value="ADMIN">Admin</option>
                     <option value="REGISTERED">Registered</option>

@@ -12,7 +12,7 @@
     $second = date('s');
     $msg = ' Today is ' . date('l, M. d, Y.') . ' And the time is ' . date('g:i a');
     
-    if ((int) $hour == 0 && (int) $hour <= 9) {
+    if ((int) $hour == 1 && (int) $hour <= 9) {
         $greet = 'Good Morning,';
     } elseif ((int) $hour >= 10 && (int) $hour <= 11) {
         $greet = 'Good Day,';
@@ -25,5 +25,5 @@
     }    
     ?>
 
-    <h1> <?php echo $greet; ?> {{ auth()->user()->first_name }}</h1>
+    <h4> <?php echo $greet; ?> {{ auth()->user()->first_name }}</h4>
 @endsection

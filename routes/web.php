@@ -1,11 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\InventarisCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 //dashboard
 Route::get('/dashboard/index', [DashboardController::class,'index']);
+
+//inventaris
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/inventaris', [InventarisController::class,'index'])->name('inventaris.index');
+    Route::get('/inventaris/category', [InventarisCategoryController::class,'index'])->name('inventaris.category.index');
+});
