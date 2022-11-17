@@ -8,6 +8,7 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\InventarisCategoryController;
+use App\Http\Controllers\InventarisReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,9 +60,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/inventaris', [InventarisController::class,'index'])->name('inventaris.index');
     Route::post('/inventaris/store', [InventarisController::class,'store'])->name('inventaris.store');
     Route::get('/inventaris/item-delete{id}', [InventarisController::class,'delete'])->name('inventaris.delete');
-    Route::get('/inventaris/create', [InventarisController::class,'create'])->name('inventaris.create');
+    Route::post('/inventaris/update{id}', [InventarisController::class,'update']);
     //master category
     Route::get('/inventaris/category', [InventarisCategoryController::class,'index'])->name('inventaris.category.index');
     Route::post('/inventaris/category-store', [InventarisCategoryController::class, 'store']);
     Route::get('/inventaris/category-delete{id}', [InventarisCategoryController::class, 'delete']);
+});
+
+//inventaris problem report
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/inventaris/report', [InventarisReportController::class,'index']);
+    Route::get('/inventaris/report/create', [InventarisReportController::class,'create']);
 });

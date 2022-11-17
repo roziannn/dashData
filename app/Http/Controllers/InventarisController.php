@@ -80,7 +80,23 @@ class InventarisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Inventaris::where('id', $id)->update([
+            'code'=> $request->code,
+            'brand'=> $request->brand,
+            'inventarisCategory_name'=> $request->inventarisCategory_name,
+            'reg_code'=> $request->reg_code,
+            'year'=> $request->year,
+            'condition'=> $request->condition,
+            'location'=> $request->location,
+            'department'=> $request->department,
+            'used_by'=> $request->used_by,
+            'others'=> $request->others,
+        ]);
+
+        $request->accepts('session');
+        session()->flash('successUpdate', 'Item has been updated!');
+
+        return redirect()->back();
     }
 
     /**
@@ -94,6 +110,6 @@ class InventarisController extends Controller
         $data = Inventaris::find($id);
         $data->delete();
 
-        return redirect('/inventaris')->with('successDelete', 'User has been deleted!');
+        return redirect('/inventaris')->with('successDelete', 'Item has been deleted!');
     }
 }

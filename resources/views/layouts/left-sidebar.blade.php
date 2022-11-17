@@ -6,7 +6,8 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">dash <sup>data</sup></div>
+        <div class="sidebar-brand-text mx-3">dashdata</div>
+        {{-- <div class="sidebar-brand-text mx-3">dash <sup>data</sup></div> --}}
     </a>
 
     <!-- Divider -->
@@ -32,13 +33,28 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Data Inventaris</span>
+            <span>Inventary Data</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item" href="/inventaris">Semua Data</a>
                 <a class="collapse-item" href="/inventaris/category">Master Kategori</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
+            aria-expanded="true" aria-controls="collapseReport">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Inventary Report</span>
+        </a>
+        <div id="collapseReport" class="collapse" aria-labelledby="headingReport" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Components:</h6>
+                <a class="collapse-item" href="/inventaris/report">All Data Report</a>
+                <a class="collapse-item" href="#">Master Department</a>
             </div>
         </div>
     </li>
