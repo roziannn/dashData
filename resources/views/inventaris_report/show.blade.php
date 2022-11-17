@@ -9,7 +9,7 @@
             <h4>Item Report</h4>
         </div>
         <div class="col-auto">
-            <small>{{ $data->report_token }} / {{ $data->report_date }} / {{ $data->author }}</small>
+            <small>{{ $data->report_token }}/{{ $data->author }}</small>
         </div>
     </div>
     @if (session()->has('success'))
@@ -27,7 +27,7 @@
                 data-target="#modal-primary"> Add Solution</a>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-12 col-md-auto px-2">
@@ -84,16 +84,6 @@
                 </div>
             </div>
         </div>
-
-        {{-- My solution --}}
-        @if ($data->solution == NULL)
-        @else
-        <div class="col-md-6 mb-3">
-            <label class="small mb-1" for="reporter_name">Name</label>
-            <input class="form-control" id="reporter_name" name="reporter_name" type="text"
-            value="{{ old('reporter_name', $data->reporter_name) }}" readonly>
-        </div>
-        @endif
 
         {{-- primary modal // ADD SOLUTION --}}
         <div class="modal fade" id="modal-primary">
@@ -173,4 +163,34 @@
             </div>
         </div>
     </div>
+    {{-- My solution --}}
+    @if ($data->solution == null)
+    @else
+      
+        <div class="card">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-auto mr-auto">
+                        <h6 class="m-0 font-weight-bold text-primary">My Solution</h6>
+                    </div>
+                    <small class="mr-3">added on {{ $data->updated_at->diffForHumans() }}</small>
+                </div>
+            </div>
+            <div class="card-body">
+                {{-- <form action="{{ url('/inventaris/report/update' . $data->id) }}" method="post"> --}}
+                @csrf
+                <div class="row gx-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="report_token">Service Type</label>
+                        <input class="form-control" id="report_token" name="report_token" type="text"
+                            value="{{ $data->service_type }}" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="solution">Solution</label>
+                        <textarea id="solution" name="solution" class="form-control input-sm required" placeholder="Solution"
+                            rows="3">{{ $data->solution }}</textarea>
+                    </div>
+                </div>
+            </div>
+    @endif
 @endsection
