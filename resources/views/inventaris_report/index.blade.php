@@ -34,8 +34,8 @@
                                     <th>Token</th>
                                     <th>Report Date</th>
                                     <th>Author</th>
-                                    <th>Status</th>
-                                    <th>End Date</th>
+                                    <th>Service Type</th>
+                                    <th>Last Update</th>
                                     @if (auth()->user()->roles == 'ADMIN')
                                         <th>Action</th>
                                     @endif
@@ -50,8 +50,8 @@
                                         <td> {{ $item->report_token }}</td>
                                         <td>{{ $item->report_date }}</td>
                                         <td>{{ $item->author }}</td>
-                                        <td>{{ $item->status }}</td>
-                                        <td></td>
+                                        <td>{{ $item->service_type }}</td>
+                                        <td>{{ $item->updated_at }}</td>
                                         @if (auth()->user()->roles == 'ADMIN')
                                             <td>
                                                 <a href="{{ url('/inventaris/report/show/' . $item->id) }}"

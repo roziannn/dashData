@@ -19,7 +19,7 @@ class InventarisReportController extends Controller
     public function index()
     {
 
-        $data = InventaryReport::all();
+        $data = DB::select("SELECT * from inventary_reports order by report_token asc");
     
         return view('inventaris_report.index', compact('data'));
     }
@@ -32,7 +32,7 @@ class InventarisReportController extends Controller
     public function create()
     {
         $now = Carbon::now();
-        $reportDate = Carbon::now()->format('d/m/Y');
+        $reportDate = Carbon::now()->format('d-m-Y');
         
         // $ifReport = InventaryReport::all();
         // if($ifReport === 0){
@@ -108,6 +108,7 @@ class InventarisReportController extends Controller
             'department'=> $request->department,
             'details_problem'=> $request->details_problem,
             'reporter_contact'=> $request->reporter_contact,
+            'status'=> $request->status,
             'end_date'=> $request->end_date,
         ]);
 
@@ -122,7 +123,7 @@ class InventarisReportController extends Controller
     {
         
         InventaryReport::where('id', $id)->update([
-            'status'=> $request->status,
+            'service_type'=> $request->service_type,
             'vendor_name'=> $request->vendor_name,
             'start_service'=> $request->start_service,
             'end_service'=> $request->end_service,

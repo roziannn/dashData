@@ -62,29 +62,39 @@
                 <div class="col-md-6 mb-3">
                     <label class="small mb-1" for="reporter_name">Name</label>
                     <input class="form-control" id="reporter_name" name="reporter_name" type="text"
-                        value="{{ old('reporter_name', $data->reporter_name) }}">
+                        value="{{ old('reporter_name', $data->reporter_name) }}" readonly>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="small mb-1" for="department">Department/Division</label>
                     <input class="form-control" id="department" name="department" type="text"
-                        value="{{ $data->department }}">
+                        value="{{ $data->department }}" readonly>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="small mb-1" for="details_problem">Details Problem</label>
                     <textarea id="details_problem" name="details_problem" class="form-control input-sm required" placeholder="Description"
-                        rows="4">{{ $data->details_problem }}</textarea>
+                        rows="4" readonly>{{ $data->details_problem }}</textarea>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="small mb-1" for="reporter_contact">Contact</label>
                     <input class="form-control" id="reporter_contact" name="reporter_contact" type="text"
-                        value={{ $data->reporter_contact }}>
+                        value={{ $data->reporter_contact }} readonly>
                     <label class="small mb-1" for="report_date">Report Date</label>
                     <input class="form-control" id="report_date" name="report_date" type="text"
                         value="{{ $data->report_date }}" readonly>
                 </div>
             </div>
-            {{-- </form> --}}
         </div>
+
+        {{-- My solution --}}
+        @if ($data->solution == NULL)
+        @else
+        <div class="col-md-6 mb-3">
+            <label class="small mb-1" for="reporter_name">Name</label>
+            <input class="form-control" id="reporter_name" name="reporter_name" type="text"
+            value="{{ old('reporter_name', $data->reporter_name) }}" readonly>
+        </div>
+        @endif
+
         {{-- primary modal // ADD SOLUTION --}}
         <div class="modal fade" id="modal-primary">
             <div class="modal-dialog modal-lg">
@@ -99,8 +109,8 @@
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label class="small mb-1 mr-5" for="status">Status</label>
-                                    <select class="form-control input-sm" name="status" id="status">
+                                    <label class="small mb-1 mr-5" for="service_type">Service Type</label>
+                                    <select class="form-control input-sm" name="service_type" id="service_type">
                                         <option value="Self Service">Self Service</option>
                                         <option value="Vendor">Vendor</option>
                                     </select>
