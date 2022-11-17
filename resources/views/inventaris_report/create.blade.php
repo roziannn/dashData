@@ -56,15 +56,18 @@
                         <input class="form-control" id="department" name="department" type="text"
                             placeholder="Enter department" required>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
                         <label class="small mb-1" for="details_problem">Details Problem</label>
                         <textarea id="details_problem" name="details_problem" class="form-control input-sm required" placeholder="Description"
                             rows="4"></textarea>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
                         <label class="small mb-1" for="reporter_contact">Contact</label>
                         <input class="form-control" id="reporter_contact" name="reporter_contact" type="text"
                             placeholder="Enter reporter contact" required>
+                        <label class="small mb-1" for="report_date">Report Date</label>
+                        <input class="form-control" id="report_date" name="report_date" type="text" 
+                            value="<?php echo $reportDate; ?>" readonly>
                     </div>
                 </div>
                 <!-- Submit button-->

@@ -28,14 +28,12 @@ class InventarisReportController extends Controller
      */
     public function create()
     {
-
         $now = Carbon::now();
         $reportDate = Carbon::now()->format('d/m/Y');
-
-        $orderNumber = DB::table('inventary_reports')->orderBy('id', 'desc')->first('id');
+    
 
         $monthYear = $now->year . $now->month;
-        $token =  $monthYear . sprintf('%04d', $orderNumber->id + 1);
+        $token = 'RPT'. $monthYear . sprintf('%04d',  + 1);
 
         return view('inventaris_report.create', compact('reportDate', 'token'));
     }

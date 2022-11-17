@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('inventary_reports', function (Blueprint $table) {
             $table->id();
             $table->string('report_token');
+            $table->string('report_date');
             $table->string('author');
             $table->string('reporter_name');
             $table->string('department');

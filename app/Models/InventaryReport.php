@@ -16,5 +16,6 @@ class InventaryReport extends Model
         'department',
         'details_problem',
         'reporter_contact',
+        'report_date',
     ];
 }
