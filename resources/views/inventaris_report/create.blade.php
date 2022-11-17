@@ -5,6 +5,9 @@
 
 @section('content')
     <h4>Create New Report</h4>
+    <div class="col-auto mt-2 mb-3">
+        <a href="/inventaris/report/" class="btn btn-sm btn-light text-primary">Back</a>
+    </div>
     <div class="card">
         <div class="card-header py-3">
             <div class="row">
@@ -23,18 +26,18 @@
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 </div>
             @endif
-            <form action="#" method="post">
+            <form action="/inventaris/report/store" method="post">
                 @csrf
                 <div class="row gx-3 mb-4">
                     <div class="col-md-6">
                         <label class="small mb-1" for="report_token">Token</label>
                         <input class="form-control" id="report_token" name="report_token" type="text"
-                             required>
+                            value="<?php echo $token; ?>">
                     </div>
                     <div class="col-md-6">
-                        <label class="small mb-1" for="author_name">Author Name</label>
-                        <input class="form-control" id="author_name" name="author_name" type="text"
-                        value="{{ auth()->user()->first_name }} {{  auth()->user()->last_name }}" required>
+                        <label class="small mb-1" for="author">Author Name</label>
+                        <input class="form-control" id="author" name="author" type="text"
+                            value="{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}" required>
                     </div>
                 </div>
                 <div class="row">
@@ -54,15 +57,20 @@
                             placeholder="Enter department" required>
                     </div>
                     <div class="col-md-6">
-                        <label class="small mb-1" for="code">Others</label>
-                        <textarea id="others" name="others" class="form-control input-sm required" placeholder="Description"
-                            rows="5"></textarea>
+                        <label class="small mb-1" for="details_problem">Details Problem</label>
+                        <textarea id="details_problem" name="details_problem" class="form-control input-sm required" placeholder="Description"
+                            rows="4"></textarea>
                     </div>
                     <div class="col-md-6">
                         <label class="small mb-1" for="reporter_contact">Contact</label>
                         <input class="form-control" id="reporter_contact" name="reporter_contact" type="text"
                             placeholder="Enter reporter contact" required>
                     </div>
+                </div>
+                <!-- Submit button-->
+                <div class="text-right">
+                    <button class="btn btn-light btn-sm text-primary" type="cancel">Cancel</button>
+                    <button class="btn btn-primary btn-sm" type="submit">Save Report</button>
                 </div>
             </form>
         </div>

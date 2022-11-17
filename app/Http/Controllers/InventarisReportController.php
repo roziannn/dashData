@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InventaryReport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InventarisReportController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +28,16 @@ class InventarisReportController extends Controller
      */
     public function create()
     {
-        return view('inventaris_report.create');
+
+        $now = Carbon::now();
+        $reportDate = Carbon::now()->format('d/m/Y');
+
+        $orderNumber = DB::table('inventary_reports')->orderBy('id', 'desc')->first('id');
+
+        $monthYear = $now->year . $now->month;
+        $token =  $monthYear . sprintf('%04d', $orderNumber->id + 1);
+
+        return view('inventaris_report.create', compact('reportDate', 'token'));
     }
 
     /**
@@ -35,7 +48,12 @@ class InventarisReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        InventaryReport::create($request->all());
+
+        $request->accepts('session');
+        session()->flash('success', 'Report has been added!');
+
+        return back();
     }
 
     /**

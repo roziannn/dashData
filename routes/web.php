@@ -71,4 +71,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/inventaris/report', [InventarisReportController::class,'index']);
     Route::get('/inventaris/report/create', [InventarisReportController::class,'create']);
+    Route::post('/inventaris/report/store', [InventarisReportController::class,'store']);
 });

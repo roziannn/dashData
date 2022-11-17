@@ -8,9 +8,7 @@
 
     @if (auth()->user()->roles == 'ADMIN')
         <div class="col-auto mt-2 mb-3">
-            <a href="#" class="btn btn-sm btn-light text-primary" data-toggle="modal" data-target="#modal-primary">+ Create
-                New Report</a>
-            </a>
+            <a href="/inventaris/report/create" class="btn btn-sm btn-light text-primary">+ Create New Report</a>
         </div>
     @endif
     <div class="card">
@@ -93,89 +91,5 @@
                     </div>
                 </div>
             @endforeach --}}
-        {{-- primary modal/ADD --}}
-        <div class="modal fade" id="modal-primary">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Create New Report</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/inventaris/store" method="POST">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="code">Token</label>
-                                    <input class="form-control" id="code" name="code" type="text"
-                                        placeholder="Enter item code" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="brand">Author</label>
-                                    <input class="form-control" id="brand" name="brand" type="text"
-                                        placeholder="Enter brand code" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="brand">Report Date</label>
-                                    <input class="form-control" id="brand" name="brand" type="text"
-                                        placeholder="Enter brand code" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="inventarisCategory_name">Category</label>
-                                    <select class="form-control input-group-sm select2" id='inventarisCategory_name'
-                                        name="inventarisCategory_name" required>
-                                        {{-- @foreach ($dataCategory as $data)
-                                            <option></option>
-                                            <option>{{ $data->inventarisCategory_name }}</option>
-                                        @endforeach --}}
-                                    </select>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="small mb-1" for="reg_code">Registration Code</label>
-                                    <input class="form-control" id="reg_code" name="reg_code" type="reg_code"
-                                        placeholder="Enter registration code" required>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="small mb-1" for="year">Year of Purchase</label>
-                                    <input class="form-control" id="year" name="year" type="year"
-                                        placeholder="Enter year of purchase" required>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="small mb-1" for="condition">Condition</label>
-                                    <input class="form-control" id="condition" name="condition" type="text"
-                                        placeholder="Enter item condition" required>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="small mb-1" for="location">Item Location</label>
-                                    <input class="form-control" id="location" name="location" type="text"
-                                        placeholder="Enter item location" required>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="small mb-1" for="department">Department</label>
-                                    <input class="form-control" id="department" name="department" type="text"
-                                        placeholder="Enter department" required>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="small mb-1" for="used_by">Used by</label>
-                                    <input class="form-control" id="used_by" name="used_by" type="text"
-                                        placeholder="Item used by" required>
-                                </div>
-                                <div class="col-md-12 mt-3">
-                                    <label class="small mb-1" for="code">Others</label>
-                                    <textarea id="others" name="others" class="form-control input-sm required" placeholder="Description"
-                                        rows="3"></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light btn-sm pull-left"
-                                    data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary btn-sm">Save Data</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
