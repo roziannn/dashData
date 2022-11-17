@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InventarisCategory;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\View;
 
@@ -14,7 +15,9 @@ class InventarisCategoryController extends Controller
      */
     public function index()
     {
-        return view('inventaris.category.index');
+        $data = InventarisCategory::all();
+
+        return view('inventaris.category.index', compact('data'));
     }
 
     /**
@@ -35,7 +38,12 @@ class InventarisCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        InventarisCategory::create($request->all());
+
+        $request->accepts('session');
+        session()->flash('success', 'Berhasil menambahkan data!');
+
+        return back();
     }
 
     /**
@@ -80,6 +88,13 @@ class InventarisCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+    }
+    public function delete($id)
+    {
+        $data = InventarisCategory::find($id);
+        $data->delete();
+
+        return redirect('/inventaris/category')->with('successDelete', 'Category has been deleted!');
     }
 }

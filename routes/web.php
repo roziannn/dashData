@@ -57,5 +57,11 @@ Route::get('/dashboard/index', [DashboardController::class,'index']);
 //inventaris
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/inventaris', [InventarisController::class,'index'])->name('inventaris.index');
+    Route::post('/inventaris/store', [InventarisController::class,'store'])->name('inventaris.store');
+    Route::get('/inventaris/item-delete{id}', [InventarisController::class,'delete'])->name('inventaris.delete');
+    Route::get('/inventaris/create', [InventarisController::class,'create'])->name('inventaris.create');
+    //master category
     Route::get('/inventaris/category', [InventarisCategoryController::class,'index'])->name('inventaris.category.index');
+    Route::post('/inventaris/category-store', [InventarisCategoryController::class, 'store']);
+    Route::get('/inventaris/category-delete{id}', [InventarisCategoryController::class, 'delete']);
 });

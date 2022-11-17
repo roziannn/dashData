@@ -6,7 +6,9 @@
 
     @include('layouts.head')
     <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
     @stack('css')
+    
 </head>
 
 <body id="page-top">
@@ -85,6 +87,7 @@
     <!-- Page level plugins -->
     <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
 </html>
@@ -92,6 +95,7 @@
     .table thead tr th {
         font-size: 14px;
     }
+
     .table tbody tr td {
         font-size: 14px;
     }

@@ -82,15 +82,15 @@
                 </div> --}}
                 <!-- Form Group (Roles)-->
                 <div class="mb-3">
-                <label class="small mb-1">Role</label>
-                <select class="form-select" name="roles" id="roles" required>
-                    <option selected="" disabled="">Select a role:</option>
-                    <option value="ADMIN">Admin</option>
-                    <option value="REGISTERED">Registered</option>
-                    <option value="EDITOR">Editor</option>
-                    <option value="GUEST">Guest</option>
-                </select>
-            </div>
+                    <label class="small mb-1">Role</label>
+                    <select class="form-select" name="roles" id="roles" required>
+                        <option selected="" disabled="">Select a role:</option>
+                        <option value="ADMIN">Admin</option>
+                        <option value="REGISTERED">Registered</option>
+                        <option value="EDITOR">Editor</option>
+                        <option value="GUEST">Guest</option>
+                    </select>
+                </div>
                 <!-- Submit button-->
                 <div class="text-right">
                     <button class="btn btn-light btn-m text-primary" type="cancel">Cancel</button>

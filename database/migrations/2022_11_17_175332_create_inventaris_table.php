@@ -13,9 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inventaris_categories', function (Blueprint $table) {
+        Schema::create('inventaris', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
+            $table->string('brand');
             $table->string('inventarisCategory_name');
+            $table->string('reg_code');
+            $table->string('year');
+            $table->string('condition');
+            $table->string('location');
+            $table->string('department');
+            $table->string('used_by');
+            $table->string('others')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventaris_category');
+        Schema::dropIfExists('inventaris');
     }
 };

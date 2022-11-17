@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventaris;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InventarisController extends Controller
 {
@@ -13,7 +15,11 @@ class InventarisController extends Controller
      */
     public function index()
     {
-        return view('inventaris.index');
+        $dataCategory = DB::table('inventaris_categories')->orderBy('inventarisCategory_name', 'asc')->get();
+
+        $dataItem = Inventaris::all();
+        
+        return view('inventaris.index', compact('dataCategory', 'dataItem'));
     }
 
     /**
@@ -23,7 +29,8 @@ class InventarisController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('inventaris.create');
     }
 
     /**
@@ -34,7 +41,12 @@ class InventarisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        inventaris::create($request->all());
+
+        $request->accepts('session');
+        session()->flash('success', 'Berhasil menambahkan data!');
+
+        return back();
     }
 
     /**
@@ -77,8 +89,11 @@ class InventarisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $data = Inventaris::find($id);
+        $data->delete();
+
+        return redirect('/inventaris')->with('successDelete', 'User has been deleted!');
     }
 }
