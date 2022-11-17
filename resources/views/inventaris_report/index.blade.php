@@ -4,8 +4,13 @@
 @endsection
 
 @section('content')
+    @if (session()->has('successDelete'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('successDelete') }}
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        </div>
+    @endif
     <h4>Inventory Problem Report</h4>
-
     @if (auth()->user()->roles == 'ADMIN')
         <div class="col-auto mt-2 mb-3">
             <a href="/inventaris/report/create" class="btn btn-sm btn-light text-primary">+ Create New Report</a>
@@ -40,16 +45,17 @@
                             <tbody>
                                 @php $i=1 @endphp
                                 @foreach ($data as $item)
-                                        <tr>
-                                            <td>{{ $i++ }}</td>
-                                            <td> {{ $item->report_token}}</td>
-                                            <td>{{ $item->report_date }}</td>
-                                            <td>{{ $item->author }}</td>
-                                            <td>{{ $item->status }}</td>
-                                            <td></td>
-                                            @if (auth()->user()->roles == 'ADMIN')
+                                    <tr>
+                                        <td>{{ $i++ }}</td>
+                                        <td> {{ $item->report_token }}</td>
+                                        <td>{{ $item->report_date }}</td>
+                                        <td>{{ $item->author }}</td>
+                                        <td>{{ $item->status }}</td>
+                                        <td></td>
+                                        @if (auth()->user()->roles == 'ADMIN')
                                             <td>
-                                                <a href="{{ url('user/edit/user-' . $item->id) }}" class="btn btn-warning btn-sm">
+                                                <a href="{{ url('/inventaris/report/edit/' . $item->id) }}"
+                                                    class="btn btn-warning btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="#" class="btn btn-danger btn-sm ml-1" data-toggle="modal"
@@ -57,9 +63,9 @@
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
-                                            @endif
-                                        </tr>
-                                    @endforeach
+                                        @endif
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -67,30 +73,30 @@
             </div>
         </div>
         {{-- danger modal --}}
-        {{-- @foreach ($data as $item)
-                <div class="modal fade" id="modal-danger{{ $item->id }}">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Konfirmasi</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ url('/user-delete' . $item->id) }}" method="GET">
-                                    {{ csrf_field() }}
-                                    <p>Yakin ingin menghapus data?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light btn-sm pull-left"
-                                    data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary btn-sm">Hapus</button>
-                            </div>
-                            </form>
+        @foreach ($data as $item)
+            <div class="modal fade" id="modal-danger{{ $item->id }}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
                         </div>
+                        <div class="modal-body">
+                            <form action="{{ url('/inventaris/report/delete' . $item->id) }}" method="GET">
+                                {{ csrf_field() }}
+                                <p>Are you sure to delete?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light btn-sm pull-left"
+                                data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
-            @endforeach --}}
+            </div>
+        @endforeach
     </div>
 @endsection
 @push('scripts')
@@ -104,4 +110,3 @@
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.12.1/datatables.min.js"></script>
 @endpush
-

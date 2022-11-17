@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\inventaris;
 use App\Models\InventaryReport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -32,12 +33,21 @@ class InventarisReportController extends Controller
     {
         $now = Carbon::now();
         $reportDate = Carbon::now()->format('d/m/Y');
-    
+        
+        // $ifReport = InventaryReport::all();
+        // if($ifReport === 0){
+
+        //     $order = DB::table('inventary_reports')->orderBy('id', 'desc')->first('id');
+        // }else{
+        //     $order = DB::table('inventary_reports')->orderBy('id', 'desc')->first()->id;
+        // }
+
         $order = DB::table('inventary_reports')->orderBy('id', 'desc')->first()->id;
 
         $monthYear = $now->year . $now->month;
-        $token = 'RPT'. $monthYear . sprintf('%04d', $order + 1);
-
+        $token = 'RPT'. $monthYear . sprintf('%03d', $order + 1);
+    
+        
         return view('inventaris_report.create', compact('reportDate', 'token'));
     }
 
@@ -76,7 +86,9 @@ class InventarisReportController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = InventaryReport::find($id);
+
+        return view('inventaris_report.edit', compact('data'));
     }
 
     /**
@@ -88,7 +100,18 @@ class InventarisReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        InventaryReport::where('id', $id)->update([
+            'reporter_name'=> $request->reporter_name,
+            'department'=> $request->department,
+            'details_problem'=> $request->details_problem,
+            'reporter_contact'=> $request->reporter_contact,
+        ]);
+
+        $request->accepts('session');
+        session()->flash('success', 'Berhasil mengubah data pegawai!');
+
+        return redirect()->back();
     }
 
     /**
@@ -99,6 +122,9 @@ class InventarisReportController extends Controller
      */
     public function delete($id)
     {
-        //
+        $data = InventaryReport::find($id);
+        $data->delete();
+
+        return redirect('/inventaris/report')->with('successDelete', 'Item has been deleted!');
     }
 }
