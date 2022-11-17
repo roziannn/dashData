@@ -39,14 +39,14 @@
 
                             <tbody>
                                 @php $i=1 @endphp
-                                {{-- @foreach ($data as $item)
+                                @foreach ($data as $item)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td> {{ $item->first_name }} {{ $item->last_name }}</td>
-                                            <td>{{ $item->username }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->roles }}</td>
-                                            <td>{{ $item->created_at }}</td>
+                                            <td> {{ $item->report_token}}</td>
+                                            <td>{{ $item->report_date }}</td>
+                                            <td>{{ $item->author }}</td>
+                                            <td>{{ $item->status }}</td>
+                                            <td></td>
                                             @if (auth()->user()->roles == 'ADMIN')
                                             <td>
                                                 <a href="{{ url('user/edit/user-' . $item->id) }}" class="btn btn-warning btn-sm">
@@ -59,7 +59,7 @@
                                             </td>
                                             @endif
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -93,3 +93,15 @@
             @endforeach --}}
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                stateSave: true
+            });
+        });
+    </script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.12.1/datatables.min.js"></script>
+@endpush
+

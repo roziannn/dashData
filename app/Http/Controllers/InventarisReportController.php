@@ -15,10 +15,12 @@ class InventarisReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+
+        $data = InventaryReport::all();
     
-        return view('inventaris_report.index');
+        return view('inventaris_report.index', compact('data'));
     }
 
     /**
@@ -31,9 +33,10 @@ class InventarisReportController extends Controller
         $now = Carbon::now();
         $reportDate = Carbon::now()->format('d/m/Y');
     
+        $order = DB::table('inventary_reports')->orderBy('id', 'desc')->first()->id;
 
         $monthYear = $now->year . $now->month;
-        $token = 'RPT'. $monthYear . sprintf('%04d',  + 1);
+        $token = 'RPT'. $monthYear . sprintf('%04d', $order + 1);
 
         return view('inventaris_report.create', compact('reportDate', 'token'));
     }
