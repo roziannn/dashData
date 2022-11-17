@@ -12,6 +12,12 @@
             <small>{{ $data->report_token }} / {{ $data->report_date }} / {{ $data->author }}</small>
         </div>
     </div>
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        </div>
+    @endif
     <div class="row col-auto mt-2 mb-3">
         <a href="/inventaris/report" class="btn btn-sm btn-light text-primary"> back</a>
     </div>
@@ -27,12 +33,6 @@
         </div>
 
         <div class="card-body">
-            @if (session()->has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                </div>
-            @endif
             <form action="{{ url('/inventaris/report/update' . $data->id) }}" method="post">
                 @csrf
                 <div class="row gx-3 mb-4">
@@ -75,6 +75,11 @@
                         <label class="small mb-1" for="report_date">Report Date</label>
                         <input class="form-control" id="report_date" name="report_date" type="text"
                             value="{{ $data->report_date }}" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="m-0 font-weight-bold text-default">Completed by</h6>
                     </div>
                 </div>
                 <!-- Submit button-->

@@ -75,7 +75,9 @@ class InventarisReportController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = InventaryReport::find($id);
+
+        return view('inventaris_report.show', compact('data'));
     }
 
     /**
@@ -106,6 +108,25 @@ class InventarisReportController extends Controller
             'department'=> $request->department,
             'details_problem'=> $request->details_problem,
             'reporter_contact'=> $request->reporter_contact,
+            'end_date'=> $request->end_date,
+        ]);
+
+
+        $request->accepts('session');
+        session()->flash('success', 'Berhasil mengubah data pegawai!');
+
+        return redirect()->back();
+    }
+
+    public function solution(Request $request, $id)
+    {
+        
+        InventaryReport::where('id', $id)->update([
+            'status'=> $request->status,
+            'vendor_name'=> $request->vendor_name,
+            'start_service'=> $request->start_service,
+            'end_service'=> $request->end_service,
+            'solution'=> $request->solution,
         ]);
 
         $request->accepts('session');

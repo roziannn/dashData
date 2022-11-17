@@ -11,11 +11,18 @@ class InventaryReport extends Model
 
     protected $fillable = [
         'report_token',
+        'report_date',
         'author',
         'reporter_name',
         'department',
         'details_problem',
         'reporter_contact',
-        'report_date',
+        'end_date',
+        //
+        'status',
+        'vendor_name',
+        'start_service',
+        'end_Service',
+        'solution',
     ];
 }

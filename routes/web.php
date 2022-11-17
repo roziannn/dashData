@@ -74,5 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/inventaris/report/store', [InventarisReportController::class,'store']);
     Route::match(['get', 'post'],'/inventaris/report/edit/{id}', [InventarisReportController::class,'edit']);
     Route::post('/inventaris/report/update{id}', [InventarisReportController::class,'update']);
+    Route::post('/inventaris/report/solution-update{id}', [InventarisReportController::class,'solution']);
     Route::get('/inventaris/report/delete{id}', [InventarisReportController::class,'delete']);
+    Route::get('/inventaris/report/show/{id}', [InventarisReportController::class,'show']);
 });

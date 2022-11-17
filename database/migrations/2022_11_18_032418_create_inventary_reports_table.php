@@ -22,6 +22,13 @@ return new class extends Migration
             $table->string('department');
             $table->string('details_problem');
             $table->string('reporter_contact');
+            $table->date('end_date')->nullable();
+            
+            $table->string('status')->nullable();
+            $table->string('vendor_name')->nullable();
+            $table->date('start_service')->nullable();
+            $table->date('end_service')->nullable();
+            $table->string('solution')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventary_report');
+        Schema::dropIfExists('inventary_reports');
     }
 };
