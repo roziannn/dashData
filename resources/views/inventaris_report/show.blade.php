@@ -22,10 +22,12 @@
         <div class="col-auto mr-auto">
             <a href="/inventaris/report" class="btn-sm btn-light text-primary"> back</a>
         </div>
-        <div class="col-auto">
-            <a href="#" style="text-decoration: none" class="btn-sm btn-warning" data-toggle="modal"
-                data-target="#modal-primary"> Add Solution</a>
-        </div>
+        @if ($data->solution == null)
+            <div class="col-auto">
+                <a href="#" style="text-decoration: none" class="btn-sm btn-warning" data-toggle="modal"
+                    data-target="#modal-primary"> Add Solution</a>
+            </div>
+        @endif
     </div>
     <div class="card mb-3">
         <div class="card-header py-3">
@@ -95,7 +97,7 @@
                             <span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ url('/inventaris/report/solution-update' . $data->id) }}" method="POST">
+                        <form action="{{ url('/inventaris/report/solution-add' . $data->id) }}" method="POST">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-12 mb-3">
@@ -110,7 +112,7 @@
                                     <script type="text/javascript">
                                         var otherInput;
                                         var startService, endService;
-                                        var serviceTypeInput = $('#status');
+                                        var serviceTypeInput = $('#service_type');
                                         serviceTypeInput.on('change', function() {
                                             otherInput = $('#vendor_name');
                                             startService = $('#start_service');
@@ -166,7 +168,6 @@
     {{-- My solution --}}
     @if ($data->solution == null)
     @else
-      
         <div class="card">
             <div class="card-header py-3">
                 <div class="row">
@@ -177,20 +178,69 @@
                 </div>
             </div>
             <div class="card-body">
-                {{-- <form action="{{ url('/inventaris/report/update' . $data->id) }}" method="post"> --}}
+                <form action="{{ url('inventaris/report/solution-update' . $data->id) }}" method="post">
                 @csrf
                 <div class="row gx-3 mb-4">
                     <div class="col-md-6">
-                        <label class="small mb-1" for="report_token">Service Type</label>
-                        <input class="form-control" id="report_token" name="report_token" type="text"
-                            value="{{ $data->service_type }}" readonly>
+                        <label class="small mb-1" for="service_type">Service Type</label>
+                        <select class="form-control input-sm" name="service_type" id="updateservice_type">
+                            <option value="Self Service"{{ $data->service_type == 'Self Service' ? 'selected' : '' }}>Self Service</option>
+                            <option value="Vendor"{{ $data->service_type == 'Vendor' ? 'selected' : '' }}>Vendor</option>
+                        </select>
+                        {{-- script other value --}}
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        <script type="text/javascript">
+                            var otherInput;
+                            var startService, endService;
+                            var serviceTypeInput = $('#updateservice_type');
+                            serviceTypeInput.on('change', function() {
+                                otherInput = $('#updateVendor_name');
+                                startService = $('#updateStart_service');
+                                endService = $('#updateEnd_service');
+                                if (serviceTypeInput.val() == "Vendor") {
+                                    otherInput.show();
+                                    startService.show();
+                                    endService.show();
+                                } else {
+                                    otherInput.hide();
+                                    startService.hide();
+                                    endService.hide();
+                                }
+                            });
+                        </script>
+
+                        {{-- other field --}}
+                        <div class="row">
+                            <div class="col-md-4 mt-2">
+                                {{-- <label class="small mb-1 mr-5" for="vendor">Vendor Name</label> --}}
+                                <input class="form-control form-control-user" name='vendor_name' id='updateVendor_name'
+                                    type="text" placeholder="Vendor Name" title="Vendor Name" style="display: none">
+                            </div>
+                            <div class="col-sm-4 mt-2">
+                                {{-- tanggal --}}
+                                {{-- <label class="small mb-1 mr-5" for="start_service">Start Date</label> --}}
+                                <input type="date" class="form-control" id="updateStart_service" name="start_service"
+                                    title="Start service date" style="display: none">
+                            </div>
+                            <div class="col-sm-4 mt-2">
+                                {{-- <label class="small mb-1 mr-5" for="end_service">End Date</label> --}}
+                                <input type="date" class="form-control" id="updateEnd_service" name="end_service"
+                                    title="End service date" style="display: none">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
+
+                    <div class="col-md-6 mb-3">
                         <label class="small mb-1" for="solution">Solution</label>
                         <textarea id="solution" name="solution" class="form-control input-sm required" placeholder="Solution"
                             rows="3">{{ $data->solution }}</textarea>
                     </div>
                 </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-light btn-sm pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-warning btn-sm">Update Solution</button>
+                </div>
             </div>
+        </div>
     @endif
 @endsection

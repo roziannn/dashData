@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\InventarisCategoryController;
 use App\Http\Controllers\InventarisReportController;
@@ -74,7 +75,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/inventaris/report/store', [InventarisReportController::class,'store']);
     Route::match(['get', 'post'],'/inventaris/report/edit/{id}', [InventarisReportController::class,'edit']);
     Route::post('/inventaris/report/update{id}', [InventarisReportController::class,'update']);
-    Route::post('/inventaris/report/solution-update{id}', [InventarisReportController::class,'solution']);
+    Route::post('/inventaris/report/solution-add{id}', [InventarisReportController::class,'solution']);
+    Route::post('inventaris/report/solution-update{id}', [InventarisReportController::class,'solution']);
     Route::get('/inventaris/report/delete{id}', [InventarisReportController::class,'delete']);
     Route::get('/inventaris/report/show/{id}', [InventarisReportController::class,'show']);
+});
+
+//Department Report
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/master/department', [DepartmentController::class,'index']);
 });

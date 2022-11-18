@@ -6,7 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-auto mr-auto">
-            <h4>Edit Item</h4>
+            <h4>Edit Report</h4>
         </div>
         <div class="col-auto">
             <small>{{ $data->report_token }} / {{ $data->report_date }} / {{ $data->author }}</small>
