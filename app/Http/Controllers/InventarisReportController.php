@@ -149,12 +149,13 @@ class InventarisReportController extends Controller
     {
         
         InventaryReport::where('id', $id)->updateOrCreate([
-            'service_type'=> $request->service_type,
-            'vendor_name'=> $request->vendor_name,
-            'start_service'=> $request->start_service,
-            'end_service'=> $request->end_service,
-            'solution'=> $request->solution,
-        ]);
+                'executor'=> $request->executor,
+                'service_type'=> $request->service_type,
+                'vendor_name'=> $request->vendor_name,
+                'start_service'=> $request->start_service,
+                'end_service'=> $request->end_service,
+                'solution'=> $request->solution,
+            ]);
 
         $request->accepts('session');
         session()->flash('success', 'Berhasil mengubah data pegawai!');

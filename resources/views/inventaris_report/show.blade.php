@@ -100,7 +100,7 @@
                         <form action="{{ url('/inventaris/report/solution-add' . $data->id) }}" method="POST">
                             {{ csrf_field() }}
                             <div class="row">
-                                <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor' type="text" value="{{ Auth::user()->first_name }} {{   Auth::user()->last_name }}">
+                                <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor' type="hidden" value="{{ Auth::user()->first_name }} {{   Auth::user()->last_name }}">
                                 <div class="col-md-12 mb-3">
                                     <label class="small mb-1 mr-5" for="service_type">Service Type</label>
                                     <select class="form-control input-sm" name="service_type" id="service_type">
@@ -183,6 +183,7 @@
                 @csrf           
                 <div class="row gx-3 mb-4">
                     <div class="col-md-6">
+                        <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor' type="hidden" value="{{ Auth::user()->first_name }} {{   Auth::user()->last_name }}">
                         <label class="small mb-1" for="service_type">Service Type</label>
                         <select class="form-control input-sm" name="service_type" id="updateservice_type">
                             <option value="Self Service"{{ $data->service_type == 'Self Service' ? 'selected' : '' }}>Self Service</option>
