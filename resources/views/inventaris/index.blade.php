@@ -166,9 +166,13 @@
                                         placeholder="Enter item location" required>
                                 </div>
                                 <div class="col-md-4 mt-3">
-                                    <label class="small mb-1" for="department">Department</label>
-                                    <input class="form-control" id="department" name="department" type="text"
-                                        placeholder="Enter department" required>
+                                    <label class="small mb-1" for="department">Department/Division</label>
+                                    <select class="form-control input-group-sm" id='department' name="department"
+                                        required>
+                                        @foreach ($dataDepartment as $item)
+                                            <option>{{ $item->department_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="small mb-1" for="used_by">Used by</label>
@@ -202,23 +206,24 @@
                                 <span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ url('/inventaris/update' . $data->id) }}" method="POST">
-                                @csrf
+                            <form action="{{ url('/inventaris/update' . $item->id) }}" method="POST">
+                                {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="small mb-1" for="code">Code</label>
                                         <input class="form-control" id="code" name="code" type="text"
-                                            value="{{ $item->code }}" required>
+                                            value="{{ $item->code }}">
                                     </div>
                                     <div class="col-md-4">
                                         <label class="small mb-1" for="brand">Brand</label>
                                         <input class="form-control" id="brand" name="brand" type="text"
-                                           value="{{ $item->brand }}" required>
+                                            value="{{ $item->brand }}">
                                     </div>
                                     <div class="col-md-4">
                                         <label class="small mb-1" for="inventarisCategory_name">Category</label>
-                                        <select class="form-control input-group-sm select2" id="inventarisCategory_name" name="inventarisCategory_name" required>
-                                        <option>{{ $item->inventarisCategory_name }}</option>
+                                        <select class="form-control input-group-sm select2" id="inventarisCategory_name"
+                                            name="inventarisCategory_name" required>
+                                            <option>{{ $item->inventarisCategory_name }}</option>
                                             @foreach ($dataCategory as $data)
                                                 <option>{{ $data->inventarisCategory_name }}</option>
                                             @endforeach
@@ -226,35 +231,38 @@
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="reg_code">Registration Code</label>
-                                        <input class="form-control" id="reg_code" name="reg_code" type="text" value="{{ $item->reg_code }}" required>
+                                        <input class="form-control" id="reg_code" name="reg_code" type="text"
+                                            value="{{ $item->reg_code }}" required>
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="year">Year of Purchase</label>
                                         <input class="form-control" id="year" name="year" type="text"
-                                            value="{{ $item->year }}" required>
+                                            value="{{ $item->year }}" >
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="condition">Condition</label>
-                                        <input class="form-control" id="condition" name="condition" type="text" value="{{ $item->condition }}" required>
+                                        <input class="form-control" id="condition" name="condition" type="text"
+                                            value="{{ $item->condition }}">
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="location">Item Location</label>
                                         <input class="form-control" id="location" name="location" type="text"
-                                        value="{{ $item->location }}" required>
+                                            value="{{ $item->location }}">
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="department">Department</label>
-                                        <input class="form-control" id="department" name="department" type="text" value="{{ $item->department }}" required>
+                                        <input class="form-control" id="department" name="department" type="text"
+                                            value="{{ $item->department }}">
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="used_by">Used by</label>
                                         <input class="form-control" id="used_by" name="used_by" type="text"
-                                            value="{{ $item->used_by }}" required>
+                                            value="{{ $item->used_by }}">
                                     </div>
                                     <div class="col-md-12 mt-3">
                                         <label class="small mb-1" for="code">Others</label>
-                                        <textarea id="others" name="others" class="form-control input-sm required" placeholder="Description" value="{{ $item->others }}"
-                                            rows="3"></textarea>
+                                        <textarea id="others" name="others" class="form-control input-sm required" placeholder="Description"
+                                            value="{{ $item->others }}" rows="3"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

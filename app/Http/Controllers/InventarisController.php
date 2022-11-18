@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Inventaris;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +19,9 @@ class InventarisController extends Controller
         $dataCategory = DB::table('inventaris_categories')->orderBy('inventarisCategory_name', 'asc')->get();
 
         $dataItem = Inventaris::all();
-        
-        return view('inventaris.index', compact('dataCategory', 'dataItem'));
+        $dataDepartment = Department::all();
+
+        return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment'));
     }
 
     /**

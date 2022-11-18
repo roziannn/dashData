@@ -25,8 +25,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $data = Department::all();
-        return view('inventaris_report.department.create', compact('data'));
+
     }
 
     /**

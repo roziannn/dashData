@@ -237,7 +237,6 @@
                     </div>
                 </div>
                 <div class="text-right">
-                    <button type="button" class="btn btn-light btn-sm pull-left" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-warning btn-sm">Update Solution</button>
                 </div>
             </div>
