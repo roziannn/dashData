@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventaris;
-use App\Models\InventaryReport;
 use Carbon\Carbon;
+use App\Models\Department;
+use App\Models\inventaris;
 use Illuminate\Http\Request;
+use App\Models\InventaryReport;
 use Illuminate\Support\Facades\DB;
 
 class InventarisReportController extends Controller
@@ -47,8 +48,10 @@ class InventarisReportController extends Controller
         $monthYear = $now->year . $now->month;
         $token = 'RPT'. $monthYear . sprintf('%03d', $order + 1);
     
-        
-        return view('inventaris_report.create', compact('reportDate', 'token'));
+        //department list select
+        $data = Department::all();
+
+        return view('inventaris_report.create', compact('reportDate', 'token', 'data'));
     }
 
     /**

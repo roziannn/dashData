@@ -84,4 +84,6 @@ Route::group(['middleware' => 'auth'], function () {
 //Department Report
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/master/department', [DepartmentController::class,'index']);
+    Route::post('/master/department/store', [DepartmentController::class,'store']);
+    Route::get('/master/department/delete{id}', [DepartmentController::class,'delete']);
 });

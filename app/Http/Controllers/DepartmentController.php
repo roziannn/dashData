@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -13,7 +14,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return view('inventaris_report.department.index');
+        $data = Department::all();
+        return view('inventaris_report.department.index', compact('data'));
     }
 
     /**
@@ -23,7 +25,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        $data = Department::all();
+        return view('inventaris_report.department.create', compact('data'));
     }
 
     /**
@@ -34,7 +37,12 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Department::create($request->all());
+
+        $request->accepts('session');
+        session()->flash('success', 'Berhasil menambahkan data!');
+
+        return back();
     }
 
     /**
@@ -77,8 +85,11 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $data = Department::find($id);
+        $data->delete();
+
+        return redirect()->back()->with('successDelete', 'Category has been deleted!');
     }
 }

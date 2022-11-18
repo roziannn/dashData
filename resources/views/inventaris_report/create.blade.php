@@ -53,8 +53,12 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="small mb-1" for="department">Department/Division</label>
-                        <input class="form-control" id="department" name="department" type="text"
-                            placeholder="Enter department" required>
+                        <select class="form-control input-group-sm" id='department'
+                            name="department" required>
+                            @foreach ($data as $item)
+                                <option>{{ $item->department_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="small mb-1" for="details_problem">Details Problem</label>
@@ -66,7 +70,7 @@
                         <input class="form-control" id="reporter_contact" name="reporter_contact" type="text"
                             placeholder="Enter reporter contact" required>
                         <label class="small mb-1" for="report_date">Report Date</label>
-                        <input class="form-control" id="report_date" name="report_date" type="text" 
+                        <input class="form-control" id="report_date" name="report_date" type="text"
                             value="<?php echo $reportDate; ?>" readonly>
                     </div>
                 </div>
@@ -79,3 +83,13 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    {{-- <script type="text/javascript">
+        $(document).ready(function() {
+            $("#inventarisCategory_name").select2({
+                placeholder: "Search Category",
+            });
+        });
+    </script> --}}
+@endpush

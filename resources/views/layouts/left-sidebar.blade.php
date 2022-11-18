@@ -54,7 +54,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item" href="/inventaris/report">All Data Report</a>
-                <a class="collapse-item" href="#">Master Department</a>
+                <a class="collapse-item" href="/master/department">Master Department</a>
             </div>
         </div>
     </li>
