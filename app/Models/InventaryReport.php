@@ -18,6 +18,7 @@ class InventaryReport extends Model
         'details_problem',
         'reporter_contact',
         'status',
+        'inventarisCategory_name',
         'end_date',
         //
         'service_type',

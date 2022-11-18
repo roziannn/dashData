@@ -34,6 +34,7 @@
                                     <th>Token</th>
                                     <th>Report Date</th>
                                     <th>Author</th>
+                                    <th>Category</th>
                                     <th>Service Type</th>
                                     <th>Last Update</th>
                                     @if (auth()->user()->roles == 'ADMIN')
@@ -50,6 +51,7 @@
                                         <td> {{ $item->report_token }}</td>
                                         <td>{{ $item->report_date }}</td>
                                         <td>{{ $item->author }}</td>
+                                        <td>{{ $item->inventarisCategory_name }}</td>
                                         <td>{{ $item->service_type }}</td>
                                         <td>{{ $item->updated_at }}</td>
                                         @if (auth()->user()->roles == 'ADMIN')

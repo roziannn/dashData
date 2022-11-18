@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Department;
 use App\Models\inventaris;
+use App\Models\InventarisCategory;
 use Illuminate\Http\Request;
 use App\Models\InventaryReport;
 use Illuminate\Support\Facades\DB;
@@ -50,8 +51,9 @@ class InventarisReportController extends Controller
     
         //department list select
         $data = Department::all();
+        $category = InventarisCategory::all();
 
-        return view('inventaris_report.create', compact('reportDate', 'token', 'data'));
+        return view('inventaris_report.create', compact('reportDate', 'token', 'data', 'category'));
     }
 
     /**
@@ -112,6 +114,7 @@ class InventarisReportController extends Controller
             'details_problem'=> $request->details_problem,
             'reporter_contact'=> $request->reporter_contact,
             'status'=> $request->status,
+            'inventarisCategory_name'=> $request->inventarisCategory_name,
             'end_date'=> $request->end_date,
         ]);
 

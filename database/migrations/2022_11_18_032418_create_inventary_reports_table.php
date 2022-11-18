@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('details_problem');
             $table->string('reporter_contact');
             $table->date('end_date')->nullable();
+            $table->string('inventarisCategory_name')->nullable();
             $table->string('status')->nullable();
             
             $table->string('service_type')->nullable();
