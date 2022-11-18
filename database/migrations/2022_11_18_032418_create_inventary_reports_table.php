@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('department');
             $table->string('details_problem');
             $table->string('reporter_contact');
+            $table->string('executor')->nullable();
             $table->date('end_date')->nullable();
             $table->string('inventarisCategory_name')->nullable();
             $table->string('status')->nullable();
-            
             $table->string('service_type')->nullable();
             $table->string('vendor_name')->nullable();
             $table->date('start_service')->nullable();

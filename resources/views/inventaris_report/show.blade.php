@@ -100,6 +100,7 @@
                         <form action="{{ url('/inventaris/report/solution-add' . $data->id) }}" method="POST">
                             {{ csrf_field() }}
                             <div class="row">
+                                <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor' type="text" value="{{ Auth::user()->first_name }} {{   Auth::user()->last_name }}">
                                 <div class="col-md-12 mb-3">
                                     <label class="small mb-1 mr-5" for="service_type">Service Type</label>
                                     <select class="form-control input-sm" name="service_type" id="service_type">
@@ -172,14 +173,14 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-auto mr-auto">
-                        <h6 class="m-0 font-weight-bold text-primary">My Solution</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Solution</h6>
                     </div>
-                    <small class="mr-3">added on {{ $data->updated_at->diffForHumans() }}</small>
+                    <small class="mr-3">by {{ $data->executor }} {{ $data->updated_at->diffForHumans() }}</small>
                 </div>
             </div>
             <div class="card-body">
                 <form action="{{ url('inventaris/report/solution-update' . $data->id) }}" method="post">
-                @csrf
+                @csrf           
                 <div class="row gx-3 mb-4">
                     <div class="col-md-6">
                         <label class="small mb-1" for="service_type">Service Type</label>

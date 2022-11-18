@@ -8,6 +8,7 @@ use App\Models\inventaris;
 use App\Models\InventarisCategory;
 use Illuminate\Http\Request;
 use App\Models\InventaryReport;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class InventarisReportController extends Controller
@@ -82,6 +83,7 @@ class InventarisReportController extends Controller
     {
         $data = InventaryReport::find($id);
 
+
         return view('inventaris_report.show', compact('data'));
     }
 
@@ -129,6 +131,7 @@ class InventarisReportController extends Controller
     {
         
         InventaryReport::where('id', $id)->update([
+            'executor'=> $request->executor,
             'service_type'=> $request->service_type,
             'vendor_name'=> $request->vendor_name,
             'start_service'=> $request->start_service,

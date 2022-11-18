@@ -19,6 +19,7 @@ class InventaryReport extends Model
         'reporter_contact',
         'status',
         'inventarisCategory_name',
+        'executor',
         'end_date',
         //
         'service_type',
