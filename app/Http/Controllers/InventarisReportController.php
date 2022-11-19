@@ -19,12 +19,15 @@ class InventarisReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $data = DB::select("SELECT * from inventary_reports order by report_token asc");
+        $user = $request->user();
+
+        $checkActionAccess = $user->first_name . " ". $user->last_name;
     
-        return view('inventaris_report.index', compact('data'));
+        return view('inventaris_report.index', compact('data', 'checkActionAccess'));
     }
 
     /**

@@ -94,10 +94,12 @@
 <style>
     .table thead tr th {
         font-size: 14px;
+        text-align: center;
     }
 
     .table tbody tr td {
         font-size: 14px;
+        text-align: center;
     }
 </style>
 

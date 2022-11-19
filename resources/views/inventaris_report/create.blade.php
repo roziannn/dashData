@@ -81,7 +81,6 @@
                 </div>
                 <!-- Submit button-->
                 <div class="text-right">
-                    <button class="btn btn-light btn-sm text-primary" type="cancel">Cancel</button>
                     <button class="btn btn-primary btn-sm" type="submit">Save Report</button>
                 </div>
             </form>

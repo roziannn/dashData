@@ -11,11 +11,11 @@
         </div>
     @endif
     <h4>Inventory Problem Report</h4>
-    @if (auth()->user()->roles == 'ADMIN')
+    {{-- @if (auth()->user()->roles == 'ADMIN') --}}
         <div class="col-auto mt-2 mb-3">
             <a href="/inventaris/report/create" class="btn btn-sm btn-light text-primary">+ Create New Report</a>
         </div>
-    @endif
+    {{-- @endif --}}
     <div class="card">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">
@@ -37,9 +37,7 @@
                                     <th>Category</th>
                                     <th>Service Type</th>
                                     <th>Last Update</th>
-                                    @if (auth()->user()->roles == 'ADMIN')
-                                        <th>Action</th>
-                                    @endif
+                                    <th>Action</th>
                                 </tr>
                             </thead>
 
@@ -54,12 +52,12 @@
                                         <td>{{ $item->inventarisCategory_name }}</td>
                                         <td>{{ $item->service_type }}</td>
                                         <td>{{ $item->updated_at }}</td>
-                                        @if (auth()->user()->roles == 'ADMIN')
-                                            <td>
-                                                <a href="{{ url('/inventaris/report/show/' . $item->id) }}"
-                                                    class="btn-primary btn-sm" style="text-decoration: none">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
+                                        <td>
+                                            <a href="{{ url('/inventaris/report/show/' . $item->id) }}"
+                                                class="btn-primary btn-sm" style="text-decoration: none">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            @if ($item->author == $checkActionAccess)
                                                 <a href="{{ url('/inventaris/report/edit/' . $item->id) }}"
                                                     class="btn-warning btn-sm ml-1" style="text-decoration: none">
                                                     <i class="fas fa-edit"></i>
@@ -68,8 +66,8 @@
                                                     data-target="#modal-danger{{ $item->id }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
-                                            </td>
-                                        @endif
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
