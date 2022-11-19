@@ -91,7 +91,6 @@ class InventarisReportController extends Controller
 
         $checkExecutor = $user->first_name . " " . $user->last_name;
 
-
         return view('inventaris_report.show', compact('data', 'user', 'checkExecutor'));
     }
 
@@ -105,7 +104,9 @@ class InventarisReportController extends Controller
     {
         $data = InventaryReport::find($id);
 
-        return view('inventaris_report.edit', compact('data'));
+        $category = InventarisCategory::all();
+
+        return view('inventaris_report.edit', compact('data','category'));
     }
 
     /**

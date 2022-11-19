@@ -7,7 +7,7 @@
     <h4>Data Inventaris</h4>
     <div class="card">
         <div class="card-header py-3">
-            <div class="text-right">
+            <div class="text-left">
                 <a href="#" class="btn-sm btn-light text-primary text-decoration-none" data-toggle="modal" data-target="#modal-primary">+ Add data</a> 
             </div>
         </div>

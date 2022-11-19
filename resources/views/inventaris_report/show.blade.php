@@ -43,15 +43,25 @@
         <div class="card-body">
             {{-- <form action="{{ url('/inventaris/report/update' . $data->id) }}" method="post"> --}}
             @csrf
-            <div class="row gx-3 mb-4">
+            <div class="row gx-3 mb-5">
                 <div class="col-md-6">
                     <label class="small mb-1" for="report_token">Token</label>
                     <input class="form-control" id="report_token" name="report_token" type="text"
                         value="{{ $data->report_token }}" readonly>
                 </div>
                 <div class="col-md-6">
+                    <label class="small mb-1" for="report_date">Report Date</label>
+                    <input class="form-control" id="report_date" name="report_date" type="text"
+                        value="{{ $data->report_date }}" readonly>
+                </div>
+                <div class="col-md-6">
                     <label class="small mb-1" for="author">Author Name</label>
                     <input class="form-control" id="author" name="author" type="text" value="{{ $data->author }}"
+                        readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="small mb-1" for="inventarisCategory_name">Category</label>
+                    <input class="form-control" id="inventarisCategory_name" name="inventarisCategory_name"  value="{{ $data->inventarisCategory_name }}"
                         readonly>
                 </div>
             </div>
@@ -80,9 +90,6 @@
                     <label class="small mb-1" for="reporter_contact">Contact</label>
                     <input class="form-control" id="reporter_contact" name="reporter_contact" type="text"
                         value={{ $data->reporter_contact }} readonly>
-                    <label class="small mb-1" for="report_date">Report Date</label>
-                    <input class="form-control" id="report_date" name="report_date" type="text"
-                        value="{{ $data->report_date }}" readonly>
                 </div>
             </div>
         </div>

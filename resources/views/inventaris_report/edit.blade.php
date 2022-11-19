@@ -39,9 +39,25 @@
                             value="{{ $data->report_token }}" readonly>
                     </div>
                     <div class="col-md-6">
+                        <label class="small mb-1" for="report_date">Report Date</label>
+                        <input class="form-control" id="report_date" name="report_date" type="text"
+                            value="{{ $data->report_date }}" readonly>
+                    </div>
+                    <div class="col-md-6">
                         <label class="small mb-1" for="author">Author Name</label>
                         <input class="form-control" id="author" name="author" type="text" value="{{ $data->author }}"
                             readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="inventarisCategory_name">Category</label>
+                        <select class="form-control input-group-sm" id='inventarisCategory_name'
+                            name="inventarisCategory_name">
+                            <option value="{{ $data->inventarisCategory_name }}">{{ $data->inventarisCategory_name }}</option>
+                            <option disabled class="bg-light">-Pilih Category-</option>
+                            @foreach ($category as $item)
+                                <option>{{ $item->inventarisCategory_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -69,9 +85,6 @@
                         <label class="small mb-1" for="reporter_contact">Contact</label>
                         <input class="form-control" id="reporter_contact" name="reporter_contact" type="text"
                             value={{ $data->reporter_contact }}>
-                        <label class="small mb-1" for="report_date">Report Date</label>
-                        <input class="form-control" id="report_date" name="report_date" type="text"
-                            value="{{ $data->report_date }}" readonly>
                     </div>
                 </div>
                 <!-- Submit button-->
