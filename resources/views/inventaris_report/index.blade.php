@@ -57,11 +57,11 @@
                                         @if (auth()->user()->roles == 'ADMIN')
                                             <td>
                                                 <a href="{{ url('/inventaris/report/show/' . $item->id) }}"
-                                                    class="btn-primary btn-sm">
+                                                    class="btn-primary btn-sm" style="text-decoration: none">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                                 <a href="{{ url('/inventaris/report/edit/' . $item->id) }}"
-                                                    class="btn-warning btn-sm ml-1">
+                                                    class="btn-warning btn-sm ml-1" style="text-decoration: none">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="#" class="btn-danger btn-sm ml-1" data-toggle="modal"

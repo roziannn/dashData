@@ -19,7 +19,7 @@
         </div>
     @endif
     <div class="row col-auto mt-2 mb-3">
-        <a href="/inventaris/report" class="btn btn-sm btn-light text-primary"> back</a>
+        <a href="/inventaris/report" class="btn btn-sm btn-light text-primary text-decoration-none"> back</a>
     </div>
     <div class="card">
         <div class="card-header py-3">

@@ -20,7 +20,7 @@
     @endif
     <div class="row mb-3 mt-2">
         <div class="col-auto mr-auto">
-            <a href="/inventaris/report" class="btn-sm btn-light text-primary"> back</a>
+            <a href="/inventaris/report" class="btn-sm btn-light text-primary text-decoration-none" > back</a>
         </div>
         @if ($data->solution == null)
             <div class="col-auto">

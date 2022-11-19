@@ -6,7 +6,7 @@
 @section('content')
     <h4>Create New Report</h4>
     <div class="col-auto mt-2 mb-3">
-        <a href="/inventaris/report/" class="btn btn-sm btn-light text-primary">Back</a>
+        <a href="/inventaris/report/" class="btn btn-sm btn-light text-primary text-decoration-none">Back</a>
     </div>
     <div class="card">
         <div class="card-header py-3">
