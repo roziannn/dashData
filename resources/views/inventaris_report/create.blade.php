@@ -5,9 +5,7 @@
 
 @section('content')
     <h4>Create New Report</h4>
-    <div class="col-auto mt-2 mb-3">
-        <a href="/inventaris/report/" class="btn btn-sm btn-light text-primary text-decoration-none">Back</a>
-    </div>
+
     <div class="card">
         <div class="card-header py-3">
             <div class="row">
@@ -42,7 +40,8 @@
                         <input class="form-control" id="author" name="author" type="text"
                             value="{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}" required>
                         <label class="small mb-1" for="inventarisCategory_name">Category</label>
-                        <select class="form-control input-group-sm" id='inventarisCategory_name' name="inventarisCategory_name" required>
+                        <select class="form-control input-group-sm" id='inventarisCategory_name'
+                            name="inventarisCategory_name" required>
                             @foreach ($category as $item)
                                 <option>{{ $item->inventarisCategory_name }}</option>
                             @endforeach
@@ -81,6 +80,7 @@
                 </div>
                 <!-- Submit button-->
                 <div class="text-right">
+                    <a href="/inventaris/report/" class="btn btn-sm btn-light text-primary text-decoration-none mr-1">Cancel</a>
                     <button class="btn btn-primary btn-sm" type="submit">Save Report</button>
                 </div>
             </form>

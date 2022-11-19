@@ -4,25 +4,20 @@
 @endsection
 
 @section('content')
-    @if (session()->has('successDelete'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('successDelete') }}
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        </div>
-    @endif
     <h4>Inventory Problem Report</h4>
-    {{-- @if (auth()->user()->roles == 'ADMIN') --}}
-        <div class="col-auto mt-2 mb-3">
-            <a href="/inventaris/report/create" class="btn btn-sm btn-light text-primary">+ Create New Report</a>
-        </div>
-    {{-- @endif --}}
     <div class="card">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-                User List
-            </h6>
+            <div class="text-right">
+                <a href="/inventaris/report/create" class="btn-sm btn-light text-primary text-decoration-none ">+ Create New Report</a>
+            </div>
         </div>
         <div class="card-body">
+            @if (session()->has('successDelete'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('successDelete') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div>
+            @endif
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
@@ -37,7 +32,7 @@
                                     <th>Category</th>
                                     <th>Service Type</th>
                                     <th>Status</th>
-                                    <th>Last Update</th>
+                                    <th>Report by department</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -52,16 +47,18 @@
                                         <td>{{ $item->author }}</td>
                                         <td>{{ $item->inventarisCategory_name }}</td>
                                         <td>{{ $item->service_type }}</td>
-                                        <td>@if($item->status == 1)
-                                            <span class="badge badge-pill badge-primary">solution added</span>
+                                        <td>
+                                            @if ($item->status == 1)
+                                                <span class="badge badge-pill badge-primary">solution added</span>
                                             @endif
                                         </td>
-                                        <td>{{ date('d-m-Y, h:i ', strtotime($item->updated_at)) }}</td>
+                                        <td>{{ $item->department }}</td>
+                                        {{-- <td>{{ date('d-m-Y, h:i ', strtotime($item->updated_at)) }}</td> --}}
                                         {{-- <td>{{ \Carbon\Carbon::parse($item->updated_at)->diffForHumans() }}</td> --}}
                                         <td>
                                             <a href="{{ url('/inventaris/report/show/' . $item->id) }}"
                                                 class="btn-primary btn-sm" style="text-decoration: none;">
-                                                    <i class="fas fa-eye"></i>
+                                                <i class="fas fa-eye"></i>
                                             </a>
                                             @if ($item->author == $checkActionAccess)
                                                 <a href="{{ url('/inventaris/report/edit/' . $item->id) }}"

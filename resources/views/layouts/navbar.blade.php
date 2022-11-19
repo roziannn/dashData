@@ -196,7 +196,7 @@
                       <button class="dropdown-item" type="submit"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" ></i> <span>Logout</span></button>
 
                   </form> --}}
-                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>

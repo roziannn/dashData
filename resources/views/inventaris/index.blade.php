@@ -5,18 +5,11 @@
 
 @section('content')
     <h4>Data Inventaris</h4>
-    @if (auth()->user()->roles == 'ADMIN')
-        <div class="col-auto mt-2 mb-3">
-            <a href="#" class="btn btn-sm btn-light text-primary" data-toggle="modal" data-target="#modal-primary">+ Add
-                data</a>
-            </a>
-        </div>
-    @endif
     <div class="card">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-                Inventaris List
-            </h6>
+            <div class="text-right">
+                <a href="#" class="btn-sm btn-light text-primary text-decoration-none" data-toggle="modal" data-target="#modal-primary">+ Add data</a> 
+            </div>
         </div>
         <div class="card-body">
             @if (session()->has('success'))
@@ -69,11 +62,11 @@
 
                                         @if (auth()->user()->roles == 'ADMIN')
                                             <td>
-                                                <a href="#" class="btn btn-warning btn-sm ml-1"data-toggle="modal"
+                                                <a href="#" class="btn-warning btn-sm ml-1"data-toggle="modal"
                                                     data-target="#modal-primary{{ $item->id }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-danger btn-sm ml-1" data-toggle="modal"
+                                                <a href="#" class="btn-danger btn-sm ml-1" data-toggle="modal"
                                                     data-target="#modal-danger{{ $item->id }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>

@@ -18,9 +18,6 @@
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         </div>
     @endif
-    <div class="row col-auto mt-2 mb-3">
-        <a href="/inventaris/report" class="btn btn-sm btn-light text-primary text-decoration-none"> back</a>
-    </div>
     <div class="card">
         <div class="card-header py-3">
             <div class="row">
@@ -77,14 +74,9 @@
                             value="{{ $data->report_date }}" readonly>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h6 class="m-0 font-weight-bold text-default">Completed by</h6>
-                    </div>
-                </div>
                 <!-- Submit button-->
                 <div class="text-right">
-                    <button class="btn btn-light btn-sm text-primary" type="cancel">Cancel</button>
+                    <a href="/inventaris/report" class="btn btn-light btn-sm text-primary" type="button">Cancel</a>
                     <button class="btn btn-primary btn-sm" type="submit">Save Report</button>
                 </div>
             </form>
