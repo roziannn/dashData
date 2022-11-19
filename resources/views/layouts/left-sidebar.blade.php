@@ -38,9 +38,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Components:</h6>
-                <a class="collapse-item" href="/inventaris">Semua Data</a>
+                <a class="collapse-item" href="/inventaris">All Data Inventary</a>
                 @if (auth()->user()->roles == 'ADMIN')
-                <a class="collapse-item" href="/inventaris/category">Master Kategori</a>
+                <a class="collapse-item" href="/inventaris/category">Master Category</a>
                 @endif
             </div>
         </div>

@@ -102,6 +102,7 @@
                             <div class="row">
                                 <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor'
                                     type="hidden" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
+                                <input class="form-control form-control-user col-sm-4 mb-3" name='status' id='status' type="hidden" value="1">
                                 <div class="col-md-12 mb-3">
                                     <label class="small mb-1 mr-5" for="service_type">Service Type</label>
                                     <select class="form-control input-sm" name="service_type" id="service_type">
@@ -167,7 +168,7 @@
             </div>
         </div>
     </div>
-    {{-- My solution --}}
+    {{-- SOLUTION --}}
     @if ($data->solution == null)
     @else
         <div class="card">
@@ -241,7 +242,7 @@
                     </div>
                     @if ($data->executor == $checkExecutor)
                         <div class="text-right">
-                            <button type="submit" class="btn btn-warning btn-sm">Update Solution</button>
+                            <button type="submit" value="update" class="btn btn-warning btn-sm">Update Solution</button>
                         </div>
                     @endif
 

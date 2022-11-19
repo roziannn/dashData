@@ -36,6 +36,7 @@
                                     <th>Author</th>
                                     <th>Category</th>
                                     <th>Service Type</th>
+                                    <th>Status</th>
                                     <th>Last Update</th>
                                     <th>Action</th>
                                 </tr>
@@ -51,11 +52,16 @@
                                         <td>{{ $item->author }}</td>
                                         <td>{{ $item->inventarisCategory_name }}</td>
                                         <td>{{ $item->service_type }}</td>
-                                        <td>{{ $item->updated_at }}</td>
+                                        <td>@if($item->status == 1)
+                                            <span class="badge badge-pill badge-primary">solution added</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ date('d-m-Y, h:i ', strtotime($item->updated_at)) }}</td>
+                                        {{-- <td>{{ \Carbon\Carbon::parse($item->updated_at)->diffForHumans() }}</td> --}}
                                         <td>
                                             <a href="{{ url('/inventaris/report/show/' . $item->id) }}"
-                                                class="btn-primary btn-sm" style="text-decoration: none">
-                                                <i class="fas fa-eye"></i>
+                                                class="btn-primary btn-sm" style="text-decoration: none;">
+                                                    <i class="fas fa-eye"></i>
                                             </a>
                                             @if ($item->author == $checkActionAccess)
                                                 <a href="{{ url('/inventaris/report/edit/' . $item->id) }}"

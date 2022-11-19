@@ -25,8 +25,10 @@ class InventarisReportController extends Controller
         $data = DB::select("SELECT * from inventary_reports order by report_token asc");
         $user = $request->user();
 
-        $checkActionAccess = $user->first_name . " ". $user->last_name;
-    
+        $checkActionAccess = $user->first_name . " " . $user->last_name;
+
+
+
         return view('inventaris_report.index', compact('data', 'checkActionAccess'));
     }
 
@@ -39,7 +41,7 @@ class InventarisReportController extends Controller
     {
         $now = Carbon::now();
         $reportDate = Carbon::now()->format('d-m-Y');
-        
+
         // $ifReport = InventaryReport::all();
         // if($ifReport === 0){
 
@@ -51,8 +53,8 @@ class InventarisReportController extends Controller
         $order = DB::table('inventary_reports')->orderBy('id', 'desc')->first()->id;
 
         $monthYear = $now->year . $now->month;
-        $token = 'RPT'. $monthYear . sprintf('%03d', $order + 1);
-    
+        $token = 'RPT' . $monthYear . sprintf('%03d', $order + 1);
+
         //department list select
         $data = Department::all();
         $category = InventarisCategory::all();
@@ -87,9 +89,8 @@ class InventarisReportController extends Controller
         $data = InventaryReport::find($id);
         $user = $request->user();
 
-        $checkExecutor = $user->first_name . " ". $user->last_name;
+        $checkExecutor = $user->first_name . " " . $user->last_name;
 
-        // dd($checkExecutor);
 
         return view('inventaris_report.show', compact('data', 'user', 'checkExecutor'));
     }
@@ -116,15 +117,15 @@ class InventarisReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         InventaryReport::where('id', $id)->update([
-            'reporter_name'=> $request->reporter_name,
-            'department'=> $request->department,
-            'details_problem'=> $request->details_problem,
-            'reporter_contact'=> $request->reporter_contact,
-            'status'=> $request->status,
-            'inventarisCategory_name'=> $request->inventarisCategory_name,
-            'end_date'=> $request->end_date,
+            'reporter_name' => $request->reporter_name,
+            'department' => $request->department,
+            'details_problem' => $request->details_problem,
+            'reporter_contact' => $request->reporter_contact,
+            'status' => $request->status,
+            'inventarisCategory_name' => $request->inventarisCategory_name,
+            'end_date' => $request->end_date,
         ]);
 
 
@@ -136,14 +137,15 @@ class InventarisReportController extends Controller
 
     public function solution(Request $request, $id)
     {
-        
+
         InventaryReport::where('id', $id)->update([
-            'executor'=> $request->executor,
-            'service_type'=> $request->service_type,
-            'vendor_name'=> $request->vendor_name,
-            'start_service'=> $request->start_service,
-            'end_service'=> $request->end_service,
-            'solution'=> $request->solution,
+            'executor' => $request->executor,
+            'service_type' => $request->service_type,
+            'status' => $request->status,
+            'vendor_name' => $request->vendor_name,
+            'start_service' => $request->start_service,
+            'end_service' => $request->end_service,
+            'solution' => $request->solution,
         ]);
 
         $request->accepts('session');
@@ -154,15 +156,15 @@ class InventarisReportController extends Controller
 
     public function update_solution(Request $request, $id)
     {
-        
         InventaryReport::where('id', $id)->updateOrCreate([
-                'executor'=> $request->executor,
-                'service_type'=> $request->service_type,
-                'vendor_name'=> $request->vendor_name,
-                'start_service'=> $request->start_service,
-                'end_service'=> $request->end_service,
-                'solution'=> $request->solution,
-            ]);
+            'executor' => $request->executor,
+            'service_type' => $request->service_type,
+            'vendor_name' => $request->vendor_name,
+            'status' => $request->status,
+            'start_service' => $request->start_service,
+            'end_service' => $request->end_service,
+            'solution' => $request->solution,
+        ]);
 
         $request->accepts('session');
         session()->flash('success', 'Update successed!');
