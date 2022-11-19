@@ -39,7 +39,9 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item" href="/inventaris">Semua Data</a>
+                @if (auth()->user()->roles == 'ADMIN')
                 <a class="collapse-item" href="/inventaris/category">Master Kategori</a>
+                @endif
             </div>
         </div>
     </li>
@@ -54,7 +56,9 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item" href="/inventaris/report">All Data Report</a>
+                @if (auth()->user()->roles == 'ADMIN')
                 <a class="collapse-item" href="/master/department">Master Department</a>
+                @endif
             </div>
         </div>
     </li>
