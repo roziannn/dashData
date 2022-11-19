@@ -187,7 +187,7 @@
                             <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor'
                                 type="hidden" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
                             <label class="small mb-1" for="service_type">Service Type</label>
-                            <select class="form-control input-sm" name="service_type" id="updateservice_type">
+                            <select class="form-control input-sm" name="service_type" id="updateservice_type" @if ($data->executor !== $checkExecutor) disabled @endif>
                                 <option value="Self Service"{{ $data->service_type == 'Self Service' ? 'selected' : '' }}>
                                     Self Service</option>
                                 <option value="Vendor"{{ $data->service_type == 'Vendor' ? 'selected' : '' }}>Vendor
@@ -220,24 +220,23 @@
                                 <div class="col-md-4 mt-2">
                                     {{-- <label class="small mb-1 mr-5" for="vendor" >Vendor Name</label> --}}
                                     <input class="form-control form-control-user" name='vendor_name'
-                                        id='updateVendor_name' type="text" placeholder="Enter vendor name" value="{{ $data->vendor_name }}" @if($data->service_type == 'Self Service')style="display: none" @endif>
+                                        id='updateVendor_name' type="text" placeholder="Enter vendor name" value="{{ $data->vendor_name }}" @if($data->service_type == 'Self Service')style="display: none" @elseif($data->executor !== $checkExecutor) disabled @endif>
                                 </div>
                                 <div class="col-sm-4 mt-2">
                                     {{-- <label class="small mb-1 mr-5" for="start_service">Start Date</label> --}}
                                     <input type="date" class="form-control" id="updateStart_service"
-                                        name="start_service" value="{{ $data->start_service }}" @if($data->service_type == 'Self Service')style="display: none"@endif>
+                                        name="start_service" value="{{ $data->start_service }}" @if($data->service_type == 'Self Service')style="display: none" @elseif($data->executor !== $checkExecutor) disabled @endif>
                                 </div>
                                 <div class="col-sm-4 mt-2">
                                     {{-- <label class="small mb-1 mr-5" for="end_service">End Date</label> --}}
-                                    <input type="date" class="form-control" id="updateEnd_service" name="end_service" value="{{ $data->end_service }}" @if($data->service_type == 'Self Service')style="display: none"@endif>
+                                    <input type="date" class="form-control" id="updateEnd_service" name="end_service" value="{{ $data->end_service }}" @if($data->service_type == 'Self Service')style="display: none" @elseif($data->executor !== $checkExecutor) disabled @endif>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label class="small mb-1" for="solution">Solution</label>
-                            <textarea id="solution" name="solution" class="form-control input-sm required" placeholder="Solution"
-                                rows="3">{{ $data->solution }}</textarea>
+                            <textarea id="solution" name="solution" class="form-control input-sm required" placeholder="Solution" rows="3"  @if ($data->executor !== $checkExecutor) disabled @endif>{{ $data->solution }}</textarea>
                         </div>
                     </div>
                     @if ($data->executor == $checkExecutor)
