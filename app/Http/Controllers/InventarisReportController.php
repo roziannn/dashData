@@ -79,12 +79,16 @@ class InventarisReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $data = InventaryReport::find($id);
+        $user = $request->user();
 
+        $checkExecutor = $user->first_name . " ". $user->last_name;
 
-        return view('inventaris_report.show', compact('data'));
+        // dd($checkExecutor);
+
+        return view('inventaris_report.show', compact('data', 'user', 'checkExecutor'));
     }
 
     /**

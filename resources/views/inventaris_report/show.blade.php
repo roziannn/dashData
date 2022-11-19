@@ -238,9 +238,11 @@
                             rows="3">{{ $data->solution }}</textarea>
                     </div>
                 </div>
+                @if ($data->executor ==  $checkExecutor)
                 <div class="text-right">
                     <button type="submit" class="btn btn-warning btn-sm">Update Solution</button>
                 </div>
+                @endif
             </div>
         </div>
     @endif
