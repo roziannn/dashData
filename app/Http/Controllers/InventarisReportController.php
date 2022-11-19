@@ -126,7 +126,7 @@ class InventarisReportController extends Controller
 
 
         $request->accepts('session');
-        session()->flash('success', 'Berhasil mengubah data pegawai!');
+        session()->flash('success', 'Update successed!');
 
         return redirect()->back();
     }
@@ -144,7 +144,7 @@ class InventarisReportController extends Controller
         ]);
 
         $request->accepts('session');
-        session()->flash('success', 'Berhasil mengubah data pegawai!');
+        session()->flash('success', 'Update successed!');
 
         return redirect()->back();
     }
@@ -162,7 +162,7 @@ class InventarisReportController extends Controller
             ]);
 
         $request->accepts('session');
-        session()->flash('success', 'Berhasil mengubah data pegawai!');
+        session()->flash('success', 'Update successed!');
 
         return redirect()->back();
     }

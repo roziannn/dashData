@@ -100,7 +100,8 @@
                         <form action="{{ url('/inventaris/report/solution-add' . $data->id) }}" method="POST">
                             {{ csrf_field() }}
                             <div class="row">
-                                <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor' type="hidden" value="{{ Auth::user()->first_name }} {{   Auth::user()->last_name }}">
+                                <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor'
+                                    type="hidden" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
                                 <div class="col-md-12 mb-3">
                                     <label class="small mb-1 mr-5" for="service_type">Service Type</label>
                                     <select class="form-control input-sm" name="service_type" id="service_type">
@@ -180,69 +181,72 @@
             </div>
             <div class="card-body">
                 <form action="{{ url('inventaris/report/solution-update' . $data->id) }}" method="post">
-                @csrf           
-                <div class="row gx-3 mb-4">
-                    <div class="col-md-6">
-                        <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor' type="hidden" value="{{ Auth::user()->first_name }} {{   Auth::user()->last_name }}">
-                        <label class="small mb-1" for="service_type">Service Type</label>
-                        <select class="form-control input-sm" name="service_type" id="updateservice_type">
-                            <option value="Self Service"{{ $data->service_type == 'Self Service' ? 'selected' : '' }}>Self Service</option>
-                            <option value="Vendor"{{ $data->service_type == 'Vendor' ? 'selected' : '' }}>Vendor</option>
-                        </select>
-                        {{-- script other value --}}
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                        <script type="text/javascript">
-                            var otherInput;
-                            var startService, endService;
-                            var serviceTypeInput = $('#updateservice_type');
-                            serviceTypeInput.on('change', function() {
-                                otherInput = $('#updateVendor_name');
-                                startService = $('#updateStart_service');
-                                endService = $('#updateEnd_service');
-                                if (serviceTypeInput.val() == "Vendor") {
-                                    otherInput.show();
-                                    startService.show();
-                                    endService.show();
-                                } else {
-                                    otherInput.hide();
-                                    startService.hide();
-                                    endService.hide();
-                                }
-                            });
-                        </script>
+                    @csrf
+                    <div class="row gx-3 mb-4">
+                        <div class="col-md-6">
+                            <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor'
+                                type="hidden" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
+                            <label class="small mb-1" for="service_type">Service Type</label>
+                            <select class="form-control input-sm" name="service_type" id="updateservice_type">
+                                <option value="Self Service"{{ $data->service_type == 'Self Service' ? 'selected' : '' }}>
+                                    Self Service</option>
+                                <option value="Vendor"{{ $data->service_type == 'Vendor' ? 'selected' : '' }}>Vendor
+                                </option>
+                            </select>
+                            {{-- script other value --}}
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                var otherInput;
+                                var startService, endService;
+                                var serviceTypeInput = $('#updateservice_type');
+                                serviceTypeInput.on('change', function() {
+                                    otherInput = $('#updateVendor_name');
+                                    startService = $('#updateStart_service');
+                                    endService = $('#updateEnd_service');
+                                    if (serviceTypeInput.val() == "Vendor") {
+                                        otherInput.show();
+                                        startService.show();
+                                        endService.show();
+                                    } else {
+                                        otherInput.hide();
+                                        startService.hide();
+                                        endService.hide();
+                                    }
+                                });
+                            </script>
 
-                        {{-- other field --}}
-                        <div class="row">
-                            <div class="col-md-4 mt-2">
-                                {{-- <label class="small mb-1 mr-5" for="vendor">Vendor Name</label> --}}
-                                <input class="form-control form-control-user" name='vendor_name' id='updateVendor_name'
-                                    type="text" placeholder="Vendor Name" title="Vendor Name" style="display: none">
-                            </div>
-                            <div class="col-sm-4 mt-2">
-                                {{-- tanggal --}}
-                                {{-- <label class="small mb-1 mr-5" for="start_service">Start Date</label> --}}
-                                <input type="date" class="form-control" id="updateStart_service" name="start_service"
-                                    title="Start service date" style="display: none">
-                            </div>
-                            <div class="col-sm-4 mt-2">
-                                {{-- <label class="small mb-1 mr-5" for="end_service">End Date</label> --}}
-                                <input type="date" class="form-control" id="updateEnd_service" name="end_service"
-                                    title="End service date" style="display: none">
+                            {{-- other field --}}
+                            <div class="row">
+                                <div class="col-md-4 mt-2">
+                                    {{-- <label class="small mb-1 mr-5" for="vendor" >Vendor Name</label> --}}
+                                    <input class="form-control form-control-user" name='vendor_name'
+                                        id='updateVendor_name' type="text" placeholder="Enter vendor name" value="{{ $data->vendor_name }}" @if($data->service_type == 'Self Service')style="display: none" @endif>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                    {{-- <label class="small mb-1 mr-5" for="start_service">Start Date</label> --}}
+                                    <input type="date" class="form-control" id="updateStart_service"
+                                        name="start_service" value="{{ $data->start_service }}" @if($data->service_type == 'Self Service')style="display: none"@endif>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                    {{-- <label class="small mb-1 mr-5" for="end_service">End Date</label> --}}
+                                    <input type="date" class="form-control" id="updateEnd_service" name="end_service" value="{{ $data->end_service }}" @if($data->service_type == 'Self Service')style="display: none"@endif>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label class="small mb-1" for="solution">Solution</label>
-                        <textarea id="solution" name="solution" class="form-control input-sm required" placeholder="Solution"
-                            rows="3">{{ $data->solution }}</textarea>
+                        <div class="col-md-6 mb-3">
+                            <label class="small mb-1" for="solution">Solution</label>
+                            <textarea id="solution" name="solution" class="form-control input-sm required" placeholder="Solution"
+                                rows="3">{{ $data->solution }}</textarea>
+                        </div>
                     </div>
-                </div>
-                @if ($data->executor ==  $checkExecutor)
-                <div class="text-right">
-                    <button type="submit" class="btn btn-warning btn-sm">Update Solution</button>
-                </div>
-                @endif
+                    @if ($data->executor == $checkExecutor)
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-warning btn-sm">Update Solution</button>
+                        </div>
+                    @endif
+
+                </form>
             </div>
         </div>
     @endif
