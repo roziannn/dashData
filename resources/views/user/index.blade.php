@@ -43,7 +43,7 @@
                                     <tr>
                                         <td>{{ $i++ }}</td>
                                         <td> {{ $item->first_name }} {{ $item->last_name }}</td>
-                                        <td>{{ $item->username }}</td>
+                                        <td>{{ $item->nip }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->roles }}</td>
                                         <td>{{ $item->created_at }}</td>
