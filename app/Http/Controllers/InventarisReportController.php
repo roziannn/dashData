@@ -107,7 +107,7 @@ class InventarisReportController extends Controller
         $category = InventarisCategory::all();
         $department = Department::all();
 
-        return view('inventaris_report.edit', compact('data','category','department'));
+        return view('inventaris_report.edit', compact('data', 'category', 'department'));
     }
 
     /**
@@ -157,15 +157,16 @@ class InventarisReportController extends Controller
 
     public function update_solution(Request $request, $id)
     {
-        InventaryReport::where('id', $id)->updateOrCreate([
-            'executor' => $request->executor,
-            'service_type' => $request->service_type,
-            'vendor_name' => $request->vendor_name,
-            'status' => $request->status,
-            'start_service' => $request->start_service,
-            'end_service' => $request->end_service,
-            'solution' => $request->solution,
-        ]);
+        InventaryReport::where('id', $id)->update(
+            [
+                'executor' => $request->executor,
+                'service_type' => $request->service_type,
+                'vendor_name' => $request->vendor_name,
+                'start_service' => $request->start_service,
+                'end_service' => $request->end_service,
+                'solution' => $request->solution,
+            ]
+        );
 
         $request->accepts('session');
         session()->flash('success', 'Update successed!');
