@@ -22,7 +22,7 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|max:20',
+            'nip' => 'required|max:20',
             'password' => 'required|min:6'
         ]);
 

@@ -12,4 +12,8 @@ class InventarisCategory extends Model
     protected $fillable = [
         'inventarisCategory_name'
     ];
+
+    public function item (){
+        return $this->hasMany(Inventaris::class);
+    }
 }

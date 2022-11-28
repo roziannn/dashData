@@ -28,8 +28,8 @@ class UserController extends Controller
     public function create()
     {
 
-        $autoname = 'dash.';
-        return view('user.create', compact('autoname'));
+        // $autoname = 'dash.';
+        return view('user.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class UserController extends Controller
         $validatedDate = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'username' => 'required',
+            'nip' => 'required',
             'roles' => 'required',
             'email' => 'required',
             'password' => 'required',
@@ -94,7 +94,7 @@ class UserController extends Controller
         User::where('id', $id)->update([
             'first_name'=> $request->first_name,
             'last_name'=> $request->last_name,
-            'username'=> $request->username,
+            'nip'=> $request->nip,
             'roles'=> $request->roles,
             'email'=> $request->email,
         ]);

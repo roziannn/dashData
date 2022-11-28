@@ -87,3 +87,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/master/department/store', [DepartmentController::class,'store']);
     Route::get('/master/department/delete{id}', [DepartmentController::class,'delete']);
 });
+
+//search by category
+Route::get('/inventaris/{id}', [InventarisController::class,'category']);

@@ -42,9 +42,9 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="small mb-1" for="username">Username</label>
-                    <input class="form-control" id="username" name="username" type="text"
-                        placeholder="Enter your username" value="<?php echo $autoname; ?>" required>
+                    <label class="small mb-1" for="nip">NIP</label>
+                    <input class="form-control" id="nip" name="nip" type="text"
+                        placeholder="Enter your nip" required>
                 </div>
                 <div class="mb-3">
                     <label class="small mb-1" for="email">Email address</label>

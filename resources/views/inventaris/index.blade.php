@@ -7,8 +7,29 @@
     <h4>Data Inventaris</h4>
     <div class="card">
         <div class="card-header py-3">
-            <div class="text-left">
-                <a href="#" class="btn-sm btn-light text-primary text-decoration-none" data-toggle="modal" data-target="#modal-primary">+ Add data</a> 
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <a href="#" class="btn-sm btn-light text-primary text-decoration-none" data-toggle="modal"
+                        data-target="#modal-primary">+ Add data</a>
+                </div>
+                <div class="row">
+                    <div class="text-right">
+                        <div class="col-sm-3 mr-3">
+                            <!-- Fade In Animation -->
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" id="dropdownFadeIn"  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
+                                <div class="dropdown-menu animated--fade-in" name="category" aria-labelledby="dropdownFadeIn">
+                                    @foreach ($dataCategory as $item )
+                                        <a class="dropdown-item" href="/inventaris/{{ $item->inventarisCategory_name }}" value="{{ $item->inventarisCategory_name }}">{{ $item->inventarisCategory_name }}</a>
+                                    @endforeach
+                                    @if ($item->inventarisCategory_name == 'CCTV')
+                                        
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -32,7 +53,6 @@
             @endif
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-
                     <div class="dataTable-container">
                         <table id="myTable" class="table table-bordered">
                             <thead>
@@ -40,11 +60,13 @@
                                     <th width="5%">No</th>
                                     <th>Code</th>
                                     <th>Category</th>
+                                    <th>Brand</th>
                                     <th>Location</th>
+                                    <th>Year</th>
                                     <th>Department</th>
                                     <th>Used by</th>
                                     @if (auth()->user()->roles == 'ADMIN')
-                                        <th>Action</th>
+                                        <th width="10%">Action</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -56,18 +78,21 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $item->code }}</td>
                                         <td>{{ $item->inventarisCategory_name }}</td>
+                                        <td>{{ $item->brand }}</td>
                                         <td>{{ $item->location }}</td>
+                                        <td>{{ $item->year }}</td>
                                         <td>{{ $item->department }}</td>
                                         <td>{{ $item->used_by }}</td>
 
                                         @if (auth()->user()->roles == 'ADMIN')
                                             <td>
-                                                <a href="#" class="btn-warning btn-sm ml-1"data-toggle="modal"
+                                                <a href="#"
+                                                    class="btn-warning btn-sm ml-1 text-decoration-none"data-toggle="modal"
                                                     data-target="#modal-primary{{ $item->id }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="#" class="btn-danger btn-sm ml-1" data-toggle="modal"
-                                                    data-target="#modal-danger{{ $item->id }}">
+                                                <a href="#" class="btn-danger btn-sm ml-1 text-decoration-none"
+                                                    data-toggle="modal" data-target="#modal-danger{{ $item->id }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -230,7 +255,7 @@
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="year">Year of Purchase</label>
                                         <input class="form-control" id="year" name="year" type="text"
-                                            value="{{ $item->year }}" >
+                                            value="{{ $item->year }}">
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="condition">Condition</label>
@@ -253,9 +278,9 @@
                                             value="{{ $item->used_by }}">
                                     </div>
                                     <div class="col-md-12 mt-3">
-                                        <label class="small mb-1" for="code">Others</label>
+                                        <label class="small mb-1" for="others">Others</label>
                                         <textarea id="others" name="others" class="form-control input-sm required" placeholder="Description"
-                                            value="{{ $item->others }}" rows="3"></textarea>
+                                            rows="3">{{ $item->others }}</textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

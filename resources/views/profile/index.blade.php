@@ -54,14 +54,15 @@
                         </div>
                         <!-- Form Group (username)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="username">Username (how your name will appear to other users on
-                                the site)</label>
-                            <input class="form-control @error('username') is-invalid @enderror" id="username"
-                                name="username" type="text" placeholder="Enter your username"
-                                value="{{ old('username', $user->username) }}">
-                            @error('username')
+                            {{-- <label class="small mb-1" for="username">Username (how your name will appear to other users on
+                                the site)</label> --}}
+                            <label class="small mb-1" for="Nip">NIP</label>
+                            <input class="form-control @error('nip') is-invalid @enderror" id="nip"
+                                name="nip" type="text" placeholder="Enter your username"
+                                value="{{ old('nip', $user->nip) }}">
+                            @error('nip')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>username has already taken!</strong>
+                                    <strong>nip has already taken!</strong>
                                 </span>
                             @enderror
                         </div>

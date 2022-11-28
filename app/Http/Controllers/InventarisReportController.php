@@ -105,8 +105,9 @@ class InventarisReportController extends Controller
         $data = InventaryReport::find($id);
 
         $category = InventarisCategory::all();
+        $department = Department::all();
 
-        return view('inventaris_report.edit', compact('data','category'));
+        return view('inventaris_report.edit', compact('data','category','department'));
     }
 
     /**
@@ -124,7 +125,6 @@ class InventarisReportController extends Controller
             'department' => $request->department,
             'details_problem' => $request->details_problem,
             'reporter_contact' => $request->reporter_contact,
-            'status' => $request->status,
             'inventarisCategory_name' => $request->inventarisCategory_name,
             'end_date' => $request->end_date,
         ]);

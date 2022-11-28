@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Inventaris;
+use App\Models\InventarisCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +20,9 @@ class InventarisController extends Controller
         $dataCategory = DB::table('inventaris_categories')->orderBy('inventarisCategory_name', 'asc')->get();
 
         $dataItem = Inventaris::all();
+        
         $dataDepartment = Department::all();
+        $dataCategory = InventarisCategory::all();                      
 
         return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment'));
     }
@@ -113,5 +116,16 @@ class InventarisController extends Controller
         $data->delete();
 
         return redirect('/inventaris')->with('successDelete', 'Item has been deleted!');
+    }
+
+    public function category($id){
+
+        $dataItem = Inventaris::all();
+        $dataDepartment = Department::all();
+        
+        $dataCategory = DB::select("SELECT * FROM inventaris_categories");
+
+        
+        return view('/inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment'));
     }
 }

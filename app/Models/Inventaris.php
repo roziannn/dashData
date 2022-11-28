@@ -21,4 +21,8 @@ class inventaris extends Model
         'used_by',
         'others',
     ];
+
+    public function inventarisCategory(){
+        return $this->belongsTo(InventarisCategory::class);
+    }
 }

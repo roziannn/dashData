@@ -73,8 +73,14 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="small mb-1" for="department">Department/Division</label>
-                        <input class="form-control" id="department" name="department" type="text"
-                            value="{{ $data->department }}">
+                            <select class="form-control input-group-sm" id='department'
+                            name="department">
+                            <option value="{{ $data->department }}">{{ $data->department }}</option>
+                            <option disabled class="bg-light">-Pilih Department-</option>
+                            @foreach ($department as $item)
+                                <option>{{ $item->department_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="small mb-1" for="details_problem">Details Problem</label>

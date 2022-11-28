@@ -38,8 +38,8 @@
                                         @csrf
                                         <div class="form-group">
                                             <input type="text"
-                                                class="form-control form-control-user @error('username') is-invalid @enderror"
-                                                id="username" name="username" placeholder="Enter Username..."
+                                                class="form-control form-control-user @error('nip') is-invalid @enderror"
+                                                id="nip" name="nip" placeholder="Enter NIP"
                                                 autofocus>
                                         </div>
                                         <div class="form-group">

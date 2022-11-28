@@ -43,9 +43,9 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="small mb-1" for="username">Username</label>
-                    <input class="form-control" id="username" name="username" type="text"
-                        placeholder="Enter your username" value="{{ $data->username }}">
+                    <label class="small mb-1" for="nip">Username</label>
+                    <input class="form-control" id="nip" name="nip" type="text"
+                        placeholder="Enter your nip" value="{{ $data->nip }}">
                 </div>
                 <div class="mb-3">
                     <label class="small mb-1" for="email">Email address</label>
