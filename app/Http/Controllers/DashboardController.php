@@ -12,8 +12,9 @@ class DashboardController extends Controller
         
         $dataInventary_sum = DB::select("SELECT count(code) as all from inventaris");
         
+        $reportInventary_sum = DB::select("SELECT count(report_token) as all from inventary_reports");
 
-        return view('dashboard.index', compact('dataInventary_sum'));
+        return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum'));
     }
 
 }

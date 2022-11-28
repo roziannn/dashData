@@ -22,9 +22,6 @@
                                     @foreach ($dataCategory as $item )
                                         <a class="dropdown-item" href="/inventaris/{{ $item->inventarisCategory_name }}" value="{{ $item->inventarisCategory_name }}">{{ $item->inventarisCategory_name }}</a>
                                     @endforeach
-                                    @if ($item->inventarisCategory_name == 'CCTV')
-                                        
-                                    @endif
                                 </div>
                             </div>
                         </div>
