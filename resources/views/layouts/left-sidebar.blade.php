@@ -41,6 +41,7 @@
                 <a class="collapse-item" href="/inventaris">All Data Inventary</a>
                 @if (auth()->user()->roles == 'ADMIN')
                 <a class="collapse-item" href="/inventaris/category">Master Category</a>
+                <a class="collapse-item" href="/inventaris/activity">Activity Log</a>
                 @endif
             </div>
         </div>

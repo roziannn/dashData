@@ -88,5 +88,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/master/department/delete{id}', [DepartmentController::class,'delete']);
 });
 
-//search by category
-Route::get('/inventaris/{id}', [InventarisController::class,'category']);
+// //search by category
+// Route::get('/inventaris/{id}', [InventarisController::class,'category']);
+
+//inventaris activity log
+Route::get('/inventaris/activity', [InventarisController::class,'activity_log']);
+

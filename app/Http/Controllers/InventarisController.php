@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Inventaris;
-use App\Models\InventarisCategory;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
+use App\Models\InventarisCategory;
+use App\Models\LogInventaryActivity;
+use App\Models\LogsInventary;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class InventarisController extends Controller
 {
@@ -22,7 +26,9 @@ class InventarisController extends Controller
         $dataItem = Inventaris::all();
         
         $dataDepartment = Department::all();
-        $dataCategory = InventarisCategory::all();                      
+        $dataCategory = InventarisCategory::all();    
+        
+        LogsInventary::record(Auth::user(), Auth::user()->first_name, ' accessing inventary page', 'this is extra log');
 
         return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment'));
     }
@@ -127,5 +133,12 @@ class InventarisController extends Controller
 
         
         return view('/inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment'));
+    }
+
+    public function activity_log(){
+
+        $data = DB::select('SELECT * FROM logs_inventary');
+
+    return view('inventaris.activityLog.index', compact('data'));
     }
 }
