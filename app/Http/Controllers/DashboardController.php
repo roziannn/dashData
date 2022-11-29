@@ -16,7 +16,7 @@ class DashboardController extends Controller
         
         $reportInventary_sum = DB::select("SELECT count(report_token) as all from inventary_reports");
 
-        LogActivity::record(Auth::user(), 'accessing home page', 'this is extra log');
+        LogActivity::record(Auth::user(), Auth::user()->first_name, 'accessing home page', 'this is extra log');
 
         return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum'));
     }

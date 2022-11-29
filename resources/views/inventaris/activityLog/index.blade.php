@@ -37,6 +37,7 @@
                                             {{ $item->event }} <span class="badge badge-primary">{{ $item->extra }}</span>
                                         </td>
                                         <td>{{ \Carbon\Carbon::parse($item->updated_at)->diffForHumans() }}</td>
+                                        <td>{{ $item->ip }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

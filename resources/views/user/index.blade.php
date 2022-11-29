@@ -49,6 +49,9 @@
                                         <td>{{ $item->created_at }}</td>
                                         @if (auth()->user()->roles == 'ADMIN')
                                         <td>
+                                            <a href="{{ url('user/show/user-' . $item->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
                                             <a href="{{ url('user/edit/user-' . $item->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>

@@ -13,11 +13,10 @@
             <div class="row">
                 <div class="col-12 col-md-auto px-2">
                     <h6 class="m-0 font-weight-bold text-primary">
-                        User Details
+                        User Edit
                     </h6>
                 </div>
             </div>
-
         </div>
 
         <div class="card-body">
