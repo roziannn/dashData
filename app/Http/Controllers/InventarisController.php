@@ -55,7 +55,7 @@ class InventarisController extends Controller
         $request->accepts('session');
         session()->flash('success', 'Berhasil menambahkan data!');
 
-        LogsInventary::record(Auth::user(), Auth::user()->first_name, ' added ' . $request->code . 'to ', $request->inventarisCategory_name);
+        LogsInventary::record(Auth::user(), Auth::user()->first_name,  ' added ', $request->code . ' to ', $request->inventarisCategory_name);
 
         return back();
     }
@@ -104,6 +104,8 @@ class InventarisController extends Controller
             'others'=> $request->others,
         ]);
 
+        LogsInventary::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->code . ' in ', $request->inventarisCategory_name);
+
         $request->accepts('session');
         session()->flash('successUpdate', 'Item has been updated!');
 
@@ -121,7 +123,7 @@ class InventarisController extends Controller
         $data = Inventaris::find($id);
         $data->delete();
 
-        LogsInventary::record(Auth::user(), Auth::user()->first_name, ' delete items on ', $data->inventarisCategory_name);
+        LogsInventary::record(Auth::user(), Auth::user()->first_name, ' delete ', $data->code . ' on', $data->inventarisCategory_name);
 
         return redirect('/inventaris')->with('successDelete', 'Item has been deleted!');
     }
@@ -139,7 +141,7 @@ class InventarisController extends Controller
 
     public function activity_log(){
 
-        $data = DB::select('SELECT * FROM logs_inventary');
+        $data = DB::select("SELECT * FROM logs_inventary");
 
     return view('inventaris.activityLog.index', compact('data'));
     }

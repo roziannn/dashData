@@ -17,16 +17,25 @@
                                     <th>User</th>
                                     <th>Activity</th>
                                     <th>Detail</th>
+                                    <th>Source IP</th>
                                 </tr>
                             </thead>
-
                             <tbody>
                                 @php $i=1 @endphp
                                 @foreach ($data as $item)
                                     <tr>
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $item->user_name }}</td>
-                                        <td>{{ $item->event }} <span class="badge badge-primary">{{ $item->extra }}</span> category</td>
+                                        <td>
+                                            @if ($item->type_log == ' delete ')
+                                                <span class="badge badge-danger">delete</span>
+                                            @elseif($item->type_log == ' edited ')
+                                                <span class="badge badge-warning">edited</span>
+                                            @elseif($item->type_log == ' added ')
+                                                <span class="badge badge-success">added</span>
+                                            @endif
+                                            {{ $item->event }} <span class="badge badge-primary">{{ $item->extra }}</span>
+                                        </td>
                                         <td>{{ \Carbon\Carbon::parse($item->updated_at)->diffForHumans() }}</td>
                                     </tr>
                                 @endforeach

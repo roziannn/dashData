@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InventarisCategory;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\View;
+use App\Models\LogsInventary;
+use App\Models\InventarisCategory;
+use Illuminate\Support\Facades\Auth;
 
 class InventarisCategoryController extends Controller
 {
@@ -40,6 +42,8 @@ class InventarisCategoryController extends Controller
     {
         InventarisCategory::create($request->all());
 
+        LogsInventary::record(Auth::user(), Auth::user()->first_name, ' added ', $request->inventarisCategory_name, 'as new category');
+        
         $request->accepts('session');
         session()->flash('success', 'Berhasil menambahkan data!');
 
