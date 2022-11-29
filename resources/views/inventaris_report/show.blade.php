@@ -28,6 +28,7 @@
                     data-target="#modal-primary"> Add Solution</a>
             </div>
         @endif
+
     </div>
     <div class="card mb-3">
         <div class="card-header py-3">
@@ -178,6 +179,7 @@
         </div>
     </div>
     {{-- SOLUTION --}}
+    {{-- @include('inventaris_report.solution.another_solution') --}}
     @if ($data->solution == null)
     @else
         <div class="card">
@@ -204,7 +206,6 @@
                                 <option value="Vendor"{{ $data->service_type == 'Vendor' ? 'selected' : '' }}>Vendor
                                 </option>
                             </select>
-
 
                             {{-- script other value --}}
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -254,25 +255,17 @@
 
                         <div class="col-md-6 mb-3">
                             <label class="small mb-1" for="solution">Solution</label>
-                            <textarea id="solution" name="solution" class="form-control input-sm required" placeholder="Solution" rows="3" @if ($data->executor !== $checkExecutor) disabled @endif>{{ $data->solution }}</textarea>
+                            <textarea id="solution" name="solution" class="form-control input-sm required" placeholder="Solution"
+                                rows="3" @if ($data->executor !== $checkExecutor) disabled @endif>{{ $data->solution }}</textarea>
                         </div>
                     </div>
-                    
+
                     @if ($data->executor == $checkExecutor)
                         <div class="text-right">
-                            <button type="submit" value="update" class="btn btn-warning btn-sm">Update Solution</button>                            
+                            <button type="submit" value="update" class="btn btn-warning btn-sm">Update Solution</button>
                         </div>
                     @endif
                 </form>
-
-
-                {{-- TRIAL --}}
-                    {{-- <div class="text-left">
-                        <button type="submit" value="update" class="btn btn-warning btn-sm" @if ($data->executor == $checkExecutor) hidden @endif>Add your Solution</button>
-                    </div>
-                 --}}
-
-                {{-- ENDTRIAL --}}
             </div>
         </div>
     @endif

@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class InventaryReport extends Model
 {
+
+    
     use HasFactory;
 
     protected $fillable = [
@@ -27,5 +30,9 @@ class InventaryReport extends Model
         'start_service',
         'end_Service',
         'solution',
+
+        
+        'solution_2',
+        'solution_2_add_at',
     ];
 }

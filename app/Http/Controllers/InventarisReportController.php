@@ -110,13 +110,6 @@ class InventarisReportController extends Controller
         return view('inventaris_report.edit', compact('data', 'category', 'department'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
 
@@ -135,6 +128,9 @@ class InventarisReportController extends Controller
 
         return redirect()->back();
     }
+
+
+    // SOLUTION STUFF
 
     public function solution(Request $request, $id)
     {
@@ -174,12 +170,47 @@ class InventarisReportController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Solution 2
+    public function solution_2(Request $request, $id)
+    {
+
+        InventaryReport::where('id', $id)->update([
+            'executor' => $request->executor,
+            'service_type' => $request->service_type,
+            'status' => $request->status,
+            'vendor_name' => $request->vendor_name,
+            'start_service' => $request->start_service,
+            'end_service' => $request->end_service,
+            'solution_2' => $request->solution,
+        ]);
+
+        $request->accepts('session');
+        session()->flash('success', 'Update successed!');
+
+        return redirect()->back();
+    }
+
+    public function update_solution_2(Request $request, $id)
+    {
+        InventaryReport::where('id', $id)->update(
+            [
+                'executor' => $request->executor,
+                'service_type' => $request->service_type,
+                'vendor_name' => $request->vendor_name,
+                'start_service' => $request->start_service,
+                'end_service' => $request->end_service,
+                'solution_2' => $request->solution,
+            ]
+        );
+
+        $request->accepts('session');
+        session()->flash('success', 'Update successed!');
+
+        return redirect()->back();
+    }
+
+    // Solution 3
+
     public function delete($id)
     {
         $data = InventaryReport::find($id);
