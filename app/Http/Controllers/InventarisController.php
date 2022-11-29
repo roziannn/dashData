@@ -27,8 +27,6 @@ class InventarisController extends Controller
         
         $dataDepartment = Department::all();
         $dataCategory = InventarisCategory::all();    
-        
-        LogsInventary::record(Auth::user(), Auth::user()->first_name, ' accessing inventary page', 'this is extra log');
 
         return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment'));
     }
@@ -56,6 +54,8 @@ class InventarisController extends Controller
 
         $request->accepts('session');
         session()->flash('success', 'Berhasil menambahkan data!');
+
+        LogsInventary::record(Auth::user(), Auth::user()->first_name, ' added ' . $request->code . 'to ', $request->inventarisCategory_name);
 
         return back();
     }
@@ -120,6 +120,8 @@ class InventarisController extends Controller
     {
         $data = Inventaris::find($id);
         $data->delete();
+
+        LogsInventary::record(Auth::user(), Auth::user()->first_name, ' delete items on ', $data->inventarisCategory_name);
 
         return redirect('/inventaris')->with('successDelete', 'Item has been deleted!');
     }

@@ -14,7 +14,9 @@
                             <thead>
                                 <tr>
                                     <th width="5%">No</th>
+                                    <th>User</th>
                                     <th>Activity</th>
+                                    <th>Detail</th>
                                 </tr>
                             </thead>
 
@@ -23,7 +25,9 @@
                                 @foreach ($data as $item)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td>{{ $item->user_id }}{{ $item->event }}</td>
+                                        <td>{{ $item->user_name }}</td>
+                                        <td>{{ $item->event }} <span class="badge badge-primary">{{ $item->extra }}</span> category</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->updated_at)->diffForHumans() }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
