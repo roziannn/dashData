@@ -289,7 +289,11 @@
                             <div class="tambahan">
                                 <h5>Activity Log</h5>
                                 <hr>
-                                
+                                @foreach ($activityEdits as $activity)
+                                @if($item->id == $activity->inventary_id)
+                                    {{ $activity->user_name }} {{$activity->event  }} {{ $item->code }} to {{ $activity->extra }}<br>
+                                @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>

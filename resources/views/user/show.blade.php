@@ -66,7 +66,12 @@
         </div>
         
         <div class="card-body">
-            <p><strong>Firda</strong> changes</p>
+           
+                {{  $audits->user_id}} {{ $audits->event }} 
+               
+                    
+                (! $audits->old_value!) to
+                
         </div>
     </div>
 @endsection

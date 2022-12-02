@@ -29,7 +29,13 @@ class InventarisController extends Controller
         $dataDepartment = Department::all();
         $dataCategory = InventarisCategory::all();    
 
-        return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment'));
+        // show edits activity
+        $activityEdits = LogsCommentInventary::all();
+
+        // $lastEdit = Inventaris::all()->last();
+        // echo($lastEdit);
+
+        return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment', 'activityEdits'));
     }
 
     /**
@@ -107,7 +113,8 @@ class InventarisController extends Controller
 
         LogsInventary::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->code . ' in ', $request->inventarisCategory_name);
 
-        LogsCommentInventary::record(Auth::user(), $request->id, Auth::user()->first_name, ' was update ', $request->code)->where('id', $id);
+
+        LogsCommentInventary::record(Auth::user(), $request->id, Auth::user()->first_name, ' was edited ', $request->code)->where('id', $id);
 
         $request->accepts('session');
         session()->flash('successUpdate', 'Item has been updated!');

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use CreateAuditsTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use OwenIt\Auditing\Contracts\Audit;
+use OwenIt\Auditing\Models\Audit as ModelsAudit;
 
 class UserController extends Controller
 {
@@ -69,7 +72,9 @@ class UserController extends Controller
     {
         $data = User::find($id);
 
-        return view('user.show', compact('data'));
+        $audits = ModelsAudit::find($id);
+
+        return view('user.show', compact('data', 'audits'));
     }
 
     /**
@@ -93,7 +98,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        User::where('id', $id)->update([
+        User::find($id)->update([
             'first_name'=> $request->first_name,
             'last_name'=> $request->last_name,
             'nip'=> $request->nip,
