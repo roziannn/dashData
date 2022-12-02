@@ -6,10 +6,11 @@ use App\Models\Department;
 use App\Models\Inventaris;
 use App\Models\LogActivity;
 use Illuminate\Http\Request;
-use App\Models\InventarisCategory;
-use App\Models\LogInventaryActivity;
 use App\Models\LogsInventary;
+use App\Models\InventarisCategory;
 use Illuminate\Support\Facades\DB;
+use App\Models\LogInventaryActivity;
+use App\Models\LogsCommentInventary;
 use Illuminate\Support\Facades\Auth;
 
 class InventarisController extends Controller
@@ -105,6 +106,8 @@ class InventarisController extends Controller
         ]);
 
         LogsInventary::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->code . ' in ', $request->inventarisCategory_name);
+
+        LogsCommentInventary::record(Auth::user(), $request->id, Auth::user()->first_name, ' was update ', $request->code)->where('id', $id);
 
         $request->accepts('session');
         session()->flash('successUpdate', 'Item has been updated!');
