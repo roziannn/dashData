@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use CreateAuditsTable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use OwenIt\Auditing\Contracts\Audit;
 use OwenIt\Auditing\Models\Audit as ModelsAudit;
@@ -72,7 +73,11 @@ class UserController extends Controller
     {
         $data = User::find($id);
 
-        $audits = ModelsAudit::find($id);
+        // $audits = ModelsAudit::find($id);
+        // $audits = DB::table('audits')->where('auditable_type', User::find($id))->get();
+        // $audits = ModelsAudit::find($id)->where('auditable_type', User::class)->get();
+
+        $audits = User::find($id)->audits;
 
         return view('user.show', compact('data', 'audits'));
     }
