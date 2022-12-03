@@ -2,13 +2,17 @@
 return [
     // ...
 
-    'unavailable_audits' => 'No Audits available',
+    'unavailable_audits' => 'No Activity available',
 
     'updated'            => [
-        'metadata' => 'On :audit_created_at, :user_name [:audit_ip_address] updated this record via :audit_url',
+        'metadata' => 'On :audit_created_at, :user_first_name :user_last_name updated this record',
         'modified' => [
-            'title'   => 'The Title has been modified from <strong>:old</strong> to <strong>:new</strong>',
-            'content' => 'The Content has been modified from <strong>:old</strong> to <strong>:new</strong>',
+            'first_name' => 'First name has been modified from <strong>:old</strong> to <strong>:new</strong>',
+            'last_name' => 'Last name has been modified from <strong>:old</strong> to <strong>:new</strong>',
+            'nip' => 'Nip has been modified from <strong>:old</strong> to <strong>:new</strong>',
+            'roles' => 'Roles has been modified from <strong>:old</strong> to <strong>:new</strong>',
+            'email' => 'Email has been modified from <strong>:old</strong> to <strong>:new</strong>',
+            'password' => 'Password has been modified from <strong>:old</strong> to <strong>:new</strong>',
         ],
     ],
 
