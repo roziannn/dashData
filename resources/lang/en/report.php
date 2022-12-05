@@ -14,6 +14,10 @@ return [
             'inventarisCategory_name' => 'Roles has been modified from <strong>:old</strong> to <strong>:new</strong>',
             'reporter_name' => 'Reporter name has been modified from <strong>:old</strong> to <strong>:new</strong>',
             'department' => 'Department has been modified from <strong>:old</strong> to <strong>:new</strong>',
+            
+            'executor' => 'Executor has been added : <strong>:new</strong>',
+            'service_type' => 'Service type has been selected : <strong>:new</strong>',
+            'solution' =>  'Solution has been added',
         ],
     ],
 

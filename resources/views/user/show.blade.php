@@ -63,15 +63,20 @@
         <div class="card-body">
             <ul>
                 @forelse ($audits as $audit)
+                    @if ($audit->event === 'created')
                     <li>
-                        @lang('article.updated.metadata', $audit->getMetadata())
-
-                        @foreach ($audit->getModified() as $attribute => $modified)
-                            <ul>
-                                <li>@lang('article.' . $audit->event . '.modified.' . $attribute, $modified)</li>
-                            </ul>
-                        @endforeach
+                        @lang('article.created', $audit->getMetadata())
                     </li>
+                    @elseif ($audit->event !== 'created')
+                        <li>
+                            @lang('article.updated.metadata', $audit->getMetadata())
+                            @foreach ($audit->getModified() as $attribute => $modified)
+                                <ul>
+                                    <li>@lang('article.' . $audit->event . '.modified.' . $attribute, $modified)</li>
+                                </ul>
+                            @endforeach
+                        </li>
+                    @endif
                 @empty
                     <p>@lang('article.unavailable_audits')</p>
                 @endforelse

@@ -5,7 +5,7 @@ return [
     // ...
 
     'unavailable_audits' => 'No Activity available',
-
+    'created' => '<strong>:user_first_name :user_last_name</strong> create this user',
     'updated'            => [
         'metadata' => 'On :audit_created_at, <strong>:user_first_name :user_last_name</strong> updated this record',
         'modified' => [
