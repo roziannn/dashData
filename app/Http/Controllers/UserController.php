@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::all();
+        $data = DB::select("SELECT * FROM users order by first_name asc");
 
         return view('user.index', compact('data'));
     }

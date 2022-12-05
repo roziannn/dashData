@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-12 col-md-auto px-2">
                     <h6 class="m-0 font-weight-bold text-primary">
-                        Report Details
+                        <i class="fas fa-align-left mr-2"></i>Report Details
                     </h6>
                 </div>
             </div>
@@ -182,11 +182,11 @@
     {{-- @include('inventaris_report.solution.another_solution') --}}
     @if ($data->solution == null)
     @else
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-auto mr-auto">
-                        <h6 class="m-0 font-weight-bold text-primary">Solution</h6>
+                        <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-paperclip mr-2"></i>Solution</h6>
                     </div>
                     <small class="mr-3">by {{ $data->executor }} {{ $data->updated_at->diffForHumans() }}</small>
                 </div>
@@ -268,5 +268,40 @@
                 </form>
             </div>
         </div>
+
+        {{-- <div class="card">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-12 col-md-auto px-2">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            Activity
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
     @endif
+    <div class="col-9 mt-5">
+        <div class="col-auto mr-auto">
+            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-list mr-2"></i>Activity</h6>
+            
+        </div>
+        <div class="activity column col-auto mb-5 mt-3">
+            <ul>
+                @forelse ($audits as $audit)
+                    <li>
+                        @lang('report.updated.metadata', $audit->getMetadata())
+
+                        @foreach ($audit->getModified() as $attribute => $modified)
+                            <ul>
+                                <li>@lang('report.' . $audit->event . '.modified.' . $attribute, $modified)</li>
+                            </ul>
+                        @endforeach
+                    </li>
+                @empty
+                    <p>@lang('report.unavailable_audits')</p>
+                @endforelse
+            </ul>
+        </div>
+    </div>
 @endsection

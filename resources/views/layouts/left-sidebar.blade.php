@@ -59,6 +59,7 @@
                 <a class="collapse-item" href="/inventaris/report">All Data Report</a>
                 @if (auth()->user()->roles == 'ADMIN')
                 <a class="collapse-item" href="/master/department">Master Department</a>
+                <a class="collapse-item" href="#">Activity Log</a>
                 @endif
             </div>
         </div>

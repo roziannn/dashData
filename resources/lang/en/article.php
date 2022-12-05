@@ -1,11 +1,13 @@
 <?php
+
+
 return [
     // ...
 
     'unavailable_audits' => 'No Activity available',
 
     'updated'            => [
-        'metadata' => 'On :audit_created_at, :user_first_name :user_last_name updated this record',
+        'metadata' => 'On :audit_created_at, <strong>:user_first_name :user_last_name</strong> updated this record',
         'modified' => [
             'first_name' => 'First name has been modified from <strong>:old</strong> to <strong>:new</strong>',
             'last_name' => 'Last name has been modified from <strong>:old</strong> to <strong>:new</strong>',

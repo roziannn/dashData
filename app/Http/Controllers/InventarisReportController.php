@@ -11,6 +11,7 @@ use App\Models\InventaryReport;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
+
 class InventarisReportController extends Controller
 {
 
@@ -91,7 +92,9 @@ class InventarisReportController extends Controller
 
         $checkExecutor = $user->first_name . " " . $user->last_name;
 
-        return view('inventaris_report.show', compact('data', 'user', 'checkExecutor'));
+        $audits = InventaryReport::find($id)->audits;
+
+        return view('inventaris_report.show', compact('data', 'user', 'checkExecutor', 'audits'));
     }
 
     /**
@@ -113,7 +116,7 @@ class InventarisReportController extends Controller
     public function update(Request $request, $id)
     {
 
-        InventaryReport::where('id', $id)->update([
+        InventaryReport::find($id)->update([
             'reporter_name' => $request->reporter_name,
             'department' => $request->department,
             'details_problem' => $request->details_problem,
