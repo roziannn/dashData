@@ -284,20 +284,27 @@
     <div class="col-9 mt-5">
         <div class="col-auto mr-auto">
             <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-list mr-2"></i>Activity</h6>
-            
+
         </div>
         <div class="activity column col-auto mb-5 mt-3">
             <ul>
                 @forelse ($audits as $audit)
-                    <li>
-                        @lang('report.updated.metadata', $audit->getMetadata())
-
-                        @foreach ($audit->getModified() as $attribute => $modified)
-                            <ul>
-                                <li>@lang('report.' . $audit->event . '.modified.' . $attribute, $modified)</li>
-                            </ul>
-                        @endforeach
-                    </li>
+                    @if ($audit->event === 'created')
+                        <li>
+                            @lang('report.created', $audit->getMetadata())
+                        </li>
+                    @elseif ($audit->event !== 'created')
+                        <li>
+                            @lang('report.updated.metadata', $audit->getMetadata())
+                            @foreach ($audit->getModified() as $attribute => $modified)
+                                @if ($audit->status === '1')
+                                @endif
+                                <ul>
+                                    <li>@lang('report.' . $audit->event . '.modified.' . $attribute, $modified)</li>
+                                </ul>
+                            @endforeach
+                        </li>
+                    @endif
                 @empty
                     <p>@lang('report.unavailable_audits')</p>
                 @endforelse

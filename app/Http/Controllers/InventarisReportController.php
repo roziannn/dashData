@@ -156,7 +156,7 @@ class InventarisReportController extends Controller
 
     public function update_solution(Request $request, $id)
     {
-        InventaryReport::where('id', $id)->update(
+        InventaryReport::find($id)->update(
             [
                 'executor' => $request->executor,
                 'service_type' => $request->service_type,
