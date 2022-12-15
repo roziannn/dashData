@@ -69,7 +69,7 @@
                     </li>
                     @elseif ($audit->event !== 'created')
                         <li>
-                            @lang('article.updated.metadata', $audit->getMetadata())
+                            @lang('on ' . $audit->created_at ) @lang('article.updated.metadata', $audit->getMetadata())
                             @foreach ($audit->getModified() as $attribute => $modified)
                                 <ul>
                                     <li>@lang('article.' . $audit->event . '.modified.' . $attribute, $modified)</li>
