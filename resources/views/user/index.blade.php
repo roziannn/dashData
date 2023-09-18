@@ -27,7 +27,7 @@
                                 <tr>
                                     <th width="5%">No</th>
                                     <th>Name</th>
-                                    <th>Username</th>
+                                    <th>NIP</th>
                                     <th>Email</th>
                                     <th>Role</th>
                                     <th>Created_at</th>

@@ -295,7 +295,7 @@
                         </li>
                     @elseif ($audit->event !== 'created')
                         <li>
-                            @lang('report.updated.metadata', $audit->getMetadata())
+                            @lang('on ' . $audit->created_at) @lang('report.updated.metadata', $audit->getMetadata())
                             @foreach ($audit->getModified() as $attribute => $modified)
                                 @if ($audit->status === '1')
                                 @endif

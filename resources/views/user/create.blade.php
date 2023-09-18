@@ -86,8 +86,7 @@
                     <select class="form-select" name="roles" id="roles" required>
                         <option selected="" disabled="">Select a role:</option>
                         <option value="ADMIN">Admin</option>
-                        <option value="REGISTERED">Registered</option>
-                        <option value="EDITOR">Editor</option>
+                        <option value="Empolyee">Empolyee</option>
                         <option value="GUEST">Guest</option>
                     </select>
                 </div>

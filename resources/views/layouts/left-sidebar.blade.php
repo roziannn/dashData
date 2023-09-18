@@ -40,8 +40,7 @@
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item" href="/inventaris">All Data Inventary</a>
                 @if (auth()->user()->roles == 'ADMIN')
-                <a class="collapse-item" href="/inventaris/category">Master Category</a>
-                <a class="collapse-item" href="/inventaris/activity">Activity Log</a>
+                    <a class="collapse-item" href="/inventaris/activity">Activity Log</a>
                 @endif
             </div>
         </div>
@@ -58,8 +57,7 @@
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item" href="/inventaris/report">All Data Report</a>
                 @if (auth()->user()->roles == 'ADMIN')
-                <a class="collapse-item" href="/master/department">Master Department</a>
-                <a class="collapse-item" href="#">Activity Log</a>
+                    <a class="collapse-item" href="#">Activity Log</a>
                 @endif
             </div>
         </div>
@@ -93,14 +91,29 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    @if (auth()->user()->roles == 'ADMIN')
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMasterData"
+                aria-expanded="true" aria-controls="collapseMasterData">
+                <i class="fa fa-tasks" aria-hidden="true"></i>
+                <span>Master Data</span>
+            </a>
+            <div id="collapseMasterData" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Components:</h6>
+                    <a class="collapse-item" href="/master/department">Master Departement</a>
+                    <a class="collapse-item" href="/inventaris/category">Master Category Items</a>
+                </div>
+            </div>
+        </li>
+    @endif
     <li class="nav-item">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
             aria-controls="collapsePages">
             <i class="fas fa-fw fa-cog"></i>
             <span>Settings</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
-            data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Login Screens:</h6>
                 <a class="collapse-item" href="login.html">Login</a>
