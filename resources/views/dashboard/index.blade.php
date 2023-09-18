@@ -147,26 +147,43 @@
         </div>
     </div>
 
+
+    {{-- BAGIAN CHART BASED ON REPORT PER DEPARTMENT --}}
     <div class="row">
-        <div class="col-xl-9 col-md-6 mb-4">
+        <div class="col-xl-6 col-lg-7">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary text-lg">Report Graph by Department</h6>
-                </div>
+                <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-bar">
-                        <div class="chartjs-size-monitor">
-                            <div class="chartjs-size-monitor-expand">
-                                <div class=""></div>
-                            </div>
-                            <div class="chartjs-size-monitor-shrink">
-                                <div class=""></div>
-                            </div>
-                        </div>
-                        <canvas id="myBarChart" width="385" height="200"
-                            style="display: block; height: 160px; width: 308px;" class="chartjs-render-monitor"></canvas>
+                    <div class="chart-area">
+                        <!-- Ganti elemen canvas dengan ID "myChart" -->
+                        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+                        <script>
+                            var xValues = <?php echo json_encode($xValues); ?>;
+                            var yValues = <?php echo json_encode($yValues); ?>;
+                            var barColors = ["#4e73df", "green", "blue", "orange", "brown"];
+
+                            new Chart("myChart", {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                        backgroundColor: barColors,
+                                        data: yValues
+                                    }]
+                                },
+                                options: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: "KERUSAKAN BARANG PER DEPARTEMENT"
+                                    },
+                                }
+                            });
+                        </script>
                     </div>
-                    <hr>
                 </div>
             </div>
         </div>
