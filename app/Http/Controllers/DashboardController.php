@@ -20,37 +20,56 @@ class DashboardController extends Controller
 
         LogActivity::record(Auth::user(), Auth::user()->first_name, 'accessing home page', 'this is extra log');
 
-        // START CHART
-        $departments = DB::table('departments')->get();  // get data departemen
+        //START CHART MOST REPORTS BASED ON DEPARTMENT
+        $departments = DB::table('departments')->get();  //get data departemen
+        $allDepartments = $departments->pluck('department_name')->toArray(); //create daftar semua departemen yang ada di database
 
-        // Membuat daftar semua departemen yang ada di database
-        $allDepartments = $departments->pluck('department_name')->toArray();
-
-        // Mengambil data laporan untuk departemen-departemen yang memiliki laporan
+        // get data laporan untuk departemen-departemen yang memiliki laporan
         $reports = DB::table('inventary_reports')
             ->select('department', DB::raw('COUNT(*) as report_count'))
             ->whereIn('department', $allDepartments)
             ->groupBy('department')
             ->get();
-
-        // Memisahkan data ke dalam $xValues (departemen) dan $yValues (jumlah laporan)
         $xValues = [];
         $yValues = [];
 
         foreach ($allDepartments as $department) {
             $report = $reports->firstWhere('department', $department);
-
             if ($report) {
                 $xValues[] = $department;
-                $yValues[] = intval($report->report_count); //intval() untuk memastikan perhitungannya dimulai dari 0
+                $yValues[] = intval($report->report_count); //intval() memastikan perhitungannya dimulai dari 0
             } else {
-                // Jika departemen tidak memiliki laporan, tambahkan dengan jumlah laporan 0
                 $xValues[] = $department;
-                $yValues[] = 0;
+                $yValues[] = 0;    // Jika departemen tidak memiliki laporan, tambahkan dengan jumlah laporan 0
             }
         }
-        //END CHART
+        //END CHART MOST REPORTS BASED ON DEPARTMENT
 
-        return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum', 'dataItem', 'xValues', 'yValues'));
+        //START CHART MOST REPORTS BASED ON CATEGORY
+        $categories = DB::table('inventaris_categories')->get();  // Get data kategori inventaris
+        $allCategories = $categories->pluck('inventarisCategory_name')->toArray(); 
+
+        // get data laporan untuk kategori-kategori yang memiliki laporan
+        $reports = DB::table('inventary_reports')
+            ->select('inventarisCategory_name', DB::raw('COUNT(*) as report_count'))
+            ->whereIn('inventarisCategory_name', $allCategories)
+            ->groupBy('inventarisCategory_name')
+            ->get();
+        $xCtgValues = [];
+        $yCtgValues = [];
+
+        foreach ($allCategories as $category) {
+            $report = $reports->firstWhere('inventarisCategory_name', $category);
+            if ($report) {
+                $xCtgValues[] = $category;
+                $yCtgValues[] = intval($report->report_count); 
+            } else {
+                $xCtgValues[] = $category;
+                $yCtgValues[] = 0;    
+            }
+        }
+        //END CHART MOST REPORTS BASED ON CATEGORY
+
+        return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum', 'dataItem', 'xValues', 'yValues', 'xCtgValues', 'yCtgValues'));
     }
 }

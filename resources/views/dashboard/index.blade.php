@@ -155,15 +155,13 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
-                        <!-- Ganti elemen canvas dengan ID "myChart" -->
-                        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-
+                        <canvas id="chartReportDept" style="width:100%;max-width:600px"></canvas>
                         <script>
                             var xValues = <?php echo json_encode($xValues); ?>;
                             var yValues = <?php echo json_encode($yValues); ?>;
-                            var barColors = ["#4e73df", "green", "blue", "orange", "brown"];
+                            var barColors = ["#4e73df", "#1cc88a", "#36b9cc", "#f6c23e", "#e74a3b"];
 
-                            new Chart("myChart", {
+                            new Chart("chartReportDept", {
                                 type: "bar",
                                 data: {
                                     labels: xValues,
@@ -178,7 +176,42 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: "KERUSAKAN BARANG PER DEPARTEMENT"
+                                        text: "MOST REPORTS BASED ON DEPARTMENT"
+                                    },
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="chartReportCtg" style="width:100%;max-width:600px"></canvas>
+                        <script>
+                            var xCtgValues = <?php echo json_encode($xCtgValues); ?>;
+                            var yCtgValues = <?php echo json_encode($yCtgValues); ?>;
+                            var barColors = ["#4e73df", "#1cc88a", "#36b9cc", "#f6c23e", "#e74a3b"];
+
+                            new Chart("chartReportCtg", {
+                                type: "bar",
+                                data: {
+                                    labels: xCtgValues,
+                                    datasets: [{
+                                        backgroundColor: barColors,
+                                        data: yCtgValues
+                                    }]
+                                },
+                                options: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: "MOST REPORTS BASED ON INVENTARY CATEGORIES"
                                     },
                                 }
                             });
@@ -188,4 +221,5 @@
             </div>
         </div>
     </div>
+    
 @endsection
