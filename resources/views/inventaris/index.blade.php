@@ -17,10 +17,13 @@
                         <div class="col-sm-3 mr-3">
                             <!-- Fade In Animation -->
                             <div class="dropdown">
-                                <button class="btn btn-sm btn-secondary dropdown-toggle" id="dropdownFadeIn"  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
-                                <div class="dropdown-menu animated--fade-in" name="category" aria-labelledby="dropdownFadeIn">
-                                    @foreach ($dataCategory as $item )
-                                        <a class="dropdown-item" href="/inventaris/{{ $item->inventarisCategory_name }}" value="{{ $item->inventarisCategory_name }}">{{ $item->inventarisCategory_name }}</a>
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" id="dropdownFadeIn"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
+                                <div class="dropdown-menu animated--fade-in" name="category"
+                                    aria-labelledby="dropdownFadeIn">
+                                    @foreach ($dataCategory as $item)
+                                        <a class="dropdown-item" href="/inventaris/{{ $item->inventarisCategory_name }}"
+                                            value="{{ $item->inventarisCategory_name }}">{{ $item->inventarisCategory_name }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -59,7 +62,7 @@
                                     <th>Category</th>
                                     <th>Brand</th>
                                     <th>Location</th>
-                                    <th>Year</th>
+                                    <th>Condition</th>
                                     <th>Department</th>
                                     <th>Used by</th>
                                     @if (auth()->user()->roles == 'ADMIN')
@@ -77,7 +80,7 @@
                                         <td>{{ $item->inventarisCategory_name }}</td>
                                         <td>{{ $item->brand }}</td>
                                         <td>{{ $item->location }}</td>
-                                        <td>{{ $item->year }}</td>
+                                        <td>{{ $item->condition }}</td>
                                         <td>{{ $item->department }}</td>
                                         <td>{{ $item->used_by }}</td>
 
@@ -172,8 +175,16 @@
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="small mb-1" for="condition">Condition</label>
-                                    <input class="form-control" id="condition" name="condition" type="text"
-                                        placeholder="Enter item condition" required>
+                                    <select class="form-control input-group-sm select2" id='condition'
+                                        name="condition" required>
+                                        <option>Good</option>
+                                        <option>Needs Repair</option>
+                                        <option>Needs Maintenance</option>
+                                        <option>Repair</option>
+                                        <option>Maintenance</option>
+                                        <option>Damaged</option>
+                                        <option>On Loan</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="small mb-1" for="location">Item Location</label>
@@ -290,9 +301,10 @@
                                 <h5>Activity Log</h5>
                                 <hr>
                                 @foreach ($activityEdits as $activity)
-                                @if($item->id == $activity->inventary_id)
-                                    {{ $activity->user_name }} {{$activity->event  }} {{ $item->code }} to {{ $activity->extra }}<br>
-                                @endif
+                                    @if ($item->id == $activity->inventary_id)
+                                        {{ $activity->user_name }} {{ $activity->event }} {{ $item->code }} to
+                                        {{ $activity->extra }}<br>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>

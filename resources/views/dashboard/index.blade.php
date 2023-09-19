@@ -194,7 +194,7 @@
                         <script>
                             var xCtgValues = <?php echo json_encode($xCtgValues); ?>;
                             var yCtgValues = <?php echo json_encode($yCtgValues); ?>;
-                            var barColors = ["#4e73df", "#1cc88a", "#36b9cc", "#f6c23e", "#e74a3b"];
+                            var barColors = ["#e74a3b"];
 
                             new Chart("chartReportCtg", {
                                 type: "bar",

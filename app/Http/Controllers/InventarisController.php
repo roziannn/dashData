@@ -151,7 +151,7 @@ class InventarisController extends Controller
 
     public function activity_log(){
 
-        $data = DB::select("SELECT * FROM logs_inventary");
+        $data = DB::select("SELECT * FROM logs_inventary ORDER BY created_at DESC");
 
     return view('inventaris.activityLog.index', compact('data'));
     }

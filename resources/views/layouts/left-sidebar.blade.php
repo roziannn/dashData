@@ -80,8 +80,8 @@
             <div id="collapseMasterData" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Components:</h6>
-                    <a class="collapse-item" href="/master/department">Master Departement</a>
-                    <a class="collapse-item" href="/inventaris/category">Master Category Items</a>
+                    <a class="collapse-item" href="/master/department">Category Departement</a>
+                    <a class="collapse-item" href="/inventaris/category">Category Inventary</a>
                 </div>
             </div>
         </li>
