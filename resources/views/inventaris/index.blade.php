@@ -170,13 +170,17 @@
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="small mb-1" for="year">Year of Purchase</label>
-                                    <input class="form-control" id="year" name="year" type="year"
-                                        placeholder="Enter year of purchase" required>
+                                    <select class="form-control input-group-sm select2" id='year'
+                                        name="year" required>
+                                        @for ($year = 1990; $year <= 2023; $year++)
+                                            <option>{{ $year }}</option>
+                                        @endfor
+                                    </select>
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="small mb-1" for="condition">Condition</label>
-                                    <select class="form-control input-group-sm select2" id='condition'
-                                        name="condition" required>
+                                    <select class="form-control input-group-sm select2" id='condition' name="condition"
+                                        required>
                                         <option>Good</option>
                                         <option>Needs Repair</option>
                                         <option>Needs Maintenance</option>
@@ -262,8 +266,13 @@
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="year">Year of Purchase</label>
-                                        <input class="form-control" id="year" name="year" type="text"
-                                            value="{{ $item->year }}">
+                                        <select class="form-control input-group-sm select2" id='year'
+                                        name="year" required>
+                                        <option>{{ $item->year }}</option>
+                                        @for ($year = 1990; $year <= 2023; $year++)
+                                            <option>{{ $year }}</option>
+                                        @endfor
+                                    </select>
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="condition">Condition</label>
