@@ -8,6 +8,7 @@ use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use App\Models\LogsInventary;
 use App\Models\InventarisCategory;
+use App\Models\InventaryLocation;
 use Illuminate\Support\Facades\DB;
 use App\Models\LogInventaryActivity;
 use App\Models\LogsCommentInventary;
@@ -28,6 +29,7 @@ class InventarisController extends Controller
         
         $dataDepartment = Department::all();
         $dataCategory = InventarisCategory::all();    
+        $dataLocation = InventaryLocation::all();    
 
         // show edits activity
         $activityEdits = LogsCommentInventary::all();
@@ -35,7 +37,7 @@ class InventarisController extends Controller
         // $lastEdit = Inventaris::all()->last();
         // echo($lastEdit);
 
-        return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment', 'activityEdits'));
+        return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment','dataLocation', 'activityEdits'));
     }
 
     /**

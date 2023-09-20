@@ -21,9 +21,11 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
                                 <div class="dropdown-menu animated--fade-in" name="category"
                                     aria-labelledby="dropdownFadeIn">
+                                    <a class="dropdown-item category-filter" href="#" data-category="all">All Category</a>
+                                    <a class="dropdown-item category-filter" href="#"> </a>
                                     @foreach ($dataCategory as $item)
-                                        <a class="dropdown-item" href="/inventaris/{{ $item->inventarisCategory_name }}"
-                                            value="{{ $item->inventarisCategory_name }}">{{ $item->inventarisCategory_name }}</a>
+                                        <a class="dropdown-item category-filter" href="#"
+                                            data-category="{{ $item->inventarisCategory_name }}">{{ $item->inventarisCategory_name }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -170,8 +172,8 @@
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="small mb-1" for="year">Year of Purchase</label>
-                                    <select class="form-control input-group-sm select2" id='year'
-                                        name="year" required>
+                                    <select class="form-control input-group-sm select2" id='year' name="year"
+                                        required>
                                         @for ($year = 1990; $year <= 2023; $year++)
                                             <option>{{ $year }}</option>
                                         @endfor
@@ -192,8 +194,12 @@
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="small mb-1" for="location">Item Location</label>
-                                    <input class="form-control" id="location" name="location" type="text"
-                                        placeholder="Enter item location" required>
+                                    <select class="form-control input-group-sm select2" id='location' name="location"
+                                        required>
+                                        @foreach ($dataLocation as $data)
+                                            <option>{{ $data->location }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="small mb-1" for="department">Department/Division</label>
@@ -266,13 +272,13 @@
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="year">Year of Purchase</label>
-                                        <select class="form-control input-group-sm select2" id='year'
-                                        name="year" required>
-                                        <option>{{ $item->year }}</option>
-                                        @for ($year = 1990; $year <= 2023; $year++)
-                                            <option>{{ $year }}</option>
-                                        @endfor
-                                    </select>
+                                        <select class="form-control input-group-sm select2" id='year' name="year"
+                                            required>
+                                            <option>{{ $item->year }}</option>
+                                            @for ($year = 1990; $year <= 2023; $year++)
+                                                <option>{{ $year }}</option>
+                                            @endfor
+                                        </select>
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="condition">Condition</label>
@@ -281,8 +287,13 @@
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="location">Item Location</label>
-                                        <input class="form-control" id="location" name="location" type="text"
-                                            value="{{ $item->location }}">
+                                        <select class="form-control input-group-sm select2" id="location"
+                                            name="location" required>
+                                            <option>{{ $item->location }}</option>
+                                            @foreach ($dataLocation as $data)
+                                                <option>{{ $data->location }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="department">Department</label>
@@ -293,7 +304,7 @@
                                                 <option>{{ $data->department_name }}</option>
                                             @endforeach
                                         </select>
-                                            
+
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="used_by">Used by</label>
@@ -341,11 +352,26 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.12.1/datatables.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#inventarisCategory_name").select2({
-                placeholder: "Search Category",
-            });
+
+    <script>
+        
+        $('.category-filter').click(function(e) {
+            e.preventDefault();
+        
+            var selectedCategory = $(this).data('category'); //get nilai kategori yang dipilih
+            if (selectedCategory === 'all') {
+                $('tbody tr').show();
+            } else {
+                $('tbody tr').hide();
+                
+                $('tbody tr').each(function() {   
+                    var category = $(this).find('td:eq(2)').text(); // Kolom "Category" berada di indeks 2
+                    if (category === selectedCategory) { // get rows yang sesuai dengan kategori yang dipilih
+                        $(this).show();
+                    }
+                });
+            }
         });
     </script>
+    
 @endpush
