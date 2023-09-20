@@ -25,4 +25,7 @@ class inventaris extends Model
     public function inventarisCategory(){
         return $this->belongsTo(InventarisCategory::class);
     }
+    public function inventarisLocation(){
+        return $this->belongsTo(InventaryLocation::class);
+    }
 }

@@ -82,6 +82,7 @@
                     <h6 class="collapse-header">Components:</h6>
                     <a class="collapse-item" href="/master/department">Category Departement</a>
                     <a class="collapse-item" href="/inventaris/category">Category Inventary</a>
+                    <a class="collapse-item" href="/master/inventaris_location">Office Location Room</a>
                 </div>
             </div>
         </li>

@@ -286,8 +286,14 @@
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="department">Department</label>
-                                        <input class="form-control" id="department" name="department" type="text"
-                                            value="{{ $item->department }}">
+                                        <select class="form-control input-group-sm select2" id="department"
+                                            name="department" required>
+                                            <option>{{ $item->department }}</option>
+                                            @foreach ($dataDepartment as $data)
+                                                <option>{{ $data->department_name }}</option>
+                                            @endforeach
+                                        </select>
+                                            
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="used_by">Used by</label>

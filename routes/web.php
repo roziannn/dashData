@@ -8,8 +8,9 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\InventarisController;
-use App\Http\Controllers\InventarisCategoryController;
 use App\Http\Controllers\InventarisReportController;
+use App\Http\Controllers\InventaryLocationController;
+use App\Http\Controllers\InventarisCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,12 +90,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/master/department/delete{id}', [DepartmentController::class,'delete']);
 });
 
-// //search by category
-// Route::get('/inventaris/{id}', [InventarisController::class,'category']);
 
 //inventaris activity log
 Route::get('/inventaris/activity', [InventarisController::class,'activity_log']);
-
 //inventaris report activity log
 Route::get('/inventaris/report/activity', [InventarisReportController::class,'activity_log']);
+
+//Master inventaris location room
+Route::get('/master/inventaris_location', [InventaryLocationController::class,'index']);
+Route::post('/master/inventaris_location/store', [InventaryLocationController::class, 'store']);
+Route::get('/master/inventaris_location/delete{id}', [InventaryLocationController::class,'delete']);
 
