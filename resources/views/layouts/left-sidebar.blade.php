@@ -56,7 +56,7 @@
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item" href="/inventaris/report">All Data Report</a>
                 @if (auth()->user()->roles == 'ADMIN')
-                    <a class="collapse-item" href="#">Activity Log</a>
+                    <a class="collapse-item" href="/inventaris/report/activity">Activity Log</a>
                 @endif
             </div>
         </div>

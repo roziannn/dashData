@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Department;
 use App\Models\inventaris;
-use App\Models\InventarisCategory;
+use App\Models\LogsReport;
 use Illuminate\Http\Request;
 use App\Models\InventaryReport;
-use App\Models\User;
+use App\Models\InventarisCategory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class InventarisReportController extends Controller
@@ -76,6 +78,9 @@ class InventarisReportController extends Controller
         $request->accepts('session');
         session()->flash('success', 'Report has been added!');
 
+
+        LogsReport::record(Auth::user(), Auth::user()->first_name,  ' added ', $request->code . ' to ', $request->inventarisCategory_name);
+
         return back();
     }
 
@@ -129,6 +134,8 @@ class InventarisReportController extends Controller
         $request->accepts('session');
         session()->flash('success', 'Update successed!');
 
+        LogsReport::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->code . ' in ', $request->inventarisCategory_name); 
+
         return redirect()->back();
     }
 
@@ -169,6 +176,8 @@ class InventarisReportController extends Controller
 
         $request->accepts('session');
         session()->flash('success', 'Update successed!');
+
+        LogsReport::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->code . ' in ', $request->inventarisCategory_name);
 
         return redirect()->back();
     }
@@ -219,6 +228,17 @@ class InventarisReportController extends Controller
         $data = InventaryReport::find($id);
         $data->delete();
 
+        
+        LogsReport::record(Auth::user(), Auth::user()->first_name, ' delete ', $data->code . ' on', $data->inventarisCategory_name);
+
         return redirect('/inventaris/report')->with('successDelete', 'Item has been deleted!');
+    }
+
+    public function activity_log()
+    {
+
+        $data = DB::select("SELECT * FROM logs_report ORDER BY created_at DESC");
+
+        return view('inventaris_report.activityLog.index', compact('data'));
     }
 }

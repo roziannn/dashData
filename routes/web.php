@@ -95,3 +95,6 @@ Route::group(['middleware' => 'auth'], function () {
 //inventaris activity log
 Route::get('/inventaris/activity', [InventarisController::class,'activity_log']);
 
+//inventaris report activity log
+Route::get('/inventaris/report/activity', [InventarisReportController::class,'activity_log']);
+
