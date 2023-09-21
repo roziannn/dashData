@@ -21,7 +21,8 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
                                 <div class="dropdown-menu animated--fade-in" name="category"
                                     aria-labelledby="dropdownFadeIn">
-                                    <a class="dropdown-item category-filter" href="#" data-category="all">All Category</a>
+                                    <a class="dropdown-item category-filter" href="#" data-category="all">All
+                                        Category</a>
                                     <a class="dropdown-item category-filter" href="#"> </a>
                                     @foreach ($dataCategory as $item)
                                         <a class="dropdown-item category-filter" href="#"
@@ -152,15 +153,24 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="small mb-1" for="brand">Brand</label>
-                                    <input class="form-control" id="brand" name="brand" type="text"
-                                        placeholder="Enter brand code" required>
+                                    <select class="form-control input-group-sm select2" id="brand" name="brand"
+                                        required>
+                                        <option>Apple</option>
+                                        <option>Asus</option>
+                                        <option>Dell</option>
+                                        <option>HP</option>
+                                        <option>Lenovo</option>
+                                        <option>Samsung</option>
+                                        <option>Toshiba</option>
+                                        <option>Xiaomi</option>
+                                        <option>Others</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="small mb-1" for="inventarisCategory_name">Category</label>
                                     <select class="form-control input-group-sm select2" id='inventarisCategory_name'
                                         name="inventarisCategory_name" required>
                                         @foreach ($dataCategory as $data)
-                                            <option></option>
                                             <option>{{ $data->inventarisCategory_name }}</option>
                                         @endforeach
                                     </select>
@@ -252,8 +262,19 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label class="small mb-1" for="brand">Brand</label>
-                                        <input class="form-control" id="brand" name="brand" type="text"
-                                            value="{{ $item->brand }}">
+                                        <select class="form-control input-group-sm select2" id="brand" name="brand"
+                                            required>
+                                            <option>{{ $item->brand }}</option>
+                                            <option>Apple</option>
+                                            <option>Asus</option>
+                                            <option>Dell</option>
+                                            <option>HP</option>
+                                            <option>Lenovo</option>
+                                            <option>Samsung</option>
+                                            <option>Toshiba</option>
+                                            <option>Xiaomi</option>
+                                            <option>Others</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="small mb-1" for="inventarisCategory_name">Category</label>
@@ -282,8 +303,17 @@
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="condition">Condition</label>
-                                        <input class="form-control" id="condition" name="condition" type="text"
-                                            value="{{ $item->condition }}">
+                                        <select class="form-control input-group-sm select2" id='condition'
+                                            name="condition" required>
+                                            <option>{{ $item->condition }}</option>
+                                            <option>Good</option>
+                                            <option>Needs Repair</option>
+                                            <option>Needs Maintenance</option>
+                                            <option>Repair</option>
+                                            <option>Maintenance</option>
+                                            <option>Damaged</option>
+                                            <option>On Loan</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="small mb-1" for="location">Item Location</label>
@@ -354,24 +384,23 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        
         $('.category-filter').click(function(e) {
             e.preventDefault();
-        
+
             var selectedCategory = $(this).data('category'); //get nilai kategori yang dipilih
             if (selectedCategory === 'all') {
                 $('tbody tr').show();
             } else {
                 $('tbody tr').hide();
-                
-                $('tbody tr').each(function() {   
+
+                $('tbody tr').each(function() {
                     var category = $(this).find('td:eq(2)').text(); // Kolom "Category" berada di indeks 2
-                    if (category === selectedCategory) { // get rows yang sesuai dengan kategori yang dipilih
+                    if (category ===
+                        selectedCategory) { // get rows yang sesuai dengan kategori yang dipilih
                         $(this).show();
                     }
                 });
             }
         });
     </script>
-    
 @endpush

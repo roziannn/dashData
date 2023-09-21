@@ -63,6 +63,7 @@
                                         <tr>
                                             <th width="5%">No</th>
                                             <th>Room Name</th>
+                                            <th>Floor</th>
                                             @if (auth()->user()->roles == 'ADMIN')
                                                 <th>Action</th>
                                             @endif
@@ -75,6 +76,7 @@
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td> {{ $item->location }}</td>
+                                                <td> {{ $item->floor }}</td>
                                                 @if (auth()->user()->roles == 'ADMIN')
                                                     <td>
                                                         <a href="#" class="btn-danger btn-sm ml-1" data-toggle="modal"
