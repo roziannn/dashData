@@ -184,7 +184,7 @@
                                     <label class="small mb-1" for="year">Year of Purchase</label>
                                     <select class="form-control input-group-sm select2" id='year' name="year"
                                         required>
-                                        @for ($year = 1990; $year <= 2023; $year++)
+                                        @for ($year = 2023; $year >= 1990; $year--)
                                             <option>{{ $year }}</option>
                                         @endfor
                                     </select>
@@ -296,7 +296,7 @@
                                         <select class="form-control input-group-sm select2" id='year' name="year"
                                             required>
                                             <option>{{ $item->year }}</option>
-                                            @for ($year = 1990; $year <= 2023; $year++)
+                                            @for ($year = 2023; $year >= 1990; $year--)
                                                 <option>{{ $year }}</option>
                                             @endfor
                                         </select>
