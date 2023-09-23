@@ -98,15 +98,19 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-m font-weight-bold text-info text-uppercase mb-1">
-                                Self Service
+                                Service Type
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                         @php
                                             $self_serviceCount = $dataItem->where('service_type', 'Self Service')->count();
+                                            $vendorCount = $dataItem->where('service_type', 'Vendor')->count();
                                         @endphp
-                                        <p>{{ $self_serviceCount }}</p>
+                                        <p class="m-0">{{ $self_serviceCount }} <small
+                                                class="text-muted text-gray-500">Self Service</small></p>
+                                        <p class="m-0">{{ $vendorCount }} <small
+                                                class="text-muted text-gray-500">Vendor</small></p>
                                     </div>
                                 </div>
                                 {{-- <div class="col">
@@ -130,12 +134,12 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-m font-weight-bold text-warning text-uppercase mb-1">
-                                by vendor</div>
+                                This Week</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 @php
-                                    $vendorCount = $dataItem->where('service_type', 'Vendor')->count();
+                                    $count = $dataItem->where('created_at', '>=', $startDateWeek)->count();
                                 @endphp
-                                <p>{{ $vendorCount }}</p>
+                                <p>{{ $count }}</p>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -220,6 +224,45 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-6 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="chartReportLinesWeekly" style="width:100%;max-width:600px"></canvas>
+                        <script>
+                            var ctx = document.getElementById('chartReportLinesWeekly').getContext('2d');
+                            var dates = @json($dates);
+                            var reports = @json($reports);
+
+                            var myChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: dates,
+                                    datasets: [{
+                                        label: 'Laporan',
+                                        data: reports,
+                                        fill: false,
+                                        borderColor: 'rgb(75, 192, 192)',
+                                        tension: 0.1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: "REPORT GRAPH IN THE LAST 3 MONTHS"
+                                    },
+                                },
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
 @endsection

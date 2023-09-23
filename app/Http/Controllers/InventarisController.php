@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 use App\Models\LogsInventary;
 use App\Models\InventarisCategory;
 use App\Models\InventaryLocation;
+use App\Models\InventaryReport;
 use Illuminate\Support\Facades\DB;
 use App\Models\LogsCommentInventary;
 use Illuminate\Support\Facades\Auth;
+
 
 class InventarisController extends Controller
 {
@@ -32,6 +34,8 @@ class InventarisController extends Controller
 
         // show edits activity
         $activityEdits = LogsCommentInventary::all();
+
+        
 
         return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment', 'dataLocation',  'activityEdits'));
     }

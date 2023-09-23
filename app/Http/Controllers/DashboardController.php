@@ -47,7 +47,7 @@ class DashboardController extends Controller
 
         //START CHART MOST REPORTS BASED ON CATEGORY
         $categories = DB::table('inventaris_categories')->get();  // Get data kategori inventaris
-        $allCategories = $categories->pluck('inventarisCategory_name')->toArray(); 
+        $allCategories = $categories->pluck('inventarisCategory_name')->toArray();
 
         // get data laporan untuk kategori-kategori yang memiliki laporan
         $reports = DB::table('inventary_reports')
@@ -62,14 +62,28 @@ class DashboardController extends Controller
             $report = $reports->firstWhere('inventarisCategory_name', $category);
             if ($report) {
                 $xCtgValues[] = $category;
-                $yCtgValues[] = intval($report->report_count); 
+                $yCtgValues[] = intval($report->report_count);
             } else {
                 $xCtgValues[] = $category;
-                $yCtgValues[] = 0;    
+                $yCtgValues[] = 0;
             }
         }
         //END CHART MOST REPORTS BASED ON CATEGORY
 
-        return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum', 'dataItem', 'xValues', 'yValues', 'xCtgValues', 'yCtgValues'));
+
+
+        //line grafik mingguan status report
+        $endDate = now();
+        $startDateWeek = now()->subDays(7);
+        $startDateMonth = now()->subMonth(3);
+
+        $dataRange = InventaryReport::whereBetween('created_at', [$startDateMonth, $endDate])->groupBy('date')->orderBy('date')->get([
+            DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as report_count'),
+        ]);
+
+        $dates = $dataRange->pluck('date');
+        $reports = $dataRange->pluck('report_count');
+
+        return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum', 'dataItem', 'xValues', 'yValues', 'xCtgValues', 'yCtgValues', 'startDateWeek','startDateMonth', 'dates', 'reports'));
     }
 }
