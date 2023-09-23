@@ -10,7 +10,6 @@ use App\Models\LogsInventary;
 use App\Models\InventarisCategory;
 use App\Models\InventaryLocation;
 use Illuminate\Support\Facades\DB;
-use App\Models\LogInventaryActivity;
 use App\Models\LogsCommentInventary;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,18 +25,15 @@ class InventarisController extends Controller
         $dataCategory = DB::table('inventaris_categories')->orderBy('inventarisCategory_name', 'asc')->get();
 
         $dataItem = Inventaris::all();
-        
+
         $dataDepartment = Department::all();
-        $dataCategory = InventarisCategory::all();    
-        $dataLocation = InventaryLocation::all();    
+        $dataCategory = InventarisCategory::all();
+        $dataLocation = InventaryLocation::all();
 
         // show edits activity
         $activityEdits = LogsCommentInventary::all();
 
-        // $lastEdit = Inventaris::all()->last();
-        // echo($lastEdit);
-
-        return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment','dataLocation', 'activityEdits'));
+        return view('inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment', 'dataLocation',  'activityEdits'));
     }
 
     /**
@@ -47,7 +43,7 @@ class InventarisController extends Controller
      */
     public function create()
     {
-        
+
         return view('inventaris.create');
     }
 
@@ -100,26 +96,50 @@ class InventarisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Inventaris::where('id', $id)->update([
-            'code'=> $request->code,
-            'brand'=> $request->brand,
-            'inventarisCategory_name'=> $request->inventarisCategory_name,
-            'reg_code'=> $request->reg_code,
-            'year'=> $request->year,
-            'condition'=> $request->condition,
-            'location'=> $request->location,
-            'department'=> $request->department,
-            'used_by'=> $request->used_by,
-            'others'=> $request->others,
-        ]);
+        $item = Inventaris::findOrFail($id);
 
-        LogsInventary::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->code . ' in ', $request->inventarisCategory_name);
-
-
-        LogsCommentInventary::record(Auth::user(), $request->id, Auth::user()->first_name, ' was edited ', $request->code)->where('id', $id);
-
+        $fieldsToTrack = [
+            'code',
+            'brand',
+            'inventarisCategory_name',
+            'reg_code',
+            'year',
+            'condition',
+            'location',
+            'department',
+            'used_by',
+            'others',
+        ];
+    
+        $edits = [];
+    
+        foreach ($fieldsToTrack as $field) {
+            $oldValue = $item->$field;
+            $newValue = $request->$field;
+    
+            if ($oldValue != $newValue) {
+                $edits[] = [
+                    'user_id' => Auth::user()->id,
+                    'inventary_id' => $item->id,
+                    'field' => $field,
+                    'old_value' => $oldValue,
+                    'new_value' => $newValue,
+                    'created_at' => now(),
+                ];
+            }
+        }
+    
+        // Lakukan pembaruan pada model Inventaris
+        $item->update($request->all());
+    
+        // Masukkan data perubahan ke dalam tabel comment_inventary
+        LogsCommentInventary::insert($edits);
+    
+        // Log other activities as needed
+        LogsInventary::record(Auth::user(), Auth::user()->first_name, 'edited', $request->code . ' in ', $request->inventarisCategory_name);
         $request->accepts('session');
         session()->flash('successUpdate', 'Item has been updated!');
+
 
         return redirect()->back();
     }
@@ -140,21 +160,23 @@ class InventarisController extends Controller
         return redirect('/inventaris')->with('successDelete', 'Item has been deleted!');
     }
 
-    public function category($id){
+    public function category($id)
+    {
 
         $dataItem = Inventaris::all();
         $dataDepartment = Department::all();
-        
+
         $dataCategory = DB::select("SELECT * FROM inventaris_categories");
 
-        
+
         return view('/inventaris.index', compact('dataCategory', 'dataItem', 'dataDepartment'));
     }
 
-    public function activity_log(){
+    public function activity_log()
+    {
 
         $data = DB::select("SELECT * FROM logs_inventary ORDER BY created_at DESC");
 
-    return view('inventaris.activityLog.index', compact('data'));
+        return view('inventaris.activityLog.index', compact('data'));
     }
 }

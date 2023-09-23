@@ -17,10 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('user_id', 20)->nullable();
             $table->string('inventary_id')->nullable();
-            $table->string('user_name')->nullable();
-            $table->string('event', 100)->nullable();
-            $table->text('extra')->nullable();
-            $table->string('ip', 20);
+            $table->string('field')->nullable();
+            $table->string('old_value')->nullable();
+            $table->text('new_value')->nullable();
             $table->timestamps();
         });
     }

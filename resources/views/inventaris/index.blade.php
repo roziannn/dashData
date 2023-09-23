@@ -358,8 +358,7 @@
                                 <hr>
                                 @foreach ($activityEdits as $activity)
                                     @if ($item->id == $activity->inventary_id)
-                                        {{ $activity->user_name }} {{ $activity->event }} {{ $item->code }} to
-                                        {{ $activity->extra }}<br>
+                                        {{ $activity->user->first_name }}  edited {{ $activity->field }} from {{ $activity->old_value }} to {{ $activity->new_value }}<br>
                                     @endif
                                 @endforeach
                             </div>

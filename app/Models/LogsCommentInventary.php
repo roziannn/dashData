@@ -2,33 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class LogsCommentInventary extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'comment_inventary';
     protected $primaryKey = 'id';
     protected $fillable = [
-      'user_id',
-      'inventary_id',
-      'user_name',
-      'event',
-      'extra',
-      'ip',
+        'user_id',
+        'inventary_id',
+        'field',
+        'old_value',
+        'new_value',
     ];
-
-    public static function record($user_id = null, $inventary_id, $user_name, $event, $extra)
+    
+    public function user()
     {
-        return static::create([
-            'user_id' => is_null($user_id) ? null : $user_id->id,
-            'inventary_id' => $inventary_id,
-            'user_name' => $user_name,
-            'event' => $event,
-            'extra' => $extra,
-            'ip' => request()->ip(),
-        ]);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
