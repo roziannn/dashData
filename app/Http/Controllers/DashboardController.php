@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InventaryReport;
+use App\Models\Inventaris;
 use App\Models\LogActivity;
 use Illuminate\Http\Request;
+use App\Models\InventaryReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,8 +72,7 @@ class DashboardController extends Controller
         //END CHART MOST REPORTS BASED ON CATEGORY
 
 
-
-        //line grafik mingguan status report
+        //START GRAFIK LINE 3 BULAN TERAKHIR REPORT
         $endDate = now();
         $startDateWeek = now()->subDays(7);
         $startDateMonth = now()->subMonth(3);
@@ -83,7 +83,16 @@ class DashboardController extends Controller
 
         $dates = $dataRange->pluck('date');
         $reports = $dataRange->pluck('report_count');
+        //END
+        
 
-        return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum', 'dataItem', 'xValues', 'yValues', 'xCtgValues', 'yCtgValues', 'startDateWeek','startDateMonth', 'dates', 'reports'));
+        //START DATA INVENTRAY BY CONDITION
+        $conditions = Inventaris::select('condition', DB::raw('count(*) as total'))
+        ->groupBy('condition')
+        ->get()->prepend(['condition' => '0', 'total' => 0]);
+        //END
+
+
+        return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum', 'dataItem', 'xValues', 'yValues', 'xCtgValues', 'yCtgValues', 'startDateWeek','startDateMonth', 'dates', 'reports', 'conditions'));
     }
 }
