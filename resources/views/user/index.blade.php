@@ -7,9 +7,17 @@
 
 @section('content')
     @if (auth()->user()->roles == 'ADMIN')
-        <div class="col-auto mt-2 mb-3">
-            <a href="/user/create" class="btn btn-sm btn-light text-primary">+ Add New User</a>
+    <div class="mt-2 mb-3">
+        <div class="row justify-content-start">
+            <div class="col-md-2 col-sm-12 mb-2">
+                <a href="/user/create" class="btn btn-sm btn-primary btn-block">+ Add New User</a>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <a href="/user/export/" class="btn btn-sm btn-success btn-block">Export to Excel</a>
+            </div>
         </div>
+    </div>
+    
     @endif
     <div class="card">
         <div class="card-header py-3">

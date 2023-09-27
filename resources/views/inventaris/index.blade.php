@@ -9,7 +9,7 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-auto mr-auto">
-                    <a href="#" class="btn btn-m btn-primary text-white text-decoration-none" data-toggle="modal"
+                    <a href="#" class="btn btn-sm btn-primary text-white text-decoration-none" data-toggle="modal"
                         data-target="#modal-primary">+ Add data</a>
                 </div>
                 <div class="row">
@@ -17,7 +17,7 @@
                         <div class="col-sm-3 mr-3">
                             <!-- Fade In Animation -->
                             <div class="dropdown">
-                                <button class="btn btn-m btn-secondary dropdown-toggle" id="dropdownFadeIn"
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" id="dropdownFadeIn"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
                                 <div class="dropdown-menu animated--fade-in" name="category"
                                     aria-labelledby="dropdownFadeIn">

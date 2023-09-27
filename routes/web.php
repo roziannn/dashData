@@ -101,3 +101,5 @@ Route::get('/master/inventaris_location', [InventaryLocationController::class,'i
 Route::post('/master/inventaris_location/store', [InventaryLocationController::class, 'store']);
 Route::get('/master/inventaris_location/delete{id}', [InventaryLocationController::class,'delete']);
 
+Route::get('/user/export', [UserController::class, 'export']);
+

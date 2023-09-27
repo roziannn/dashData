@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use CreateAuditsTable;
+use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use OwenIt\Auditing\Contracts\Audit;
 use OwenIt\Auditing\Models\Audit as ModelsAudit;
 
@@ -117,15 +119,9 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function export() 
     {
-        //
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 
     public function delete($id)

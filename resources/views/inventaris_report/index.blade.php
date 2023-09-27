@@ -8,7 +8,8 @@
     <div class="card">
         <div class="card-header py-3">
             <div class="text-right">
-                <a href="/inventaris/report/create" class="btn-sm btn-light text-primary text-decoration-none ">+ Create New Report</a>
+                <a href="/inventaris/report/create" class="btn btn-sm btn-primary text-decoration-none ">+ Create New
+                    Report</a>
             </div>
         </div>
         <div class="card-body">
