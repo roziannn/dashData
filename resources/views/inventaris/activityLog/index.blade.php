@@ -27,11 +27,11 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $item->user_name }}</td>
                                         <td>
-                                            @if ($item->type_log == ' delete ')
+                                            @if ($item->type_log == 'delete')
                                                 <span class="badge badge-danger">delete</span>
-                                            @elseif($item->type_log == ' edited ')
+                                            @elseif($item->type_log == 'edited')
                                                 <span class="badge badge-warning">edited</span>
-                                            @elseif($item->type_log == ' added ')
+                                            @elseif($item->type_log == 'added')
                                                 <span class="badge badge-success">added</span>
                                             @endif
                                             {{ $item->event }} <span class="badge badge-primary">{{ $item->extra }}</span>

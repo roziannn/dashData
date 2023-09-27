@@ -34,6 +34,11 @@
                         <label class="small mb-1" for="password">New Password</label>
                         <input class="form-control" id="password" name="password" type="password"
                             placeholder="Enter new password" autocomplete="new-password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <!-- Form Group (confirm password)-->
                     <div class="mb-3">
@@ -41,7 +46,7 @@
                         <input class="form-control" id="password-confirm" name="password_confirmation" type="password"
                             placeholder="Confirm new password" autocomplete="new-password">
                     </div>
-                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-primary" type="submit">Update Password</button>
                 </form>
             </div>
         </div>

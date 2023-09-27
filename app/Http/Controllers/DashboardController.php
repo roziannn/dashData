@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Inventaris;
 use App\Models\LogActivity;
 use Illuminate\Http\Request;
@@ -16,6 +17,9 @@ class DashboardController extends Controller
 
         $dataInventary_sum = DB::select("SELECT count(code) as all from inventaris");
         $reportInventary_sum = DB::select("SELECT count(report_token) as all from inventary_reports");
+
+        $total_department = DB::select("SELECT count(department_name) as all from departments");
+
 
         $dataItem = InventaryReport::all();
 
@@ -84,15 +88,16 @@ class DashboardController extends Controller
         $dates = $dataRange->pluck('date');
         $reports = $dataRange->pluck('report_count');
         //END
-        
+
 
         //START DATA INVENTRAY BY CONDITION
         $conditions = Inventaris::select('condition', DB::raw('count(*) as total'))
-        ->groupBy('condition')
-        ->get()->prepend(['condition' => '0', 'total' => 0]);
+            ->groupBy('condition')
+            ->get()->prepend(['condition' => '0', 'total' => 0]);
+
         //END
 
 
-        return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum', 'dataItem', 'xValues', 'yValues', 'xCtgValues', 'yCtgValues', 'startDateWeek','startDateMonth', 'dates', 'reports', 'conditions'));
+        return view('dashboard.index', compact('dataInventary_sum', 'reportInventary_sum', 'total_department', 'dataItem', 'xValues', 'yValues', 'xCtgValues', 'yCtgValues', 'startDateWeek', 'startDateMonth', 'dates', 'reports', 'conditions'));
     }
 }

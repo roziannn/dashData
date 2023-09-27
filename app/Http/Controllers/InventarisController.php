@@ -64,7 +64,7 @@ class InventarisController extends Controller
         $request->accepts('session');
         session()->flash('success', 'Berhasil menambahkan data!');
 
-        LogsInventary::record(Auth::user(), Auth::user()->first_name,  ' added ', $request->code . ' to ', $request->inventarisCategory_name);
+        LogsInventary::record(Auth::user(), Auth::user()->first_name,  'added', $request->code . ' to ', $request->inventarisCategory_name);
 
         return back();
     }
@@ -159,7 +159,7 @@ class InventarisController extends Controller
         $data = Inventaris::find($id);
         $data->delete();
 
-        LogsInventary::record(Auth::user(), Auth::user()->first_name, ' delete ', $data->code . ' on', $data->inventarisCategory_name);
+        LogsInventary::record(Auth::user(), Auth::user()->first_name, 'delete', $data->code . ' on', $data->inventarisCategory_name);
 
         return redirect('/inventaris')->with('successDelete', 'Item has been deleted!');
     }

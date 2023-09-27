@@ -23,9 +23,7 @@
         $greet = 'Welcome,';
     }
     ?>
-
     <h3 class="my-4"> <?php echo $greet; ?> {{ auth()->user()->first_name }}</h3>
-
     {{-- //// --}}
 
     <h5 class="my-2"> Overview Report</h5>
@@ -117,17 +115,16 @@
 
 
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+            <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-m font-weight-bold text-success text-uppercase mb-1">
-                                Need Repairs</div>
+                            <div class="text-m font-weight-bold text-warning text-uppercase mb-1">
+                                Total Department</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                @php
-                                    $count = $dataItem->where('created_at', '>=', $startDateWeek)->count();
-                                @endphp
-                                <p>{{ $count }}</p>
+                                @foreach ($total_department as $department)
+                                    <p> {{ $department->all}}</p>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-auto">
@@ -271,7 +268,7 @@
                             });
 
                             var myChart = new Chart(ctx, {
-                                type: 'horizontalBar', 
+                                type: 'horizontalBar',
                                 data: {
                                     labels: labels,
                                     datasets: [{
@@ -283,8 +280,8 @@
                                 },
                                 options: {
                                     scales: {
-                                        x: { 
-                                            beginAtZero: true
+                                        x: {
+                                            beginAtZero: false,
                                         },
                                         y: {
                                             beginAtZero: true

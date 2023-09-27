@@ -268,18 +268,6 @@
                 </form>
             </div>
         </div>
-
-        {{-- <div class="card">
-            <div class="card-header py-3">
-                <div class="row">
-                    <div class="col-12 col-md-auto px-2">
-                        <h6 class="m-0 font-weight-bold text-primary">
-                            Activity
-                        </h6>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     @endif
     <div class="col-9 mt-5">
         <div class="col-auto mr-auto">
@@ -295,7 +283,7 @@
                         </li>
                     @elseif ($audit->event !== 'created')
                         <li>
-                            @lang('on ' . $audit->created_at) @lang('report.updated.metadata', $audit->getMetadata())
+                            @lang('report.updated.metadata', $audit->getMetadata()) <span class="text-muted text-xs text-gray-500">@lang('' .   $audit->created_at)</span>
                             @foreach ($audit->getModified() as $attribute => $modified)
                                 @if ($audit->status === '1')
                                 @endif

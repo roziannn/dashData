@@ -79,7 +79,7 @@ class InventarisReportController extends Controller
         session()->flash('success', 'Report has been added!');
 
 
-        LogsReport::record(Auth::user(), Auth::user()->first_name,  ' added ', $request->code . ' to ', $request->inventarisCategory_name);
+        LogsReport::record(Auth::user(), Auth::user()->first_name,  ' added ', $request->report_token . ' to ', $request->inventarisCategory_name);
 
         return back();
     }
@@ -134,7 +134,7 @@ class InventarisReportController extends Controller
         $request->accepts('session');
         session()->flash('success', 'Update successed!');
 
-        LogsReport::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->code . ' in ', $request->inventarisCategory_name); 
+        LogsReport::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->report_token . ' in ', $request->inventarisCategory_name); 
 
         return redirect()->back();
     }
@@ -177,7 +177,7 @@ class InventarisReportController extends Controller
         $request->accepts('session');
         session()->flash('success', 'Update successed!');
 
-        LogsReport::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->code . ' in ', $request->inventarisCategory_name);
+        LogsReport::record(Auth::user(), Auth::user()->first_name,  ' edited ', $request->report_token . ' in ', $request->inventarisCategory_name);
 
         return redirect()->back();
     }
@@ -222,14 +222,13 @@ class InventarisReportController extends Controller
     }
 
     // Solution 3
-
     public function delete($id)
     {
         $data = InventaryReport::find($id);
         $data->delete();
 
         
-        LogsReport::record(Auth::user(), Auth::user()->first_name, ' delete ', $data->code . ' on', $data->inventarisCategory_name);
+        LogsReport::record(Auth::user(), Auth::user()->first_name, ' delete ', $data->report_token . ' on', $data->inventarisCategory_name);
 
         return redirect('/inventaris/report')->with('successDelete', 'Item has been deleted!');
     }
