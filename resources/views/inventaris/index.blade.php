@@ -8,10 +8,12 @@
     <div class="card">
         <div class="card-header py-3">
             <div class="row">
+                @if (auth()->user()->roles == 'ADMIN')
                 <div class="col-auto mr-auto">
                     <a href="#" class="btn btn-sm btn-primary text-white text-decoration-none" data-toggle="modal"
                         data-target="#modal-primary">+ Add data</a>
                 </div>
+                 @endif
                 <div class="row">
                     <div class="text-right">
                         <div class="col-sm-3 mr-3">

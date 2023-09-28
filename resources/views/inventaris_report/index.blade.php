@@ -10,6 +10,7 @@
             <div class="text-right">
                 <a href="/inventaris/report/create" class="btn btn-sm btn-primary text-decoration-none ">+ Create New
                     Report</a>
+                <a href="/inventaris/report/create" class="btn btn-sm btn-success text-decoration-none ">Export to Excel</a>
             </div>
         </div>
         <div class="card-body">

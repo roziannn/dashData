@@ -108,9 +108,9 @@
                         <form action="{{ url('/inventaris/report/solution-add' . $data->id) }}" method="POST">
                             {{ csrf_field() }}
                             <div class="row">
-                                <input class="form-control form-control-user col-sm-4 mb-3" name='executor'
-                                    id='executor' type="hidden"
-                                    value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
+                            <input class="form-control form-control-user col-sm-4 mb-3" name='executor'
+                                id='executor' type="hidden"
+                                value="{{ $checkExecutor }}">
                                 <input class="form-control form-control-user col-sm-4 mb-3" name='status' id='status'
                                     type="hidden" value="1">
                                 <div class="col-md-12 mb-3">
@@ -197,7 +197,7 @@
                     <div class="row gx-3 mb-2">
                         <div class="col-md-6">
                             <input class="form-control form-control-user col-sm-4 mb-3" name='executor' id='executor'
-                                type="hidden" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
+                                type="hidden" value="{{ $checkExecutor }}">
                             <label class="small mb-1" for="service_type">Service Type</label>
                             <select class="form-control input-sm" name="service_type" id="updateservice_type"
                                 @if ($data->executor !== $checkExecutor) disabled @endif>
