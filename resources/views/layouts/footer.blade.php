@@ -1,8 +1,8 @@
 <!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
+<footer class="footer bg-white mt-3">
+    <div class="container py-2">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; dashData 2023</span>
+            <small>&copy; Dashdata 2024 V1.1</small>
         </div>
     </div>
 </footer>

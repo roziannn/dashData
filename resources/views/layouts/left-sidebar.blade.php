@@ -4,9 +4,10 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            {{-- <i class="fas fa-laugh-wink"></i> --}}
         </div>
-        <div class="sidebar-brand-text mx-3">dashdata</div>
+        {{-- <div class="sidebar-brand-text mx-3">dashdata</div> --}}
+        <div class="sidebar-brand-text">dashdata</div>
     </a>
 
     <!-- Divider -->
@@ -61,12 +62,12 @@
             </div>
         </div>
     </li>
- 
+
     <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Others
+        Master
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -83,11 +84,12 @@
                     <a class="collapse-item" href="/master/department">Category Departement</a>
                     <a class="collapse-item" href="/inventaris/category">Category Inventary</a>
                     <a class="collapse-item" href="/master/inventaris_location">Office Location Room</a>
+                    <a class="collapse-item" href="/master/user/index">Users</a>
                 </div>
             </div>
         </li>
     @endif
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
             aria-controls="collapsePages">
             <i class="fas fa-fw fa-cog"></i>
@@ -95,16 +97,16 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Component:</h6>
-                {{-- <a class="collapse-item" href="register.html">Register</a>
+                <h6 class="collapse-header">Component:</h6> --}}
+    {{-- <a class="collapse-item" href="register.html">Register</a>
                 <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="404.html">404 Page</a> --}}
-                <a class="collapse-item" href="/user/index">User Data</a>
+    {{-- <a class="collapse-item" href="/user/index">User Data</a>
             </div>
         </div>
-    </li>
+    </li> --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

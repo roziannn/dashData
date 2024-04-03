@@ -4,45 +4,10 @@
 @endsection
 
 @section('content')
-    <h4>Master Department</h4>
+    <h5 class="mb-3">Master Department</h5>
     <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                        Create New Department
-                    </h6>
-                </div>
-                <div class="card-body">
-                    @if (session()->has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        </div>
-                    @endif
-                    <form action="/master/department/store" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label class="small mb-1" for="department_name">Department Name</label>
-                            <input class="form-control" id="department_name" name="department_name"
-                                type="text" placeholder="Enter department name" required>
-                        </div>
-                        <!-- Submit button-->
-                        <div class="text-right">
-                            <button class="btn btn-light btn-sm text-primary" type="cancel">Cancel</button>
-                            <button class="btn btn-primary btn-sm" type="submit">Add new department</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                        Department List
-                    </h6>
-                </div>
                 <div class="card-body">
                     @if (session()->has('successDelete'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -85,6 +50,33 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-lg-0 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="mb-3 font-weight-bold text-primary">
+                        Create New Department
+                    </h6>
+                    @if (session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        </div>
+                    @endif
+                    <form action="/master/department/store" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="small mb-1" for="department_name">Department Name</label>
+                            <input class="form-control" id="department_name" name="department_name" type="text"
+                                placeholder="Enter department name" required>
+                        </div>
+                        <!-- Submit button-->
+                        <div class="text-right">
+                            <button class="btn btn-primary btn-sm w-100" type="submit">Add new department</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

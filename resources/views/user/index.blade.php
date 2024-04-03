@@ -7,24 +7,23 @@
 
 @section('content')
     @if (auth()->user()->roles == 'ADMIN')
-    <div class="mt-2 mb-3">
-        <div class="row justify-content-start">
-            <div class="col-md-2 col-sm-12 mb-2">
-                <a href="/user/create" class="btn btn-sm btn-primary btn-block">+ Add New User</a>
-            </div>
-            <div class="col-md-2 col-sm-12">
-                <a href="/user/export/" class="btn btn-sm btn-success btn-block">Export to Excel</a>
+        <div class="d-flex justify-content-between flex-column flex-sm-row mb-3">
+            <h5>Data User</h5>
+            <div class="my-lg-0 my-2 ">
+
+                <div class="col-auto mr-auto">
+
+                    <a href="/user/create" class="btn btn-sm btn-primary mb-lg-0 mb-3">+ Add New User</a>
+
+                    <a href="/user/export/" class="btn btn-sm btn-success">Export to Excel</a>
+
+                </div>
+
             </div>
         </div>
-    </div>
-    
     @endif
     <div class="card">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-                User List
-            </h6>
-        </div>
+
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -40,7 +39,7 @@
                                     <th>Role</th>
                                     <th>Created_at</th>
                                     @if (auth()->user()->roles == 'ADMIN')
-                                    <th>Action</th>
+                                        <th>Action</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -56,18 +55,20 @@
                                         <td>{{ $item->roles }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         @if (auth()->user()->roles == 'ADMIN')
-                                        <td>
-                                            <a href="{{ url('user/show/user-' . $item->id) }}" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="{{ url('user/edit/user-' . $item->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm ml-1" data-toggle="modal"
-                                                data-target="#modal-danger{{ $item->id }}">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
+                                            <td>
+                                                <a href="{{ url('user/show/user-' . $item->id) }}"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="{{ url('user/edit/user-' . $item->id) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-danger btn-sm ml-1" data-toggle="modal"
+                                                    data-target="#modal-danger{{ $item->id }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
                                         @endif
                                     </tr>
                                 @endforeach

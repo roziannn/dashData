@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    <h4>Activity Log Data Inventaris</h4>
+    <h5>Activity Log Data Inventaris</h5>
     <div class="card">
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">

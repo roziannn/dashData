@@ -21,7 +21,14 @@
 </head>
 
 <body id="page-top">
-
+    {{-- <script>
+        new DataTable('#myTable', {
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+            layout: {
+                top: 'buttons'
+            }
+        });
+    </script> --}}
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -45,6 +52,7 @@
 
                 </div>
                 <!-- /.container-fluid -->
+
 
             </div>
             <!-- End of Main Content -->
@@ -81,6 +89,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>

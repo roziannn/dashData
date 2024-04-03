@@ -1,5 +1,5 @@
 <!-- Topbar -->
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -148,8 +148,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src=""
-                            alt="...">
+                        <img class="rounded-circle" src="" alt="...">
                         <div class="status-indicator bg-success"></div>
                     </div>
                     <div>
@@ -206,10 +205,10 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                 <form action="/logout" method="post">
+                <form action="/logout" method="post">
                     @csrf
-                      <button class="btn btn-primary" type="submit">Logout</button>
-                  </form>
+                    <button class="btn btn-primary" type="submit">Logout</button>
+                </form>
             </div>
         </div>
     </div>

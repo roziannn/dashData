@@ -4,15 +4,23 @@
 @endsection
 
 @section('content')
-    <h4>Inventory Problem Report</h4>
+    <div class="d-flex justify-content-between flex-column flex-sm-row mb-3">
+        <h5>Inventory Problem Report</h5>
+        <div class="my-lg-0 my-2 ">
+            <a href="/inventaris/report/create" class="btn btn-sm btn-primary text-decoration-none ">+ Create New
+                Report</a>
+            <a href="/inventaris/report/create" class="btn btn-sm btn-success text-decoration-none ">Export to Excel</a>
+
+        </div>
+    </div>
     <div class="card">
-        <div class="card-header py-3">
+        {{-- <div class="card-header py-3">
             <div class="text-right">
                 <a href="/inventaris/report/create" class="btn btn-sm btn-primary text-decoration-none ">+ Create New
                     Report</a>
                 <a href="/inventaris/report/create" class="btn btn-sm btn-success text-decoration-none ">Export to Excel</a>
             </div>
-        </div>
+        </div> --}}
         <div class="card-body">
             @if (session()->has('successDelete'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">

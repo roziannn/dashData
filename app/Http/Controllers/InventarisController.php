@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\InventaryExport;
 use App\Models\Department;
 use App\Models\Inventaris;
 use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use App\Models\LogsInventary;
-use App\Models\InventarisCategory;
-use App\Models\InventaryLocation;
 use App\Models\InventaryReport;
+use App\Models\InventaryLocation;
+use App\Models\InventarisCategory;
 use Illuminate\Support\Facades\DB;
 use App\Models\LogsCommentInventary;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class InventarisController extends Controller
@@ -182,5 +184,10 @@ class InventarisController extends Controller
         $data = DB::select("SELECT * FROM logs_inventary ORDER BY created_at DESC");
 
         return view('inventaris.activityLog.index', compact('data'));
+    }
+
+    public function export() 
+    {
+        return Excel::download(new InventaryExport, 'inventary_data.xlsx');
     }
 }

@@ -33,73 +33,74 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 //user
-Route::get('/user/index', [UserController::class, 'index'])->middleware('auth');
+Route::get('/master/user/index', [UserController::class, 'index'])->middleware('auth');
 Route::get('/user/create', [UserController::class, 'create'])->middleware('admin');
-Route::match(['get', 'post'], '/user/edit/user-{id}', [UserController::class,'edit']);
-Route::post('/user/edit/user-{id}', [UserController::class,'update']);
+Route::match(['get', 'post'], '/user/edit/user-{id}', [UserController::class, 'edit']);
+Route::post('/user/edit/user-{id}', [UserController::class, 'update']);
 Route::get('/user/show/user-{id}', [UserController::class, 'show']);
 Route::post('/user/store', [UserController::class, 'store']);
 Route::get('/user-delete{id}', [UserController::class, 'delete']);
 
 //profile
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('profile', [ProfileController::class,'index'])->name('profile.index');
-    Route::patch('profile', [ProfileController::class,'update'])
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::patch('profile', [ProfileController::class, 'update'])
         ->name('profile.update');
 });
 
 //changePassword
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('password/change', [PasswordController::class,'index'])->name('password.index');
-    Route::patch('password/change', [PasswordController::class,'update'])
+    Route::get('password/change', [PasswordController::class, 'index'])->name('password.index');
+    Route::patch('password/change', [PasswordController::class, 'update'])
         ->name('password.update');
 });
 
 //dashboard
-Route::get('/dashboard/index', [DashboardController::class,'index']);
+Route::get('/dashboard/index', [DashboardController::class, 'index']);
 
 //inventaris
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/inventaris', [InventarisController::class,'index'])->name('inventaris.index');
-    Route::post('/inventaris/store', [InventarisController::class,'store'])->name('inventaris.store');
-    Route::get('/inventaris/item-delete{id}', [InventarisController::class,'delete'])->name('inventaris.delete');
-    Route::post('/inventaris/update{id}', [InventarisController::class,'update']);
+    Route::get('/inventaris', [InventarisController::class, 'index'])->name('inventaris.index');
+    Route::post('/inventaris/store', [InventarisController::class, 'store'])->name('inventaris.store');
+    Route::get('/inventaris/item-delete{id}', [InventarisController::class, 'delete'])->name('inventaris.delete');
+    Route::post('/inventaris/update{id}', [InventarisController::class, 'update']);
     //master category
-    Route::get('/inventaris/category', [InventarisCategoryController::class,'index'])->name('inventaris.category.index');
+    Route::get('/inventaris/category', [InventarisCategoryController::class, 'index'])->name('inventaris.category.index');
     Route::post('/inventaris/category-store', [InventarisCategoryController::class, 'store']);
     Route::get('/inventaris/category-delete{id}', [InventarisCategoryController::class, 'delete']);
 });
 
 //inventaris problem report
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/inventaris/report', [InventarisReportController::class,'index']);
-    Route::get('/inventaris/report/create', [InventarisReportController::class,'create']);
-    Route::post('/inventaris/report/store', [InventarisReportController::class,'store']);
-    Route::match(['get', 'post'],'/inventaris/report/edit/{id}', [InventarisReportController::class,'edit']);
-    Route::post('/inventaris/report/update{id}', [InventarisReportController::class,'update']);
-    Route::post('/inventaris/report/solution-add{id}', [InventarisReportController::class,'solution']);
-    Route::post('inventaris/report/solution-update{id}', [InventarisReportController::class,'update_solution']);
-    Route::get('/inventaris/report/delete{id}', [InventarisReportController::class,'delete']);
-    Route::get('/inventaris/report/show/{id}', [InventarisReportController::class,'show']);
+    Route::get('/inventaris/report', [InventarisReportController::class, 'index']);
+    Route::get('/inventaris/report/create', [InventarisReportController::class, 'create']);
+    Route::post('/inventaris/report/store', [InventarisReportController::class, 'store']);
+    Route::match(['get', 'post'], '/inventaris/report/edit/{id}', [InventarisReportController::class, 'edit']);
+    Route::post('/inventaris/report/update{id}', [InventarisReportController::class, 'update']);
+    Route::post('/inventaris/report/solution-add{id}', [InventarisReportController::class, 'solution']);
+    Route::post('inventaris/report/solution-update{id}', [InventarisReportController::class, 'update_solution']);
+    Route::get('/inventaris/report/delete{id}', [InventarisReportController::class, 'delete']);
+    Route::get('/inventaris/report/show/{id}', [InventarisReportController::class, 'show']);
 });
 
 //Department Report
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/master/department', [DepartmentController::class,'index']);
-    Route::post('/master/department/store', [DepartmentController::class,'store']);
-    Route::get('/master/department/delete{id}', [DepartmentController::class,'delete']);
+    Route::get('/master/department', [DepartmentController::class, 'index']);
+    Route::post('/master/department/store', [DepartmentController::class, 'store']);
+    Route::get('/master/department/delete{id}', [DepartmentController::class, 'delete']);
 });
 
 
 //inventaris activity log
-Route::get('/inventaris/activity', [InventarisController::class,'activity_log']);
+Route::get('/inventaris/activity', [InventarisController::class, 'activity_log']);
 //inventaris report activity log
-Route::get('/inventaris/report/activity', [InventarisReportController::class,'activity_log']);
+Route::get('/inventaris/report/activity', [InventarisReportController::class, 'activity_log']);
 
 //Master inventaris location room
-Route::get('/master/inventaris_location', [InventaryLocationController::class,'index']);
+Route::get('/master/inventaris_location', [InventaryLocationController::class, 'index']);
 Route::post('/master/inventaris_location/store', [InventaryLocationController::class, 'store']);
-Route::get('/master/inventaris_location/delete{id}', [InventaryLocationController::class,'delete']);
+Route::get('/master/inventaris_location/delete{id}', [InventaryLocationController::class, 'delete']);
 
+//Export data to excel
 Route::get('/user/export', [UserController::class, 'export']);
-
+Route::get('/inventary/export', [InventarisController::class, 'export']);

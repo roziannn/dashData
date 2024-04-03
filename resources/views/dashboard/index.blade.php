@@ -23,10 +23,10 @@
         $greet = 'Welcome,';
     }
     ?>
-    <h3 class="my-4"> <?php echo $greet; ?> {{ auth()->user()->first_name }}</h3>
+    <h5 class="my-3"> <?php echo $greet; ?> {{ auth()->user()->first_name }} !</h5>
     {{-- //// --}}
 
-    <h5 class="my-2"> Overview Report</h5>
+    {{-- <h5 class="my-2"> Overview Report</h5> --}}
     <div class="row">
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-danger shadow h-100 py-2">
@@ -67,7 +67,9 @@
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                         @php
-                                            $self_serviceCount = $dataItem->where('service_type', 'Self Service')->count();
+                                            $self_serviceCount = $dataItem
+                                                ->where('service_type', 'Self Service')
+                                                ->count();
                                             $vendorCount = $dataItem->where('service_type', 'Vendor')->count();
                                         @endphp
                                         <p class="m-0">{{ $self_serviceCount }} <small
@@ -123,7 +125,7 @@
                                 Total Department</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 @foreach ($total_department as $department)
-                                    <p> {{ $department->all}}</p>
+                                    <p> {{ $department->all }}</p>
                                 @endforeach
                             </div>
                         </div>
